@@ -1,0 +1,11 @@
+{
+  "/proxy/*": {
+    "target": "https://app.metasoccer.com",
+    "secure": false,
+    "changeOrigin": true,
+    "loglevel": "debug",
+    "pathRewrite": {
+      "^/proxy": ""
+    }
+  }
+}

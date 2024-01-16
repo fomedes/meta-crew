@@ -1,0 +1,1737 @@
+{
+    "result": {
+        "players": [
+            {
+                "age": 35,
+                "height": 187,
+                "id": 31798,
+                "lastName": "Xhofleer",
+                "condition": 100,
+                "level": 3,
+                "name": "Emrik",
+                "overall": 67,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 67,
+                "preferredFoot": 1,
+                "role": "Goalkeeper",
+                "seeds": [
+                    "55805732708375997758070376957063177056100302239682085466367670812462418084129",
+                    "50448441315505524553928469867746862830926968431349813116218492724177748345244",
+                    "94362334601818266371316252321872413871535302865150159102335942810230275023174",
+                    "14673195800533316478278752213876033712445921466419628769866938814713929399770"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 9,
+                        "abilities": {
+                            "Passing": 37,
+                            "Dribbling": 3,
+                            "Crossing": 4,
+                            "Shooting": 3,
+                            "Finishing": 3,
+                            "Heading": 3
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 42,
+                        "abilities": {
+                            "Vision": 41,
+                            "Bravery": 48,
+                            "Positioning": 37,
+                            "Marking": 3,
+                            "Sliding Tackle": 3,
+                            "Standing Tackle": 3
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 56,
+                        "abilities": {
+                            "Fitness": 67,
+                            "Strength": 56,
+                            "Speed": 45,
+                            "Concentration": 61,
+                            "Aggression": 48,
+                            "Creativity": 4
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 77,
+                        "abilities": {
+                            "Diving": 78,
+                            "Handling": 77,
+                            "Kicking": 75,
+                            "Punching": 77,
+                            "Throwing": 76,
+                            "Reflexes": 75
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Goalkeeper",
+                "weight": 86,
+                "imageName": "4_0_5_7_1_5_2_5_2_9_0_0_0_0_2_1_0.png",
+                "fullName": "Emrik Xhofleer",
+                "shortName": "E. Xhofleer",
+                "preferredFootName": "Left"
+            },
+            {
+                "age": 34,
+                "height": 185,
+                "id": 30975,
+                "lastName": "Murphy",
+                "condition": 100,
+                "level": 3,
+                "name": "Noë",
+                "overall": 62,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 62,
+                "preferredFoot": 0,
+                "role": "Goalkeeper",
+                "seeds": [
+                    "92287727606542850089487461153625914634495721472572743315924407537746253592535",
+                    "102454695031979527951502017175635511899927785255145752747496695978400428227870",
+                    "100069123703877729651475489583978810186259489957590275800693998858802635520092",
+                    "104057277988258832330823382498065217815864065422599522707683480410751078441954"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 11,
+                        "abilities": {
+                            "Passing": 34,
+                            "Dribbling": 4,
+                            "Crossing": 5,
+                            "Shooting": 4,
+                            "Finishing": 3,
+                            "Heading": 12
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 40,
+                        "abilities": {
+                            "Vision": 38,
+                            "Bravery": 48,
+                            "Positioning": 34,
+                            "Marking": 10,
+                            "Sliding Tackle": 9,
+                            "Standing Tackle": 7
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 56,
+                        "abilities": {
+                            "Fitness": 65,
+                            "Strength": 55,
+                            "Speed": 48,
+                            "Concentration": 60,
+                            "Aggression": 48,
+                            "Creativity": 3
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 69,
+                        "abilities": {
+                            "Diving": 68,
+                            "Handling": 68,
+                            "Kicking": 69,
+                            "Punching": 69,
+                            "Throwing": 70,
+                            "Reflexes": 68
+                        }
+                    }
+                },
+                "specialAbilities": [
+                    "Captain",
+                    "Team player"
+                ],
+                "specificRole": "Goalkeeper",
+                "weight": 85,
+                "imageName": "4_0_5_5_4_3_4_2_12_8_0_1_0_0_0_3_0.png",
+                "fullName": "Noë Murphy",
+                "shortName": "N. Murphy",
+                "preferredFootName": "Right"
+            },
+            {
+                "age": 31,
+                "height": 186,
+                "id": 99940,
+                "lastName": "Solås",
+                "condition": 100,
+                "level": 3,
+                "name": "Núrio",
+                "overall": 60,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 64,
+                "preferredFoot": 0,
+                "role": "Defender",
+                "seeds": [
+                    "2322675224176826740819754248315267034715103385093427678375803380739253207625",
+                    "50986402676840033566184897553563623357116441384513551062282143399188315523593",
+                    "105405349704562209553418395080795380810888682559547070719077861329480118846140",
+                    "46187635883335796051935882675143991294543653257874606133090844713030548026763"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 38,
+                        "abilities": {
+                            "Passing": 57,
+                            "Dribbling": 19,
+                            "Crossing": 23,
+                            "Shooting": 29,
+                            "Finishing": 31,
+                            "Heading": 68
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 68,
+                        "abilities": {
+                            "Vision": 64,
+                            "Bravery": 69,
+                            "Positioning": 71,
+                            "Marking": 67,
+                            "Sliding Tackle": 63,
+                            "Standing Tackle": 69
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 54,
+                        "abilities": {
+                            "Fitness": 46,
+                            "Strength": 58,
+                            "Speed": 54,
+                            "Concentration": 64,
+                            "Aggression": 62,
+                            "Creativity": 35
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [
+                    "Penalty kicker"
+                ],
+                "specificRole": "Center Back",
+                "weight": 83,
+                "imageName": "2_0_8_8_15_3_4_2_48_10_0_0_2_0_1_18_0.png",
+                "fullName": "Núrio Solås",
+                "shortName": "N. Solås",
+                "preferredFootName": "Right"
+            },
+            {
+                "age": 31,
+                "height": 188,
+                "id": 102086,
+                "lastName": "Kolstad",
+                "condition": 100,
+                "level": 3,
+                "name": "Fares",
+                "overall": 65,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 69,
+                "preferredFoot": 0,
+                "role": "Defender",
+                "seeds": [
+                    "70974559748690433663555432769059594478166772644733916111657670265402146537252",
+                    "103046848566697630248170778559894824470268395591946069373530672160582563696266",
+                    "95217852351479907104897449208488482623565707305176968056005384412181466473815",
+                    "40961089398633781138761530263030494093188548897520658256809607869742210430423"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 39,
+                        "abilities": {
+                            "Passing": 55,
+                            "Dribbling": 21,
+                            "Crossing": 22,
+                            "Shooting": 29,
+                            "Finishing": 31,
+                            "Heading": 75
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 74,
+                        "abilities": {
+                            "Vision": 67,
+                            "Bravery": 74,
+                            "Positioning": 77,
+                            "Marking": 73,
+                            "Sliding Tackle": 75,
+                            "Standing Tackle": 77
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 58,
+                        "abilities": {
+                            "Fitness": 52,
+                            "Strength": 63,
+                            "Speed": 56,
+                            "Concentration": 65,
+                            "Aggression": 67,
+                            "Creativity": 40
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Center Back",
+                "weight": 82,
+                "imageName": "2_0_4_7_4_0_4_2_49_7_0_0_1_0_1_6_0.png",
+                "fullName": "Fares Kolstad",
+                "shortName": "F. Kolstad",
+                "preferredFootName": "Right"
+            },
+            {
+                "age": 35,
+                "height": 185,
+                "id": 24422,
+                "lastName": "Schröder",
+                "condition": 100,
+                "level": 3,
+                "name": "Blerim",
+                "overall": 65,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 65,
+                "preferredFoot": 1,
+                "role": "Defender",
+                "seeds": [
+                    "64302712002593270603766298883527251661882727645019645083120010556169519080374",
+                    "89965490418721826290713591427080310301284573432655116377870464122481213725318",
+                    "6083870441314378886991138615698425427947881153046225131460108526879954811491",
+                    "28999787337811968755939352141205621004159939919600817282040054404665568647636"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 45,
+                        "abilities": {
+                            "Passing": 67,
+                            "Dribbling": 25,
+                            "Crossing": 27,
+                            "Shooting": 40,
+                            "Finishing": 41,
+                            "Heading": 71
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 70,
+                        "abilities": {
+                            "Vision": 65,
+                            "Bravery": 71,
+                            "Positioning": 71,
+                            "Marking": 70,
+                            "Sliding Tackle": 67,
+                            "Standing Tackle": 73
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 61,
+                        "abilities": {
+                            "Fitness": 62,
+                            "Strength": 63,
+                            "Speed": 59,
+                            "Concentration": 62,
+                            "Aggression": 64,
+                            "Creativity": 51
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 4,
+                        "abilities": {
+                            "Diving": 4,
+                            "Handling": 4,
+                            "Kicking": 4,
+                            "Punching": 4,
+                            "Throwing": 4,
+                            "Reflexes": 4
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Center Back",
+                "weight": 68,
+                "imageName": "2_0_5_4_1_1_2_2_25_13_0_0_2_0_1_2_0.png",
+                "fullName": "Blerim Schröder",
+                "shortName": "B. Schröder",
+                "preferredFootName": "Left"
+            },
+            {
+                "age": 33,
+                "height": 188,
+                "id": 102722,
+                "lastName": "Messerschmidt",
+                "condition": 100,
+                "level": 3,
+                "name": "Micheal",
+                "overall": 66,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 67,
+                "preferredFoot": 0,
+                "role": "Defender",
+                "seeds": [
+                    "5234453971093696935052014508169975997577114551617927138753842846400199696515",
+                    "108559850733475739875244962755667583844634893212599271243341083711250622847165",
+                    "86726566804184434337533668318864529539538183486063968862762067454245563601483",
+                    "9254149390838734231879351268257922762727994119441044666382977422732290371882"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 43,
+                        "abilities": {
+                            "Passing": 63,
+                            "Dribbling": 23,
+                            "Crossing": 22,
+                            "Shooting": 39,
+                            "Finishing": 40,
+                            "Heading": 73
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 71,
+                        "abilities": {
+                            "Vision": 71,
+                            "Bravery": 69,
+                            "Positioning": 72,
+                            "Marking": 73,
+                            "Sliding Tackle": 66,
+                            "Standing Tackle": 74
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 61,
+                        "abilities": {
+                            "Fitness": 62,
+                            "Strength": 64,
+                            "Speed": 63,
+                            "Concentration": 65,
+                            "Aggression": 65,
+                            "Creativity": 42
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Center Back",
+                "weight": 87,
+                "imageName": "2_0_0_10_7_3_4_4_59_4_0_1_0_0_2_6_0.png",
+                "fullName": "Micheal Messerschmidt",
+                "shortName": "M. Messerschmidt",
+                "preferredFootName": "Right"
+            },
+            {
+                "age": 34,
+                "height": 172,
+                "id": 27815,
+                "lastName": "Kleine",
+                "condition": 100,
+                "level": 3,
+                "name": "Alão",
+                "overall": 65,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 69,
+                "preferredFoot": 1,
+                "role": "Defender",
+                "seeds": [
+                    "12830367537095021709304482141276195078889033317023556856151897303856737149360",
+                    "37549171437827378830311279396983037235492905221115575794511535213582443902329",
+                    "108154163800220466476248764742992413962107064609975535085088210421831719934148",
+                    "102906095950558845232744879750461101684751457036896004772864287265349588664177"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 37,
+                        "abilities": {
+                            "Passing": 48,
+                            "Dribbling": 36,
+                            "Crossing": 44,
+                            "Shooting": 12,
+                            "Finishing": 11,
+                            "Heading": 71
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 72,
+                        "abilities": {
+                            "Vision": 47,
+                            "Bravery": 79,
+                            "Positioning": 79,
+                            "Marking": 78,
+                            "Sliding Tackle": 72,
+                            "Standing Tackle": 77
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 59,
+                        "abilities": {
+                            "Fitness": 55,
+                            "Strength": 64,
+                            "Speed": 62,
+                            "Concentration": 67,
+                            "Aggression": 65,
+                            "Creativity": 39
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Left Back",
+                "weight": 59,
+                "imageName": "2_0_6_1_5_0_4_2_17_9_0_1_2_0_2_2_0.png",
+                "fullName": "Alão Kleine",
+                "shortName": "A. Kleine",
+                "preferredFootName": "Left"
+            },
+            {
+                "age": 34,
+                "height": 191,
+                "id": 39811,
+                "lastName": "Grob",
+                "condition": 100,
+                "level": 4,
+                "name": "Kofi",
+                "overall": 71,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 72,
+                "preferredFoot": 1,
+                "role": "Defender",
+                "seeds": [
+                    "7259480979462588866632450936067478337484839747221288169521180549937595732114",
+                    "70948533354818307342435706269863328334664531162398709590520940227868561352100",
+                    "31459312888207142226909174732407294200673149948331996569925091081842176736970",
+                    "41727443578278949188341235387249282403518939547722638478330688476941394813597"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 42,
+                        "abilities": {
+                            "Passing": 50,
+                            "Dribbling": 45,
+                            "Crossing": 51,
+                            "Shooting": 15,
+                            "Finishing": 15,
+                            "Heading": 76
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 77,
+                        "abilities": {
+                            "Vision": 54,
+                            "Bravery": 81,
+                            "Positioning": 83,
+                            "Marking": 80,
+                            "Sliding Tackle": 79,
+                            "Standing Tackle": 82
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 67,
+                        "abilities": {
+                            "Fitness": 69,
+                            "Strength": 72,
+                            "Speed": 77,
+                            "Concentration": 70,
+                            "Aggression": 71,
+                            "Creativity": 43
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Left Wing-Back",
+                "weight": 73,
+                "imageName": "2_0_8_8_1_5_4_1_34_2_0_1_0_0_0_4_0.png",
+                "fullName": "Kofi Grob",
+                "shortName": "K. Grob",
+                "preferredFootName": "Left"
+            },
+            {
+                "age": 32,
+                "height": 179,
+                "id": 101828,
+                "lastName": "Tonheim",
+                "condition": 100,
+                "level": 3,
+                "name": "Goran",
+                "overall": 67,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 68,
+                "preferredFoot": 0,
+                "role": "Defender",
+                "seeds": [
+                    "91905760629357846558772361484469544160766861221770966076268613730022122617734",
+                    "50008047556261834814515089084300951454861937449462364649940952233669282314070",
+                    "16502471433900223789286594033606924047806351048602309426348594448325093315951",
+                    "81473773949659184315332879290594828155183607448286904287155333593815953807615"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 41,
+                        "abilities": {
+                            "Passing": 53,
+                            "Dribbling": 42,
+                            "Crossing": 47,
+                            "Shooting": 15,
+                            "Finishing": 17,
+                            "Heading": 73
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 73,
+                        "abilities": {
+                            "Vision": 53,
+                            "Bravery": 78,
+                            "Positioning": 76,
+                            "Marking": 78,
+                            "Sliding Tackle": 77,
+                            "Standing Tackle": 76
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 62,
+                        "abilities": {
+                            "Fitness": 56,
+                            "Strength": 63,
+                            "Speed": 62,
+                            "Concentration": 70,
+                            "Aggression": 70,
+                            "Creativity": 49
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Right Back",
+                "weight": 68,
+                "imageName": "2_0_4_2_5_7_2_3_66_11_0_0_2_0_0_11_0.png",
+                "fullName": "Goran Tonheim",
+                "shortName": "G. Tonheim",
+                "preferredFootName": "Right"
+            },
+            {
+                "age": 34,
+                "height": 174,
+                "id": 12059,
+                "lastName": "Van Voorthuizen",
+                "condition": 100,
+                "level": 4,
+                "name": "Vitor",
+                "overall": 75,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 76,
+                "preferredFoot": 0,
+                "role": "Defender",
+                "seeds": [
+                    "70927031460777291529273297191454372736722798306380756173225562738677830368207",
+                    "53780003616322671572134363412323408401696590839221932116795077893122439829802",
+                    "16061916789024959840501980538580852205572444573702573586238586382457018702036",
+                    "37257463355617573825297830092557165136159572683607435216686803305803182991468"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 48,
+                        "abilities": {
+                            "Passing": 59,
+                            "Dribbling": 56,
+                            "Crossing": 58,
+                            "Shooting": 19,
+                            "Finishing": 21,
+                            "Heading": 76
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 80,
+                        "abilities": {
+                            "Vision": 62,
+                            "Bravery": 81,
+                            "Positioning": 85,
+                            "Marking": 86,
+                            "Sliding Tackle": 81,
+                            "Standing Tackle": 84
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 71,
+                        "abilities": {
+                            "Fitness": 71,
+                            "Strength": 74,
+                            "Speed": 75,
+                            "Concentration": 75,
+                            "Aggression": 78,
+                            "Creativity": 48
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Right Wing-Back",
+                "weight": 68,
+                "imageName": "2_0_2_7_0_0_1_4_30_2_0_0_1_0_0_2_0.png",
+                "fullName": "Vitor Van Voorthuizen",
+                "shortName": "V. Van Voorthuizen",
+                "preferredFootName": "Right"
+            },
+            {
+                "age": 35,
+                "height": 174,
+                "id": 16717,
+                "lastName": "Claußen",
+                "condition": 100,
+                "level": 3,
+                "name": "William",
+                "overall": 62,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 62,
+                "preferredFoot": 0,
+                "role": "Midfielder",
+                "seeds": [
+                    "62321034007785340316730562280113435540575683174716298395373954110100336398353",
+                    "61328569632564354153333426431986775122428635579639732065457320951710483989472",
+                    "11519849759562921931135310488729827051057150086820379447124908741969425527775",
+                    "94022088693476163909633053319795695879148114850956378206623443510275955318951"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 66,
+                        "abilities": {
+                            "Passing": 67,
+                            "Dribbling": 67,
+                            "Crossing": 65,
+                            "Shooting": 68,
+                            "Finishing": 68,
+                            "Heading": 58
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 50,
+                        "abilities": {
+                            "Vision": 67,
+                            "Bravery": 58,
+                            "Positioning": 57,
+                            "Marking": 39,
+                            "Sliding Tackle": 42,
+                            "Standing Tackle": 32
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 63,
+                        "abilities": {
+                            "Fitness": 61,
+                            "Strength": 59,
+                            "Speed": 62,
+                            "Concentration": 65,
+                            "Aggression": 60,
+                            "Creativity": 66
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 4,
+                        "abilities": {
+                            "Diving": 4,
+                            "Handling": 4,
+                            "Kicking": 4,
+                            "Punching": 4,
+                            "Throwing": 4,
+                            "Reflexes": 4
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Center Midfielder",
+                "weight": 69,
+                "imageName": "2_0_3_7_2_4_0_0_11_9_0_0_2_0_1_5_0.png",
+                "fullName": "William Claußen",
+                "shortName": "W. Claußen",
+                "preferredFootName": "Right"
+            },
+            {
+                "age": 34,
+                "height": 181,
+                "id": 42755,
+                "lastName": "Sievert",
+                "condition": 100,
+                "level": 3,
+                "name": "Jans",
+                "overall": 62,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 63,
+                "preferredFoot": 0,
+                "role": "Midfielder",
+                "seeds": [
+                    "22681708440622040928861474518037336109108543252462333903678016357008827190337",
+                    "67445145068513158034907367668637421981836720754894991751146716684838502753147",
+                    "27015602676966887266532113260611251533218889600393609368636144497954558022511",
+                    "46976580329655683933473445823950490544225747860791814041093625589590009698969"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 60,
+                        "abilities": {
+                            "Passing": 66,
+                            "Dribbling": 53,
+                            "Crossing": 44,
+                            "Shooting": 61,
+                            "Finishing": 64,
+                            "Heading": 67
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 56,
+                        "abilities": {
+                            "Vision": 66,
+                            "Bravery": 62,
+                            "Positioning": 63,
+                            "Marking": 49,
+                            "Sliding Tackle": 46,
+                            "Standing Tackle": 45
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 61,
+                        "abilities": {
+                            "Fitness": 63,
+                            "Strength": 60,
+                            "Speed": 63,
+                            "Concentration": 61,
+                            "Aggression": 59,
+                            "Creativity": 57
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Center Midfielder",
+                "weight": 67,
+                "imageName": "2_0_2_9_3_2_4_3_14_2_0_0_2_0_2_4_0.png",
+                "fullName": "Jans Sievert",
+                "shortName": "J. Sievert",
+                "preferredFootName": "Right"
+            },
+            {
+                "age": 34,
+                "height": 173,
+                "id": 77373,
+                "lastName": "Zander",
+                "condition": 100,
+                "level": 3,
+                "name": "Dusty",
+                "overall": 65,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 65,
+                "preferredFoot": 2,
+                "role": "Midfielder",
+                "seeds": [
+                    "26434145532883448677812402710126525345559575351866347550459467477970274955047",
+                    "26790969335160784084580211058081726012405409083774796151383321112611055823848",
+                    "5706417485576760321864119097711634487216736169475813229723821509029419484991",
+                    "104556682267587735336837073541504621545426884747492937098966924911257590948885"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 67,
+                        "abilities": {
+                            "Passing": 69,
+                            "Dribbling": 72,
+                            "Crossing": 65,
+                            "Shooting": 67,
+                            "Finishing": 72,
+                            "Heading": 53
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 41,
+                        "abilities": {
+                            "Vision": 70,
+                            "Bravery": 42,
+                            "Positioning": 42,
+                            "Marking": 27,
+                            "Sliding Tackle": 36,
+                            "Standing Tackle": 26
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 61,
+                        "abilities": {
+                            "Fitness": 61,
+                            "Strength": 56,
+                            "Speed": 65,
+                            "Concentration": 64,
+                            "Aggression": 45,
+                            "Creativity": 70
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 4,
+                        "abilities": {
+                            "Diving": 4,
+                            "Handling": 4,
+                            "Kicking": 4,
+                            "Punching": 4,
+                            "Throwing": 4,
+                            "Reflexes": 4
+                        }
+                    }
+                },
+                "specialAbilities": [
+                    "Warrior"
+                ],
+                "specificRole": "Central Attacking Midfielder",
+                "weight": 72,
+                "imageName": "2_0_3_12_14_6_0_3_18_1_0_0_1_0_2_13_0.png",
+                "fullName": "Dusty Zander",
+                "shortName": "D. Zander",
+                "preferredFootName": "Both"
+            },
+            {
+                "age": 31,
+                "height": 172,
+                "id": 103050,
+                "lastName": "Wildenberg",
+                "condition": 100,
+                "level": 3,
+                "name": "Quincy",
+                "overall": 66,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 68,
+                "preferredFoot": 1,
+                "role": "Midfielder",
+                "seeds": [
+                    "97892032674210241028026431836138476526232037058489617858837072035561827049619",
+                    "40407255351703543282971176753434868511826392625907653244771360806558272049249",
+                    "42842731302285335159938845081498062142442163410115425387556894090801356558635",
+                    "28455137044282114771799991345980835405496760120258122558042832725482410061198"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 67,
+                        "abilities": {
+                            "Passing": 73,
+                            "Dribbling": 72,
+                            "Crossing": 62,
+                            "Shooting": 65,
+                            "Finishing": 75,
+                            "Heading": 50
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 41,
+                        "abilities": {
+                            "Vision": 75,
+                            "Bravery": 45,
+                            "Positioning": 40,
+                            "Marking": 25,
+                            "Sliding Tackle": 34,
+                            "Standing Tackle": 25
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 62,
+                        "abilities": {
+                            "Fitness": 64,
+                            "Strength": 54,
+                            "Speed": 67,
+                            "Concentration": 68,
+                            "Aggression": 42,
+                            "Creativity": 74
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Central Attacking Midfielder",
+                "weight": 70,
+                "imageName": "2_0_8_0_15_7_0_1_52_2_0_1_1_0_2_1_0.png",
+                "fullName": "Quincy Wildenberg",
+                "shortName": "Q. Wildenberg",
+                "preferredFootName": "Left"
+            },
+            {
+                "age": 32,
+                "height": 173,
+                "id": 65740,
+                "lastName": "Chen",
+                "condition": 100,
+                "level": 3,
+                "name": "Orandino",
+                "overall": 63,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 64,
+                "preferredFoot": 0,
+                "role": "Midfielder",
+                "seeds": [
+                    "81942887112639852919951009005556171164824889026050676006030684571343820830889",
+                    "60765047779079448648996480186144871385837103898448285638122106566269727950238",
+                    "8695593293539079992313424349604529400331305515280903612704130589827390000662",
+                    "90050901053247113797625655507661121307301622006652393032456122805616248728810"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 67,
+                        "abilities": {
+                            "Passing": 72,
+                            "Dribbling": 71,
+                            "Crossing": 71,
+                            "Shooting": 64,
+                            "Finishing": 61,
+                            "Heading": 61
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 46,
+                        "abilities": {
+                            "Vision": 69,
+                            "Bravery": 47,
+                            "Positioning": 52,
+                            "Marking": 29,
+                            "Sliding Tackle": 42,
+                            "Standing Tackle": 32
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 60,
+                        "abilities": {
+                            "Fitness": 60,
+                            "Strength": 56,
+                            "Speed": 64,
+                            "Concentration": 67,
+                            "Aggression": 41,
+                            "Creativity": 67
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [
+                    "Foul kicker",
+                    "Warrior"
+                ],
+                "specificRole": "Left Midfielder",
+                "weight": 69,
+                "imageName": "2_0_5_0_0_4_3_0_42_10_0_0_1_0_2_0_0.png",
+                "fullName": "Orandino Chen",
+                "shortName": "O. Chen",
+                "preferredFootName": "Right"
+            },
+            {
+                "age": 31,
+                "height": 179,
+                "id": 103081,
+                "lastName": "Van Kammen",
+                "condition": 100,
+                "level": 3,
+                "name": "Gies",
+                "overall": 65,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 69,
+                "preferredFoot": 1,
+                "role": "Midfielder",
+                "seeds": [
+                    "3139452350732577470002660412510605019724377323056623365338013214123420920416",
+                    "94613990995603381335577627216902135911691627485522467955773961120765585928488",
+                    "103667977629382302236730758467023839324061736787922241644986266724096810649803",
+                    "7967830774773542639960542799090411864045188840776143330684803163944949842534"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 70,
+                        "abilities": {
+                            "Passing": 75,
+                            "Dribbling": 74,
+                            "Crossing": 79,
+                            "Shooting": 65,
+                            "Finishing": 63,
+                            "Heading": 58
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 43,
+                        "abilities": {
+                            "Vision": 71,
+                            "Bravery": 48,
+                            "Positioning": 47,
+                            "Marking": 22,
+                            "Sliding Tackle": 37,
+                            "Standing Tackle": 28
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 61,
+                        "abilities": {
+                            "Fitness": 65,
+                            "Strength": 55,
+                            "Speed": 68,
+                            "Concentration": 69,
+                            "Aggression": 38,
+                            "Creativity": 69
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 2,
+                            "Kicking": 3,
+                            "Punching": 2,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Left Midfielder",
+                "weight": 78,
+                "imageName": "2_0_8_6_10_2_1_5_27_12_0_1_0_0_2_16_0.png",
+                "fullName": "Gies Van Kammen",
+                "shortName": "G. Van Kammen",
+                "preferredFootName": "Left"
+            },
+            {
+                "age": 33,
+                "height": 173,
+                "id": 64280,
+                "lastName": "Osmundsen",
+                "condition": 100,
+                "level": 4,
+                "name": "Guenter",
+                "overall": 65,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 74,
+                "preferredFoot": 0,
+                "role": "Midfielder",
+                "seeds": [
+                    "661003866018334669511803475654646486492089507146235377953128077610862659344",
+                    "86024162606383299227507120180339491892152859353199163131974506259931203524835",
+                    "17789699992406880943116511176871740681769967610849667702455801976164087430359",
+                    "101592185917371410544631540848498157680545120207640955630176271138524873323575"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 73,
+                        "abilities": {
+                            "Passing": 75,
+                            "Dribbling": 78,
+                            "Crossing": 81,
+                            "Shooting": 60,
+                            "Finishing": 74,
+                            "Heading": 64
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 48,
+                        "abilities": {
+                            "Vision": 62,
+                            "Bravery": 51,
+                            "Positioning": 55,
+                            "Marking": 31,
+                            "Sliding Tackle": 48,
+                            "Standing Tackle": 37
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 58,
+                        "abilities": {
+                            "Fitness": 59,
+                            "Strength": 53,
+                            "Speed": 66,
+                            "Concentration": 62,
+                            "Aggression": 35,
+                            "Creativity": 70
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [
+                    "Coach on the pitch"
+                ],
+                "specificRole": "Right Midfielder",
+                "weight": 61,
+                "imageName": "2_0_7_0_1_0_3_5_32_5_0_0_2_0_2_2_0.png",
+                "fullName": "Guenter Osmundsen",
+                "shortName": "G. Osmundsen",
+                "preferredFootName": "Right"
+            },
+            {
+                "age": 34,
+                "height": 176,
+                "id": 65741,
+                "lastName": "Wille",
+                "condition": 100,
+                "level": 3,
+                "name": "Geraldo",
+                "overall": 64,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 64,
+                "preferredFoot": 0,
+                "role": "Midfielder",
+                "seeds": [
+                    "19080858660475779491906934204101356100878601330441575109897631653055620844004",
+                    "12837542489662875062479594994048861944362252570055206026716567689526263699999",
+                    "5059228640615789227438520077471027003842995901117783677832298596639529420493",
+                    "9484822295743023608307419376017445789708783473543344906009131864341949989216"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 67,
+                        "abilities": {
+                            "Passing": 71,
+                            "Dribbling": 71,
+                            "Crossing": 73,
+                            "Shooting": 66,
+                            "Finishing": 60,
+                            "Heading": 60
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 48,
+                        "abilities": {
+                            "Vision": 68,
+                            "Bravery": 57,
+                            "Positioning": 56,
+                            "Marking": 28,
+                            "Sliding Tackle": 45,
+                            "Standing Tackle": 32
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 62,
+                        "abilities": {
+                            "Fitness": 62,
+                            "Strength": 60,
+                            "Speed": 64,
+                            "Concentration": 67,
+                            "Aggression": 49,
+                            "Creativity": 68
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 4,
+                        "abilities": {
+                            "Diving": 4,
+                            "Handling": 4,
+                            "Kicking": 4,
+                            "Punching": 4,
+                            "Throwing": 4,
+                            "Reflexes": 4
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Right Midfielder",
+                "weight": 74,
+                "imageName": "2_0_1_6_5_4_1_3_23_9_0_0_0_0_1_0_0.png",
+                "fullName": "Geraldo Wille",
+                "shortName": "G. Wille",
+                "preferredFootName": "Right"
+            },
+            {
+                "age": 35,
+                "height": 188,
+                "id": 40032,
+                "lastName": "Alfheim",
+                "condition": 100,
+                "level": 4,
+                "name": "Hartwig",
+                "overall": 76,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 76,
+                "preferredFoot": 1,
+                "role": "Forward",
+                "seeds": [
+                    "73849028780241019303427601146190258189716427195691918552495046621251566777128",
+                    "51738843268608512202463518036892384755974585343517666934589526631544170335453",
+                    "89427010165206934428150016127747804128473066448125901546943217791766057536267",
+                    "21461340532420541455701449153914900871719084058436586159889847345771796266232"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 71,
+                        "abilities": {
+                            "Passing": 81,
+                            "Dribbling": 65,
+                            "Crossing": 50,
+                            "Shooting": 84,
+                            "Finishing": 80,
+                            "Heading": 62
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 45,
+                        "abilities": {
+                            "Vision": 83,
+                            "Bravery": 64,
+                            "Positioning": 39,
+                            "Marking": 27,
+                            "Sliding Tackle": 28,
+                            "Standing Tackle": 24
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 73,
+                        "abilities": {
+                            "Fitness": 77,
+                            "Strength": 77,
+                            "Speed": 75,
+                            "Concentration": 75,
+                            "Aggression": 70,
+                            "Creativity": 61
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 4,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 4,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 4,
+                            "Reflexes": 4
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Striker",
+                "weight": 82,
+                "imageName": "2_0_8_8_5_1_2_5_44_0_0_1_2_0_2_2_0.png",
+                "fullName": "Hartwig Alfheim",
+                "shortName": "H. Alfheim",
+                "preferredFootName": "Left"
+            },
+            {
+                "age": 35,
+                "height": 179,
+                "id": 56728,
+                "lastName": "Fuß",
+                "condition": 100,
+                "level": 3,
+                "name": "Uli",
+                "overall": 69,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 69,
+                "preferredFoot": 1,
+                "role": "Forward",
+                "seeds": [
+                    "105539701966823718676793510624742662242569498573780126450240422088641060865821",
+                    "28985806425970808011458688753323753827556475279848649475447878434559880765965",
+                    "12881343704219856215705554111873846141335290562507666628600998832303094311906",
+                    "94332911270213363554851400546195040684873694247894364659353475313243363290466"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 73,
+                        "abilities": {
+                            "Passing": 75,
+                            "Dribbling": 68,
+                            "Crossing": 67,
+                            "Shooting": 78,
+                            "Finishing": 77,
+                            "Heading": 69
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 40,
+                        "abilities": {
+                            "Vision": 78,
+                            "Bravery": 51,
+                            "Positioning": 33,
+                            "Marking": 23,
+                            "Sliding Tackle": 30,
+                            "Standing Tackle": 19
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 60,
+                        "abilities": {
+                            "Fitness": 66,
+                            "Strength": 66,
+                            "Speed": 63,
+                            "Concentration": 58,
+                            "Aggression": 54,
+                            "Creativity": 48
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Striker",
+                "weight": 78,
+                "imageName": "2_0_5_7_0_4_3_0_13_7_0_0_0_0_0_5_0.png",
+                "fullName": "Uli Fuß",
+                "shortName": "U. Fuß",
+                "preferredFootName": "Left"
+            },
+            {
+                "age": 32,
+                "height": 171,
+                "id": 46045,
+                "lastName": "Rosenboom",
+                "condition": 100,
+                "level": 3,
+                "name": "Aurélien",
+                "overall": 62,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 68,
+                "preferredFoot": 0,
+                "role": "Midfielder",
+                "seeds": [
+                    "36818678155905054396762535732996165094891884738276164892556411429402354682005",
+                    "87481970936087504294651886051525843365552933870314517690245585951396355244094",
+                    "4197642049623331301480708551147567324134851808471009605967620896777213001163",
+                    "102132020739130586360749663763096206116165488515199060044601752009977503753468"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 61,
+                        "abilities": {
+                            "Passing": 60,
+                            "Dribbling": 64,
+                            "Crossing": 70,
+                            "Shooting": 51,
+                            "Finishing": 58,
+                            "Heading": 62
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 49,
+                        "abilities": {
+                            "Vision": 55,
+                            "Bravery": 62,
+                            "Positioning": 54,
+                            "Marking": 33,
+                            "Sliding Tackle": 45,
+                            "Standing Tackle": 39
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 64,
+                        "abilities": {
+                            "Fitness": 70,
+                            "Strength": 69,
+                            "Speed": 69,
+                            "Concentration": 63,
+                            "Aggression": 47,
+                            "Creativity": 62
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 3,
+                            "Throwing": 3,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Left Midfielder",
+                "weight": 61,
+                "imageName": "2_0_5_0_6_2_2_4_14_11_0_0_2_0_1_0_0.png",
+                "fullName": "Aurélien Rosenboom",
+                "shortName": "A. Rosenboom",
+                "preferredFootName": "Right"
+            },
+            {
+                "age": 32,
+                "height": 192,
+                "id": 16600,
+                "lastName": "Hübsch",
+                "condition": 100,
+                "level": 3,
+                "name": "Gottfried",
+                "overall": 65,
+                "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+                "potential": 67,
+                "preferredFoot": 0,
+                "role": "Forward",
+                "seeds": [
+                    "114206877852422752205118157846714790984579934639258041961702023309384035109592",
+                    "56656451322564122456377126372348220397609633903673166830260769807314052444489",
+                    "71048488363656595539422442967857661015050592788515054371929895823954791506074",
+                    "91193604024258095703061376369267376878964234573468536062646176989506428704971"
+                ],
+                "sections": {
+                    "technical": {
+                        "name": "Technical",
+                        "overall": 66,
+                        "abilities": {
+                            "Passing": 76,
+                            "Dribbling": 57,
+                            "Crossing": 54,
+                            "Shooting": 76,
+                            "Finishing": 76,
+                            "Heading": 53
+                        }
+                    },
+                    "tactical": {
+                        "name": "Tactical",
+                        "overall": 34,
+                        "abilities": {
+                            "Vision": 71,
+                            "Bravery": 48,
+                            "Positioning": 27,
+                            "Marking": 15,
+                            "Sliding Tackle": 25,
+                            "Standing Tackle": 15
+                        }
+                    },
+                    "condition": {
+                        "name": "Physical & Mental",
+                        "overall": 56,
+                        "abilities": {
+                            "Fitness": 66,
+                            "Strength": 62,
+                            "Speed": 58,
+                            "Concentration": 56,
+                            "Aggression": 43,
+                            "Creativity": 50
+                        }
+                    },
+                    "goalkeeping": {
+                        "name": "Technical",
+                        "overall": 3,
+                        "abilities": {
+                            "Diving": 3,
+                            "Handling": 3,
+                            "Kicking": 3,
+                            "Punching": 2,
+                            "Throwing": 2,
+                            "Reflexes": 3
+                        }
+                    }
+                },
+                "specialAbilities": [],
+                "specificRole": "Striker",
+                "weight": 80,
+                "imageName": "2_0_3_7_0_5_5_3_0_4_0_0_2_0_1_3_0.png",
+                "fullName": "Gottfried Hübsch",
+                "shortName": "G. Hübsch",
+                "preferredFootName": "Right"
+            }
+        ],
+        "shirtNumbers": {
+            "12059": 26,
+            "16600": 7,
+            "16717": 5,
+            "24422": 4,
+            "27815": 6,
+            "30975": 1,
+            "31798": 12,
+            "39811": 24,
+            "40032": 11,
+            "42755": 8,
+            "46045": 15,
+            "56728": 9,
+            "64280": 28,
+            "65740": 18,
+            "65741": 22,
+            "77373": 23,
+            "99940": 2,
+            "101828": 16,
+            "102086": 3,
+            "102722": 14,
+            "103050": 35,
+            "103081": 25
+        }
+    },
+    "success": true
+}

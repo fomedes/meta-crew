@@ -1,0 +1,21 @@
+<h1>Last update: 16/01</h1>
+<div class="team-ids-container">
+  <div class="team-card-container" *ngFor="let team of teamData">
+    <div class="team-card">
+      <h3>{{ team.clubName }}</h3>
+      <p class="ovr" >{{team.ovr}}</p>
+      <!-- [ngClass]="{'green': team.ovr >= 78, 'yellow': team.ovr < 78, 'red': team.ovr <= 60}" -->
+      <p class="division"><a href="https://app.metasoccer.com/home/msl/{{ team.groupId }}">{{ team.division }}</a></p>
+      <p>
+        <span *ngFor="let match of team.lastMatches" [ngClass]="{'win': match === 'won', 'tie': match === 'tie', 'loss': match === 'lost'}">
+          {{ match | formatStreak }}
+        </span>
+      </p>
+      <p>P: {{ team.won + team.tied + team.lost }} W: {{ team.won }} | T: {{ team.tied }} | L: {{ team.lost }}</p>
+      <p>GF: {{ team.goalsForward }} | GA: {{ team.goalsAgainst }} | GD: {{ team.goalsDifference }}</p>
+      <p>Position: {{ team.position }}</p>
+      <p>Points: {{ team.points }}</p>
+      <p class="manager">{{ team.manager.charAt(0).toUpperCase() }}</p>
+    </div>
+  </div>
+</div>

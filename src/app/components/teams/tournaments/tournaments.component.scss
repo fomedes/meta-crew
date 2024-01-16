@@ -1,0 +1,85 @@
+
+
+.team-ids-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.team-card-container {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.team-card {
+  background-color: #2a2a2a8f; /* Lighter background for cards */
+  border-radius: 5px;
+  color: white;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Adjust shadow for visibility on black */
+  position: relative;
+
+}
+
+.team-card h3 {
+  margin-top: 0;
+}
+
+.team-card .ovr {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+}
+
+.team-card p span {
+  display: inline-block; /* Ensure squares take up space */
+  width: 20px; /* Adjust square size as needed */
+  height: 20px;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.team-card p span.win, .ovr.green {
+  background-color: rgb(36, 68, 39);
+  color:  rgb(106,213,106);
+}
+
+.team-card p span.tie, .ovr.yellow {
+  background-color: rgb(80, 78, 37);
+  color:  rgb(253, 247, 100);
+}
+
+.team-card p span.loss, .ovr.red {
+  background-color: rgb(77, 21, 30);
+  color:  rgb(242, 56, 78);
+}
+
+h3 {
+  text-align: center;  
+}
+
+.division {
+  text-align: center;
+}
+
+p a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from parent element */
+}
+
+p a:hover {
+  /* Apply desired hover effect */
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle highlight */
+}
+
+p a:visited {
+  color: inherit; /* Inherit color on visited links */
+}
+
+.manager {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+}

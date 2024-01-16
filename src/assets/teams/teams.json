@@ -1,0 +1,551 @@
+{
+  "result": {
+      "managedTeams": [
+          {
+              "id": "T:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR ",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:AhynMxs2PBgZ",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #1",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:k3K2aW_claIA",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #2",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:E1SBzYKqHncx",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #12",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:e1qp_8XxySvc",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #15",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:_epj7z-34Hxw",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #16",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:YFYFHvTu5wPn",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #17",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:3SPqntj3_Pto",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #18",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:GUzc8P4Jqtw4",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #19",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:Zp55yjPYKo7N",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #20",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:8urjBn_lRp16",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #22",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:Eej9hBPIcvzq",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #23",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:n4HJ1Z68UsnT",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #21",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:MLx2v6KZT2fp",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #24",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:2UbMMB9gTMzi",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #25",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:ma8Yvfb46LZm",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #26",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:yc6EcrbS9gF2",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #27",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:MLWFVc13yrqO",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #28",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:Tye4cc81ZSh5",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #29",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:_8LqMfs_b_NJ",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #33",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:Erw9fqGJlUFb",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #36",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:aeG6FIg1_iii",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #37",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:1mlqHlB8lOW_",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #38",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:VyLene3haaIi",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #39",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:jI6CjU5u2qXt",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #40",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:0GEoVLb77a9P",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #41",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:tmc4jep3WYLd",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #45",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:EFOjl08KT3yl",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #46",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:gTGahAn89_c6",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #47",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:4m54TxM2t9Pv",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #48",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:AZ2xMrjg-Nfh",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #49",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:Zb9--awwmHGb",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #30",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:MJ_VWKNImw0L",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #31",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          },
+          {
+              "id": "T:lO09GpGjUpVW",
+              "clubId": "C:0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "name": "MCR #32",
+              "manager": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475",
+              "managerRewardsSplit": 1,
+              "clubName": "Meta Crew",
+              "clubAcronym": "MCR",
+              "clubLogo": {
+                  "name": "Club14",
+                  "color": "#FDF764",
+                  "url": "https://assets.metasoccer.com/club/guilds/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475.png"
+              },
+              "isDelegated": false,
+              "owner": "0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475"
+          }
+      ]
+  },
+  "success": true
+}
