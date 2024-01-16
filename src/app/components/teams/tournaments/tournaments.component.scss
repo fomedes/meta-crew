@@ -18,6 +18,7 @@
   padding: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Adjust shadow for visibility on black */
   position: relative;
+  text-align: center;
 
 }
 
@@ -83,3 +84,17 @@ p a:visited {
   right: 0;
   margin: 10px;
 }
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stats_top, .stats_bot {
+  display: flex;
+  gap: 15px;
+
+  
+}
+

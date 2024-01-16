@@ -11,8 +11,20 @@
           {{ match | formatStreak }}
         </span>
       </p>
-      <p>P: {{ team.won + team.tied + team.lost }} W: {{ team.won }} | T: {{ team.tied }} | L: {{ team.lost }}</p>
-      <p>GF: {{ team.goalsForward }} | GA: {{ team.goalsAgainst }} | GD: {{ team.goalsDifference }}</p>
+      <div class="stats">
+        <div class="stats_top">
+          <div><span>Played</span> <p>{{ team.won + team.tied + team.lost }}</p></div>
+          <div><span>Won</span> <p>{{ team.won }}</p></div>
+          <div><span>Tied</span> <p>{{ team.tied }}</p></div>
+          <div><span>Lost</span> <p>{{ team.lost }}</p></div>
+        </div>
+        <div class="stats_bot">
+          <div><span>GF</span> <p>{{ team.goalsForward }}</p></div>
+          <div><span>GA</span> <p>{{ team.goalsAgainst }}</p></div> 
+          <div><span>GD</span> <p>{{ team.goalsDifference }}</p></div>
+          <div><span>Win Rate</span> <p>{{ team.won / team.played * 100 }}%</p></div>
+        </div>
+      </div>
       <p>Position: {{ team.position }}</p>
       <p>Points: {{ team.points }}</p>
       <p class="manager">{{ team.manager.charAt(0).toUpperCase() }}</p>
