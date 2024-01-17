@@ -9,6 +9,7 @@ import { PlayerListComponent } from './components/players/player-list/player-lis
 import { HeaderComponent } from './components/shared/header/header.component';
 import { TournamentsComponent } from './components/teams/tournaments/tournaments.component';
 import { FormatStreakPipe } from './pipes/format-streak.pipe';
+import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FormatStreakPipe } from './pipes/format-streak.pipe';
     TournamentsComponent,
     HeaderComponent,
     FormatStreakPipe,
+    SpinnerComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

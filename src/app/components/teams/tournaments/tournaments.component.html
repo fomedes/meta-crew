@@ -1,6 +1,9 @@
 <h1>Last update: 16/01</h1>
 <div class="team-ids-container">
-  <div class="team-card-container" *ngFor="let team of teamData">
+  <div *ngIf="loading">
+    <app-spinner [showSpinner]="loading"></app-spinner>
+  </div>
+    <div class="team-card-container" *ngFor="let team of teamData">
     <div class="team-card">
       <h3>{{ team.clubName }}</h3>
       <p class="ovr" >{{team.ovr}}</p>
@@ -22,7 +25,7 @@
           <div><span>GF</span> <p>{{ team.goalsForward }}</p></div>
           <div><span>GA</span> <p>{{ team.goalsAgainst }}</p></div> 
           <div><span>GD</span> <p>{{ team.goalsDifference }}</p></div>
-          <div><span>Win Rate</span> <p>{{ team.won / team.played * 100 }}%</p></div>
+          <div><span>Win Rate</span> <p>{{ (team.won / team.played) | percent: ':2-2' }}</p></div>
         </div>
       </div>
       <p>Position: {{ team.position }}</p>
