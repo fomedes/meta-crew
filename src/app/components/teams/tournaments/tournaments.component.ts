@@ -1,17 +1,21 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Observable, forkJoin, from } from 'rxjs';
-import { mergeMap, timeout } from 'rxjs/operators';
+import { Observable, forkJoin, of } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
+import { TournamentsService } from 'src/app/services/tournament.service';
 
 @Component({
   selector: 'app-tournaments',
   templateUrl: './tournaments.component.html',
   styleUrls: ['./tournaments.component.scss'],
-  providers: [DatePipe],
 })
 export class TournamentsComponent implements OnInit {
-  constructor(private http: HttpClient, private datePipe: DatePipe) {}
+  constructor(
+    private http: HttpClient,
+    private datePipe: DatePipe,
+    private tournamentsService: TournamentsService
+  ) {}
 
   teamIds: any;
   teamData: any[] = [];
@@ -20,7 +24,7 @@ export class TournamentsComponent implements OnInit {
   lastUpdate: number | undefined;
 
   ngOnInit() {
-    this.http.get('/assets/teams/teams_id.json').subscribe((data) => {
+    this.tournamentsService.getTeamIds().subscribe((data) => {
       this.teamIds = data;
       this.getData();
     });
@@ -55,46 +59,42 @@ export class TournamentsComponent implements OnInit {
   }
 
   private makeHttpRequests() {
-    const requests: Observable<any>[] = this.teamIds.map((teamId: any) => {
-      const apiUrl = `https://api.metasoccer.com/msl/group/${teamId.groupId}`;
-      return this.http
-        .get(apiUrl)
-        .pipe(timeout(15000))
-        .pipe(
-          mergeMap((groupData: any) => {
-            const division = groupData.result.name;
-            const matchingTeam = groupData.result.standings.rankedTeams.find(
-              (team: any) => team.id === teamId.id
-            );
+    const requests: Observable<any>[] = this.teamIds.map((teamId: any) =>
+      this.tournamentsService.getGroupData(teamId).pipe(
+        mergeMap((groupData: any) => {
+          const division = groupData.result.name;
+          const matchingTeam = groupData.result.standings.rankedTeams.find(
+            (team: any) => team.id === teamId.id
+          );
 
-            if (matchingTeam) {
-              this.teamData.push({
-                id: teamId.id,
-                groupId: teamId.groupId,
-                manager: teamId.manager,
-                ovr: teamId.ovr,
-                division: division,
-                clubName: matchingTeam.clubName,
-                position: matchingTeam.position,
-                played: matchingTeam.played,
-                won: matchingTeam.won,
-                tied: matchingTeam.tied,
-                lost: matchingTeam.lost,
-                goalsForward: matchingTeam.goalsForward,
-                goalsAgainst: matchingTeam.goalsAgainst,
-                goalsDifference: matchingTeam.goalsDifference,
-                points: matchingTeam.points,
-                lastMatches: matchingTeam.lastMatches,
-              });
-            } else {
-              console.warn(`Team ID ${teamId.id} not found in API response`);
-            }
+          if (matchingTeam) {
+            this.teamData.push({
+              id: teamId.id,
+              groupId: teamId.groupId,
+              manager: teamId.manager,
+              ovr: teamId.ovr,
+              division: division,
+              clubName: matchingTeam.clubName,
+              position: matchingTeam.position,
+              played: matchingTeam.played,
+              won: matchingTeam.won,
+              tied: matchingTeam.tied,
+              lost: matchingTeam.lost,
+              goalsForward: matchingTeam.goalsForward,
+              goalsAgainst: matchingTeam.goalsAgainst,
+              goalsDifference: matchingTeam.goalsDifference,
+              points: matchingTeam.points,
+              lastMatches: matchingTeam.lastMatches,
+            });
+          } else {
+            console.warn(`Team ID ${teamId.id} not found in API response`);
+          }
 
-            // Returning a dummy observable to avoid blocking the next request
-            return from([{}]);
-          })
-        );
-    });
+          // Returning an observable to avoid blocking the next request
+          return of({});
+        })
+      )
+    );
 
     forkJoin(requests).subscribe(
       (responses: any) => {
@@ -111,7 +111,6 @@ export class TournamentsComponent implements OnInit {
       }
     );
   }
-
   formatTimestamp(timestamp: number): string {
     return this.datePipe.transform(timestamp ?? Date.now(), 'medium') ?? 'N/A';
   }
