@@ -98,9 +98,11 @@ export class TournamentsComponent implements OnInit {
 
     forkJoin(requests).subscribe(
       (responses: any) => {
+        this.teamData.sort((a, b) => a.clubName.localeCompare(b.clubName));
         localStorage.setItem('teamData', JSON.stringify(this.teamData));
         localStorage.setItem('teamDataTimestamp', Date.now().toString());
         this.loading = false;
+        this.lastUpdate = Date.now();
       },
       (error: any) => {
         console.error('Error in one or more API requests:', error);

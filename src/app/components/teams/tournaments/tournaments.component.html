@@ -30,7 +30,8 @@
       </div>
       <p>Position: {{ team.position }}</p>
       <p>Points: {{ team.points }}</p>
-      <p class="manager">{{ team.manager.charAt(0).toUpperCase() }}</p>
+      <!-- <p class="manager">{{ team.manager.charAt(0).toUpperCase() }}</p> -->
+      <img *ngIf="team.manager" [src]="'assets/managers/' + team.manager + '.png'" alt="{{ team.manager }}" class="manager-image" />
     </div>
   </div>
 </div>
