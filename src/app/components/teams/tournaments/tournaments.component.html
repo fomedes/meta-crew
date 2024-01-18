@@ -5,9 +5,10 @@
   </div>
     <div class="team-card-container" *ngFor="let team of teamData">
     <div class="team-card">
-      <h3>{{ team.clubName }}</h3>
-      <p class="ovr" >{{team.ovr}}</p>
-      <!-- [ngClass]="{'green': team.ovr >= 78, 'yellow': team.ovr < 78, 'red': team.ovr <= 60}" -->
+      <h3 class="team-name" (click)="navigationTo('team/' + team.id + '/')">
+        <span style="cursor: pointer">{{ team.clubName }}</span>
+      </h3>
+      <h3 class="ovr" >{{team.ovr}}</h3>
       <p class="division"><a href="https://app.metasoccer.com/home/msl/{{ team.groupId }}">{{ team.division }}</a></p>
       <p>
         <span *ngFor="let match of team.lastMatches" [ngClass]="{'win': match === 'won', 'tie': match === 'tie', 'loss': match === 'lost'}">

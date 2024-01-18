@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable, forkJoin, of } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
+import { SharedService } from 'src/app/services/shared.service';
 import { TournamentsService } from 'src/app/services/tournament.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class TournamentsComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private datePipe: DatePipe,
-    private tournamentsService: TournamentsService
+    private tournamentsService: TournamentsService,
+    private sharedService: SharedService
   ) {}
 
   teamIds: any;
@@ -47,18 +49,18 @@ export class TournamentsComponent implements OnInit {
           console.log('Using cached data.');
         } else {
           console.log('Cached data is older than an hour. Fetching new data.');
-          this.makeHttpRequests();
+          this.getAllGroups();
         }
       } catch (error) {
         console.error('Error parsing cached data:', error);
         this.loading = false;
       }
     } else {
-      this.makeHttpRequests();
+      this.getAllGroups();
     }
   }
 
-  private makeHttpRequests() {
+  private getAllGroups() {
     const requests: Observable<any>[] = this.teamIds.map((teamId: any) =>
       this.tournamentsService.getGroupData(teamId).pipe(
         mergeMap((groupData: any) => {
@@ -113,5 +115,9 @@ export class TournamentsComponent implements OnInit {
   }
   formatTimestamp(timestamp: number): string {
     return this.datePipe.transform(timestamp ?? Date.now(), 'medium') ?? 'N/A';
+  }
+
+  navigationTo(route: string): void {
+    this.sharedService.navigationTo(route);
   }
 }

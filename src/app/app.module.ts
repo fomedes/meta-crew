@@ -9,8 +9,11 @@ import { PlayerItemComponent } from './components/players/player-item/player-ite
 import { PlayerListComponent } from './components/players/player-list/player-list.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
+import { TeamComponent } from './components/teams/team/team.component';
 import { TournamentsComponent } from './components/teams/tournaments/tournaments.component';
 import { FormatStreakPipe } from './pipes/format-streak.pipe';
+import { SpecificRolePipe } from './pipes/specific-role.pipe';
+import { SharedService } from './services/shared.service';
 import { TournamentsService } from './services/tournament.service';
 
 @NgModule({
@@ -22,9 +25,11 @@ import { TournamentsService } from './services/tournament.service';
     HeaderComponent,
     FormatStreakPipe,
     SpinnerComponent,
+    TeamComponent,
+    SpecificRolePipe,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [DatePipe, TournamentsService],
+  providers: [DatePipe, TournamentsService, SharedService, SpecificRolePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

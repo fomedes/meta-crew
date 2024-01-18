@@ -15,6 +15,6 @@ export class TournamentsService {
 
   getGroupData(teamId: any): Observable<any> {
     const apiUrl = `https://api.metasoccer.com/msl/group/${teamId.groupId}`;
-    return this.http.get(apiUrl).pipe(timeout(15000));
+    return this.http.get(apiUrl).pipe(timeout(20000));
   }
 }

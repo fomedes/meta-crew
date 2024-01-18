@@ -64,17 +64,17 @@ h3 {
   text-align: center;
 }
 
-p a {
+p a, h3 a {
   text-decoration: none; /* Remove underline */
   color: inherit; /* Inherit color from parent element */
 }
 
-p a:hover {
+p a:hover, h3 a:hover  {
   /* Apply desired hover effect */
   background-color: rgba(255, 255, 255, 0.1); /* Subtle highlight */
 }
 
-p a:visited {
+p a:visited, h3 a:visited  {
   color: inherit; /* Inherit color on visited links */
 }
 
