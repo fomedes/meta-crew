@@ -34,7 +34,6 @@ export class TournamentsComponent implements OnInit {
     this.tournamentsService.getTeamIds().subscribe((data) => {
       this.teamIds = data;
       this.getData();
-      this.getTodayResults();
     });
   }
   getData() {
@@ -53,6 +52,7 @@ export class TournamentsComponent implements OnInit {
           this.teamData = parsedData;
           this.loading = false;
           console.log('Using cached data.');
+          this.getTodayResults();
         } else {
           console.log('Cached data is older than an hour. Fetching new data.');
           this.getAllGroups();
@@ -111,6 +111,7 @@ export class TournamentsComponent implements OnInit {
         localStorage.setItem('teamDataTimestamp', Date.now().toString());
         this.loading = false;
         this.lastUpdate = Date.now();
+        this.getTodayResults();
       },
       (error: any) => {
         console.error('Error in one or more API requests:', error);
