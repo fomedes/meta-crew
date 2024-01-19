@@ -12,11 +12,11 @@
 }
 
 .team-card {
-  background-color: #2a2a2a8f; /* Lighter background for cards */
+  background-color: #2a2a2a8f;
   border-radius: 5px;
   color: white;
   padding: 1rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Adjust shadow for visibility on black */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   position: relative;
   text-align: center;
 
@@ -34,8 +34,8 @@
 }
 
 .team-card p span {
-  display: inline-block; /* Ensure squares take up space */
-  width: 20px; /* Adjust square size as needed */
+  display: inline-block;
+  width: 20px;
   height: 20px;
   text-align: center;
   margin-right: 5px;
@@ -65,17 +65,17 @@ h3 {
 }
 
 p a, h3 a {
-  text-decoration: none; /* Remove underline */
-  color: inherit; /* Inherit color from parent element */
+  text-decoration: none; 
+  color: inherit; 
 }
 
 p a:hover, h3 a:hover  {
-  /* Apply desired hover effect */
-  background-color: rgba(255, 255, 255, 0.1); /* Subtle highlight */
+  
+  background-color: rgba(255, 255, 255, 0.1); 
 }
 
 p a:visited, h3 a:visited  {
-  color: inherit; /* Inherit color on visited links */
+  color: inherit;
 }
 
 
@@ -126,3 +126,16 @@ p a:visited, h3 a:visited  {
   bottom: 0;
   right: 0;
 }
+
+h1{ text-align: center;}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-row-right h2 {
+  text-align: center
+;}
+

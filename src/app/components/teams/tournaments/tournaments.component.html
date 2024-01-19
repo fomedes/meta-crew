@@ -1,12 +1,19 @@
-<h1 *ngIf="lastUpdate">Last update: {{ formatTimestamp(lastUpdate) }}</h1>
+<h1>Tournament Results</h1>
+<div class="title-row">
+  <h2 *ngIf="lastUpdate">Last update: {{ formatTimestamp(lastUpdate) }}</h2>
+  <div class="title-row-right">
+    <h2>Today's Results</h2> 
+    <h2>Wins:{{ todayResults.won }} Ties: {{ todayResults.tie }} Loses:{{ todayResults.lost }}</h2>  
+  </div>
+</div>
 <div class="team-ids-container">
   <div *ngIf="loading">
     <app-spinner [showSpinner]="loading"></app-spinner>
   </div>
     <div class="team-card-container" *ngFor="let team of teamData">
     <div class="team-card">
-      <h3 class="team-name" (click)="navigationTo('team/' + team.id + '/')">
-        <span style="cursor: pointer">{{ team.clubName }}</span>
+      <h3 class="team-name clickable" (click)="navigationTo('team/' + team.id + '/')">
+        <span class="clickable">{{ team.clubName }}</span>
       </h3>
       <h3 class="ovr" >{{team.ovr}}</h3>
       <p class="division"><a href="https://app.metasoccer.com/home/msl/{{ team.groupId }}">{{ team.division }}</a></p>

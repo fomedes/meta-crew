@@ -24,11 +24,17 @@ export class TournamentsComponent implements OnInit {
   groupData: any[] | undefined = [];
   loading = true;
   lastUpdate: number | undefined;
+  todayResults: { won: number; tie: number; lost: number } = {
+    won: 0,
+    tie: 0,
+    lost: 0,
+  };
 
   ngOnInit() {
     this.tournamentsService.getTeamIds().subscribe((data) => {
       this.teamIds = data;
       this.getData();
+      this.getTodayResults();
     });
   }
   getData() {
@@ -76,7 +82,7 @@ export class TournamentsComponent implements OnInit {
               manager: teamId.manager,
               ovr: teamId.ovr,
               division: division,
-              clubName: matchingTeam.clubName,
+              clubName: teamId.name,
               position: matchingTeam.position,
               played: matchingTeam.played,
               won: matchingTeam.won,
@@ -119,5 +125,23 @@ export class TournamentsComponent implements OnInit {
 
   navigationTo(route: string): void {
     this.sharedService.navigationTo(route);
+  }
+
+  getTodayResults() {
+    const results = this.teamData.map((team: any) => {
+      // Check if 'lastMatches' is an array and not empty
+      if (Array.isArray(team.lastMatches) && team.lastMatches.length > 0) {
+        return team.lastMatches[team.lastMatches.length - 1];
+      } else {
+        return null;
+      }
+    });
+    results.forEach((result: 'won' | 'tie' | 'lost' | null) => {
+      if (result !== null) {
+        this.todayResults[result]++;
+      }
+    });
+
+    console.log(this.todayResults);
   }
 }
