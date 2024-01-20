@@ -1,4 +1,12 @@
-<div (click)="navigationTo('')" class="toolbar clickable" role="banner">
-  <img width="40" alt="MetaCrew Logo" src="assets\MetaCrew.png"/>
-  <span>Meta Crew</span>
+<div class="toolbar" role="banner">
+  <div>
+    <img  (click)="navigationTo('')" class="clickable" width="40" alt="MetaCrew Logo" src="assets\MetaCrew.png"/>
+  </div>
+  <div>    
+    <span class="clickable"  (click)="navigationTo('')">Meta Crew</span>
+
+    <button (click)="navigationTo('players')">Players</button>
+    <button>Scouts</button>
+
+  </div>
 </div>

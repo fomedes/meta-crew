@@ -12,7 +12,7 @@ import { TeamService } from 'src/app/services/team.service';
 export class TeamComponent implements OnInit {
   teamId!: string;
   teamPlayers!: Observable<any[]>;
-  teamData!: any[];
+  teamData!: any;
   players!: any[];
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +28,7 @@ export class TeamComponent implements OnInit {
         (data) => {
           this.teamPlayers = data;
           this.players = data.result.players;
+          console.log(this.players);
         },
         (error) => {
           // Handle errors if any
