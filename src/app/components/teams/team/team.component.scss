@@ -1,33 +1,3 @@
-.team-table {
-  width: 80%;
-  border-collapse: collapse;
-  margin: 2% auto;
-
-  @media (max-width: 768px) {
-    width: 95%;
-    margin: 1% auto;
-  }
-}
-
-.team-table th,
-.team-table td {
-  border: 1px solid #ddd;
-  padding: 1%;
-  text-align: left;
-}
-
-.team-table th {
-  font-weight: bold;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .team-table th,
-  .team-table td {
-    padding: 0.5%;
-  }
-}
-
 a {
   text-decoration: none;
   color: inherit;

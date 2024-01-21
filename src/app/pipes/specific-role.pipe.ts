@@ -12,6 +12,8 @@ export class SpecificRolePipe implements PipeTransform {
     // Check if the input string is "Goalkeeper" and return "GK" in that case
     if (value.toLowerCase() === 'goalkeeper') {
       return 'GK';
+    } else if (value.toLocaleLowerCase() === 'striker') {
+      return 'ST';
     }
 
     // If not "Goalkeeper," keep only capital letters

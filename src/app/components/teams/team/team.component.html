@@ -17,13 +17,19 @@
     <tr *ngFor="let player of players">
       <!-- <td  class="player-img-container"><img class="player-img" src="https://assets2.metasoccer.com/file/assets2-metasoccer/players/assetsDetail/4_0_2_2_5_5_4_1_26_11_0_1_0_0_0_2_0.png"></td> -->
       <td><a href="" title="{{player.fullName}}">{{ player.shortName }}</a></td>
-      <td>{{ player.specificRole | specificRole}}</td>
+      <td>
+        <div class="role-label" [ngClass]="{'role-gk': player.role === 'Goalkeeper', 'role-df': player.role === 'Defender','role-mid': player.role === 'Midfielder','role-fw': player.role === 'Forward',}">{{ player.specificRole | specificRole}}
+        </div>
+      </td>
       <td>{{ player.overall }}</td>
       <td>{{ player.potential }}</td>
       <td>{{ player.specialAbilities.join(', ') }}</td>
       <td>{{ player.preferredFootName }}</td>
-      <td>{{ player.condition }}</td>
-
+      <td>
+        <div class="progress-bar-container">
+        <div class="progress-bar" [style.width.%]="player.condition"> {{ player.condition }}</div>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>

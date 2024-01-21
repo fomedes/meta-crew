@@ -9,3 +9,74 @@ body {
 }
 
 h1{ text-align: center;}
+
+table {
+  min-width: 50%;
+  border-collapse: collapse;
+  margin: 2% auto;
+
+  @media (max-width: 768px) {
+    width: 95%;
+    margin: 1% auto;
+  }
+}
+
+@media (max-width: 768px) {
+  table th,
+  table td {
+    padding: 0.5%;
+  }
+}
+
+table th {
+  font-weight: bold;
+  text-align: center;
+}
+
+
+table th,
+table td {
+  border: 1px solid rgb(28, 28, 28);
+  padding: 1%;
+  text-align: left;
+}
+
+th {
+  background-color: rgb(28, 28, 28);
+}
+
+.role-label {
+ color: black;
+ width: fit-content;
+ padding: 0px 0.3125rem;
+ font-weight: 700;
+}
+
+.role-gk {
+  background-color: rgb(253, 247, 100); 
+}
+
+.role-df {
+  background-color: rgb(61, 114, 253);; 
+}
+
+.role-mid {
+  background-color: rgb(106, 213, 106);
+}
+
+.role-fw {
+  background-color: rgb(255, 100, 177);; 
+}
+
+.progress-bar-container {
+  width: 100%;
+  background-color: rgb(28, 28, 28);
+}
+
+.progress-bar {
+  background-color: #4caf50; /* Green color for the progress bar */
+  height: 20px; /* Set the height of the progress bar */
+  line-height: 20px; /* Center the text vertically */
+  color: #fff; /* Text color */
+  text-align: center; /* Center the text horizontally */
+}
