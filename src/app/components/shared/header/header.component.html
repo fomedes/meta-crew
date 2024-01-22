@@ -7,8 +7,12 @@
 
     <span class="clickable"(click)="navigationTo('players')">Players</span>
     <span class="clickable">Scouts</span>
-    <span class="clickable">Teams</span>
-
-
+    <div class="dropdown">
+      <span class="clickable">Teams</span>
+      <div class="dropdown-content">
+        
+        <span *ngFor="let team of teams" class="clickable" (click)="navigationTo('team/' + team.id + '/')">{{team.name}}</span>
+      </div>
+    </div>
   </div>
 </div>

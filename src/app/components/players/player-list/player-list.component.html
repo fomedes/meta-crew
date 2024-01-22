@@ -26,8 +26,10 @@
       <td>{{ player.potential }}</td>
       <td>{{ player.specialAbilities.join(', ') }}</td>
       <td>{{ player.preferredFootName }}</td>
-      <td><div class="progress-bar-container">
-        <div class="progress-bar" [style.width.%]="player.condition"> {{ player.condition }}</div>
+      <td>
+        <div class="progress-bar-data">{{ player.condition }}</div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" [style.width.%]="player.condition"></div>
         </div>
       </td>
     </tr>

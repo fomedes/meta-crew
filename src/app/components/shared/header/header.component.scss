@@ -17,3 +17,24 @@
 span {
   margin: 0 5px
 }
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 120px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  background-color: rgb(28, 28, 28);
+}
+
+.dropdown:hover .dropdown-content {
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
