@@ -14,6 +14,12 @@ export class SpecificRolePipe implements PipeTransform {
       return 'GK';
     } else if (value.toLocaleLowerCase() === 'striker') {
       return 'ST';
+    } else if (value.toLocaleLowerCase() === 'defender') {
+      return 'DEF';
+    } else if (value.toLocaleLowerCase() === 'midfielder') {
+      return 'MID';
+    } else if (value.toLocaleLowerCase() === 'forward') {
+      return 'FWD';
     }
 
     // If not "Goalkeeper," keep only capital letters

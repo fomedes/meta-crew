@@ -16,6 +16,8 @@ import { SortByRolePipe } from './pipes/sort-by-role.pipe';
 import { SpecificRolePipe } from './pipes/specific-role.pipe';
 import { SharedService } from './services/shared.service';
 import { TournamentsService } from './services/tournament.service';
+import { ScoutListComponent } from './components/scouts/scout-list/scout-list.component';
+import { ScoutDetailComponent } from './components/scouts/scout-detail/scout-detail.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { TournamentsService } from './services/tournament.service';
     TeamComponent,
     SpecificRolePipe,
     SortByRolePipe,
+    ScoutListComponent,
+    ScoutDetailComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [

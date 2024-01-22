@@ -4,7 +4,7 @@
     <h2 *ngIf="lastUpdate">Updated on {{ formatTimestamp(lastUpdate) }}</h2>
   </div>
   <div class="title-row-center">
-    <h2>Rewards as Today</h2>
+    <h2>Expected Rewards</h2>
     <h2>{{totalRewards}} <img width="20px" src="https://ds.devsoccer.com/ds/Coins/msu.png"></h2>
   </div>
   <div class="title-row-right">
@@ -16,7 +16,7 @@
   <div *ngIf="loading">
     <app-spinner [showSpinner]="loading"></app-spinner>
   </div>
-    <div class="team-card-container" *ngFor="let team of teamData">
+  <div class="team-card-container" *ngFor="let team of teamData">
     <div class="team-card">
       <h3 class="team-name clickable" (click)="navigationTo('team/' + team.id + '/')">
         <span class="clickable">{{ team.clubName }}</span>

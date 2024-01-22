@@ -4,24 +4,35 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'sortByRole',
 })
 export class SortByRolePipe implements PipeTransform {
-  transform(players: any[]): any[] {
-    if (!players) {
+  transform(data: any[]): any[] {
+    if (!data) {
       return [];
     }
 
     const roleOrder = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward'];
 
-    players.sort((a, b) => {
-      const roleAIndex = roleOrder.indexOf(a.role);
-      const roleBIndex = roleOrder.indexOf(b.role);
+    data.sort((a, b) => {
+      if (a.role === undefined) {
+        const roleAIndex = roleOrder.indexOf(a.covering);
+        const roleBIndex = roleOrder.indexOf(b.covering);
 
-      if (roleAIndex !== roleBIndex) {
-        return roleAIndex - roleBIndex;
+        if (roleAIndex !== roleBIndex) {
+          return roleAIndex - roleBIndex;
+        }
+
+        return a.specificRole.localeCompare(b.specificRole);
+      } else {
+        const roleAIndex = roleOrder.indexOf(a.role);
+        const roleBIndex = roleOrder.indexOf(b.role);
+
+        if (roleAIndex !== roleBIndex) {
+          return roleAIndex - roleBIndex;
+        }
+
+        return a.specificRole.localeCompare(b.specificRole);
       }
-
-      return a.specificRole.localeCompare(b.specificRole);
     });
 
-    return players;
+    return data;
   }
 }
