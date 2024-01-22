@@ -12,6 +12,7 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
 import { TeamComponent } from './components/teams/team/team.component';
 import { TournamentsComponent } from './components/teams/tournaments/tournaments.component';
 import { FormatStreakPipe } from './pipes/format-streak.pipe';
+import { SortByRolePipe } from './pipes/sort-by-role.pipe';
 import { SpecificRolePipe } from './pipes/specific-role.pipe';
 import { SharedService } from './services/shared.service';
 import { TournamentsService } from './services/tournament.service';
@@ -27,9 +28,16 @@ import { TournamentsService } from './services/tournament.service';
     SpinnerComponent,
     TeamComponent,
     SpecificRolePipe,
+    SortByRolePipe,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [DatePipe, TournamentsService, SharedService, SpecificRolePipe],
+  providers: [
+    DatePipe,
+    TournamentsService,
+    SharedService,
+    SpecificRolePipe,
+    SortByRolePipe,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
