@@ -28,7 +28,6 @@ export class TeamComponent implements OnInit {
         (data) => {
           this.teamPlayers = data;
           this.players = data.result.players;
-          console.log(this.players);
         },
         (error) => {
           // Handle errors if any
@@ -45,7 +44,6 @@ export class TeamComponent implements OnInit {
         );
 
         if (this.teamData) {
-          console.log(this.teamData);
         } else {
           console.log(`Team with ID ${this.teamId} not found in cached data`);
         }

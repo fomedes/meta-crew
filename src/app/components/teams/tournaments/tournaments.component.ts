@@ -142,7 +142,5 @@ export class TournamentsComponent implements OnInit {
         this.todayResults[result]++;
       }
     });
-
-    console.log(this.todayResults);
   }
 }
