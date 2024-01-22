@@ -15,7 +15,7 @@
     <tr *ngFor="let scout of scouts | sortByRole">
       <!-- <td  class="scout-img-container"><img class="scout-img" src="https://assets2.metasoccer.com/file/assets2-metasoccer/scouts/assetsDetail/4_0_2_2_5_5_4_1_26_11_0_1_0_0_0_2_0.png"></td> -->
       <td class="hide-on-mobile">{{ scout.id }}</td>
-      <td>{{ scout.fullName }}</td>
+      <td><a href="https://app.metasoccer.com/assets/scouts/{{scout.id}}"> {{ scout.fullName }}</a></td>
       <td>
         <div *ngIf="scout.specificRole != 'None'" class="role-label" [ngClass]="{'role-gk': scout.covering === 'Goalkeeper', 'role-df': scout.covering === 'Defender','role-mid': scout.covering === 'Midfielder','role-fw': scout.covering === 'Forward',}">{{ scout.specificRole | specificRole}}
         </div>
