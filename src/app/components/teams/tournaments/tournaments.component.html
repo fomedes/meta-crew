@@ -1,8 +1,14 @@
 <h1>Tournament Results</h1>
 <div class="title-row">
-  <h2 *ngIf="lastUpdate">Last update: {{ formatTimestamp(lastUpdate) }}</h2>
+  <div class="title-row-left">
+    <h2 *ngIf="lastUpdate">Updated on {{ formatTimestamp(lastUpdate) }}</h2>
+  </div>
+  <div class="title-row-center">
+    <h2>Rewards as Today</h2>
+    <h2>{{totalRewards}} <img width="20px" src="https://ds.devsoccer.com/ds/Coins/msu.png"></h2>
+  </div>
   <div class="title-row-right">
-    <h2>Today's Results</h2> 
+    <h2 class="hide-on-mobile">Today's Results</h2> 
     <h2>Wins:{{ todayResults.won }} Ties: {{ todayResults.tie }} Loses:{{ todayResults.lost }}</h2>  
   </div>
 </div>
@@ -38,6 +44,7 @@
       </div>
       <p>Position: {{ team.position }}</p>
       <p>Points: {{ team.points }}</p>
+      <p style="display: flex; align-items: center; justify-content: center;">Current Rewards: {{team.expectedReward}} <img width="20px" src="https://ds.devsoccer.com/ds/Coins/msu.png"></p>
       <img *ngIf="team.manager" [src]="'assets/managers/' + team.manager + '.png'" alt="{{ team.manager }}" class="manager-image" />
     </div>
   </div>

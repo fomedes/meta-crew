@@ -22,6 +22,7 @@ export class TournamentsComponent implements OnInit {
   teamIds: any;
   teamData: any[] = [];
   groupData: any[] | undefined = [];
+  rewards!: any[];
   loading = true;
   lastUpdate: number | undefined;
   todayResults: { won: number; tie: number; lost: number } = {
@@ -29,6 +30,7 @@ export class TournamentsComponent implements OnInit {
     tie: 0,
     lost: 0,
   };
+  totalRewards!: number;
 
   ngOnInit() {
     this.tournamentsService.getTeamIds().subscribe((data) => {
@@ -53,8 +55,10 @@ export class TournamentsComponent implements OnInit {
           this.loading = false;
           console.log('Using cached data.');
           this.getTodayResults();
+          this.calculateTotalRewards();
         } else {
           console.log('Cached data is older than an hour. Fetching new data.');
+          this.getRewards();
           this.getAllGroups();
         }
       } catch (error) {
@@ -62,6 +66,7 @@ export class TournamentsComponent implements OnInit {
         this.loading = false;
       }
     } else {
+      this.getRewards();
       this.getAllGroups();
     }
   }
@@ -93,6 +98,11 @@ export class TournamentsComponent implements OnInit {
               goalsDifference: matchingTeam.goalsDifference,
               points: matchingTeam.points,
               lastMatches: matchingTeam.lastMatches,
+              expectedReward: this.getExpectedReward(
+                this.rewards,
+                division,
+                matchingTeam.position
+              ),
             });
           } else {
             console.warn(`Team ID ${teamId.id} not found in API response`);
@@ -112,6 +122,7 @@ export class TournamentsComponent implements OnInit {
         this.loading = false;
         this.lastUpdate = Date.now();
         this.getTodayResults();
+        this.calculateTotalRewards();
       },
       (error: any) => {
         console.error('Error in one or more API requests:', error);
@@ -142,5 +153,44 @@ export class TournamentsComponent implements OnInit {
         this.todayResults[result]++;
       }
     });
+  }
+
+  getRewards() {
+    this.http.get<any[]>('assets/teams/mlsRewards.json').subscribe((data) => {
+      this.rewards = data;
+      console.log(this.rewards);
+    });
+  }
+
+  getExpectedReward(rewards: any[], div: string, pos: number) {
+    // Extract the division from the team data
+    const division = div.split(' ')[1]; // Extracting "C" from "Division C"
+    console.log(division);
+
+    // Find the corresponding rewards for the division
+    const divisionRewards = rewards.find(
+      (reward) => reward.division === division
+    );
+
+    // If divisionRewards is found, get the reward amount for the given position
+    if (divisionRewards) {
+      const position = pos.toString();
+      console.log(position);
+      const rewardAmount = divisionRewards.rewards[position];
+      console.log(rewardAmount);
+
+      return rewardAmount !== undefined
+        ? rewardAmount
+        : 'Position not found in rewards';
+    } else {
+      return 'Division not found in rewards';
+    }
+  }
+
+  calculateTotalRewards(): void {
+    this.totalRewards = this.teamData.reduce(
+      (sum, team) => sum + team.expectedReward,
+      0
+    );
   }
 }

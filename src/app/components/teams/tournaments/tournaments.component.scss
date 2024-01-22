@@ -19,7 +19,6 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   position: relative;
   text-align: center;
-
 }
 
 .team-card h3 {
@@ -88,8 +87,6 @@ p a:visited, h3 a:visited  {
 .stats_top, .stats_bot {
   display: flex;
   gap: 15px;
-
-  
 }
 
 .spinner-overlay {
@@ -127,15 +124,16 @@ p a:visited, h3 a:visited  {
   right: 0;
 }
 
-h1{ text-align: center;}
-
 .title-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-.title-row-right h2 {
-  text-align: center
-;}
+.title-row > div {
+  flex: 1;
+  text-align: center;
+}
+
+
+
 
