@@ -1,0 +1,42 @@
+<h1>Free Agents</h1>
+<div class="players-container" *ngIf="players">
+    <div class="player-card-container" *ngFor="let player of players | sortByRole">
+      <div class="player-card" [style.background-image]="'url(https://assets2.metasoccer.com/file/assets2-metasoccer/players/assetsIndex/' + player.imageName + ')'">
+        <div class="player-data">
+          <h3 class="player-name">{{ player.fullName }}</h3>
+          <div>
+            <div class="player-ratings">
+              <span class="player-ov">{{ player.overall }}</span>
+              <span>  /  </span>
+              <span class="player-pot">{{ player.potential }}</span>
+            </div>
+            <div class="role-label" [ngClass]="{'role-gk': player.role === 'Goalkeeper', 'role-df': player.role === 'Defender','role-mid': player.role === 'Midfielder','role-fw': player.role === 'Forward',}">{{ player.specificRole | specificRole}}
+            </div>
+          </div>
+          <div>
+            <div class="player-id">ID: {{ player.id }}</div>
+          </div>
+          <div>
+            <div class="player-age">Age: {{ player.age }}</div>
+            <div class="player-foot">Foot: {{ player.preferredFootName }}</div>
+          </div>
+          <div>
+            <div class="player-skills" *ngFor="let skill of player.specialAbilities">
+              {{skill}}
+            </div>
+          </div>
+          <div class="player-bids">
+            <div>
+              Andres: {{player.bids.Andres}}
+            </div>
+            <div>
+              Carlos: {{player.bids.Carlos}}
+            </div>
+            <div>
+              Daud: {{player.bids.Daud}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
