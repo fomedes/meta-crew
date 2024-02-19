@@ -1,12 +1,17 @@
 [
-  {"id": "T:0GEoVLb77a9P", "name": "MCR #41", "ovr": "70", "manager": "Frank", "groupId": "TNG:8rehiZV--15G", "previousGroups": {} },
-  {"id": "T:4m54TxM2t9Pv", "name": "MCR #48", "ovr": "50", "manager": "Frank", "groupId": "TNG:ZwcoEAvQxxMu", "previousGroups": {} },
-  {"id": "T:AhynMxs2PBgZ", "name": "MCR #1", "ovr": "78", "manager": "Frank", "groupId": "TNG:CWAzn5TdmlRP", "previousGroups": {} },
-  {"id": "T:AZ2xMrjg-Nfh", "name": "MCR #49", "ovr": "50", "manager": "Frank", "groupId": "TNG:wzvaDX42yElW", "previousGroups": {} },
-  {"id": "T:gTGahAn89_c6", "name": "MCR #47", "ovr": "59", "manager": "Frank", "groupId": "TNG:QiOidzl-OMIu", "previousGroups": {} },
-  {"id": "T:JhdT1oxdxRJC", "name": "MCR #43", "ovr": "68", "manager": "Carlos", "groupId": "TNG:N2Tfa9Q7MkOC", "previousGroups": {} },
-  {"id": "T:jI6CjU5u2qXt", "name": "MCR #40", "ovr": "75", "manager": "Frank", "groupId": "TNG:wzvaDX42yElW", "previousGroups": {} },
-  {"id": "T:q-HlhaXGTquQ", "name": "MCR #42", "ovr": "70", "manager": "Daud", "groupId": "TNG:FxfsT6-rV6sk", "previousGroups": {} },
-  {"id": "T:SN4atpGuCh0u", "name": "MCR #44", "ovr": "69", "manager": "Andres", "groupId": "TNG:zAMEsYfeSRF7", "previousGroups": {} },
-  {"id": "T:0x899b35c0114e95ab0130b8fde312777cc0d02187", "name": "MCR #Amposta", "ovr": "66", "manager": "Frank", "groupId": "TNG:mB5IPvIFS3i_", "previousGroups": {} }
+  {"id": "T:0GEoVLb77a9P", "name": "MCR #41", "tainer": "Frank", "groupId": "TNG:aRRyxVHMYI6d"},
+  {"id": "T:4m54TxM2t9Pv", "name": "MCR #48", "tainer": "Frank", "groupId": "TNG:ZwcoEAvQxxMu"},
+  {"id": "T:AhynMxs2PBgZ", "name": "MCR #1", "tainer": "Frank", "groupId": "TNG:t7vCO1I11vyi"},
+  {"id": "T:AZ2xMrjg-Nfh", "name": "MCR #49", "tainer": "Frank", "groupId": "TNG:FxL7HN0hnChO"},
+  {"id": "T:gTGahAn89_c6", "name": "MCR #47", "tainer": "Frank", "groupId": "TNG:QiOidzl-OMIu"},
+  {"id": "T:JhdT1oxdxRJC", "name": "MCR #43", "tainer": "Carlos", "groupId": "TNG:ljoP209Pon8Q"},
+  {"id": "T:jI6CjU5u2qXt", "name": "MCR #40", "tainer": "Frank", "groupId": "TNG:FS1SM7rFrANz"},
+  {"id": "T:q-HlhaXGTquQ", "name": "MCR #42", "tainer": "Daud", "groupId": "TNG:eFYzdjQ6cIG0"},
+  {"id": "T:SN4atpGuCh0u", "name": "MCR #44", "tainer": "Andres", "groupId": "TNG:zDnxPc2QZwIy"},
+  {"id": "T:k3K2aW_claIA", "name": "MCR #2", "tainer": "Frank", "groupId": "TNG:7LiTs_T5k4uM"},
+  {"id": "T:E1SBzYKqHncx", "name": "MCR #12", "tainer": "Frank", "groupId": "TNG:UrkvtEl2eR6W"},
+  {"id": "T:4m54TxM2t9Pv", "name": "MCR #48", "tainer": "Frank", "groupId": "TNG:WFj6wP1Az9yn"},
+  {"id": "T:7lzsDn-nQDtB", "name": "MCR #50", "tainer": "Frank", "groupId": "TNG:XcdAecLYGBxE"},
+  {"id": "T:4AWuJ7LyoweT", "name": "MCR #51", "tainer": "Frank", "groupId": "TNG:OODA1MqhMK-Z"},
+  {"id": "T:0x899b35c0114e95ab0130b8fde312777cc0d02187", "name": "MCR #Amposta", "ovr": "66", "manager": "Frank", "groupId": "TNG:vZupCE7MOxeu", "previousGroups": {} }
 ]
