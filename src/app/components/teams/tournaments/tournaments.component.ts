@@ -21,6 +21,7 @@ export class TournamentsComponent implements OnInit {
 
   teamIds: any;
   teamData: any[] = [];
+
   groupData: any[] | undefined = [];
   rewards!: any[];
   loading = true;
@@ -47,7 +48,7 @@ export class TournamentsComponent implements OnInit {
         const parsedData = JSON.parse(cachedData);
         this.lastUpdate = parseInt(cachedTimestamp, 10);
 
-        const isDataRecent = Date.now() - this.lastUpdate < 3600000;
+        const isDataRecent = Date.now() - this.lastUpdate < 86400000;
 
         console.log(this.lastUpdate);
         if (isDataRecent) {
@@ -57,7 +58,7 @@ export class TournamentsComponent implements OnInit {
           this.getTodayResults();
           this.calculateTotalRewards();
         } else {
-          console.log('Cached data is older than an hour. Fetching new data.');
+          console.log('Cached data is older than a day. Fetching new data.');
           this.getRewards();
           this.getAllGroups();
         }
@@ -104,6 +105,8 @@ export class TournamentsComponent implements OnInit {
                 matchingTeam.position
               ),
             });
+            localStorage.setItem('teamData', JSON.stringify(this.teamData));
+            localStorage.setItem('teamDataTimestamp', Date.now().toString());
           } else {
             console.warn(`Team ID ${teamId.id} not found in API response`);
           }
@@ -193,4 +196,13 @@ export class TournamentsComponent implements OnInit {
       0
     );
   }
+
+  updateData(): void {
+    this.teamData = [];
+    this.todayResults = { won: 0, tie: 0, lost: 0 };
+    this.getRewards();
+    this.getAllGroups();
+  }
+
+  getSquadInfo() {}
 }

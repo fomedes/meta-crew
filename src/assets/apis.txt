@@ -1,0 +1,8 @@
+- Get OVR, lineup & Formation - 
+https://api.metasoccer.com/teams/lineup-with-skill/0x644FA8aa088caD5BcDf78bB0E7C1bF1cB399e475/T:AhynMxs2PBgZ
+
+- Next Match & Issues - 
+https://api.metasoccer.com/home/teamInfo/T:k3K2aW_claIA
+
+- Get cards - 
+https://api.metasoccer.com/v2/players/team/T:k3K2aW_claIA/cards

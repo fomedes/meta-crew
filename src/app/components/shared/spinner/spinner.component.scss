@@ -1,5 +1,11 @@
+.spinner-container {
+  position: relative; 
+  height: 50vh;
+  width: 100vw;
+}
+
 .spinner-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -11,8 +17,8 @@
 }
 
 .rotating-image {
-  width: 60px; /* Adjust size as needed */
-  height: 60px; /* Adjust size as needed */
+  width: 60px;
+  height: 60px;
   animation: spin 1s linear infinite;
 }
 
