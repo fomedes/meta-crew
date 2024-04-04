@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { timeout } from 'rxjs/operators';
 
 @Injectable({
@@ -15,6 +15,9 @@ export class TournamentsService {
 
   getGroupData(teamId: any): Observable<any> {
     const apiUrl = `https://api.metasoccer.com/msl/group/${teamId.groupId}`;
+    if (!teamId.groupId) {
+      return of(null);
+    }
     return this.http.get(apiUrl).pipe(timeout(50000));
   }
 }

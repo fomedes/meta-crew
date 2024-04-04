@@ -35,7 +35,8 @@ export class TournamentsComponent implements OnInit {
 
   ngOnInit() {
     this.tournamentsService.getTeamIds().subscribe((data) => {
-      this.teamIds = data;
+      this.teamIds = data.filter((team: any) => team.groupId);
+      console.log(this.teamIds);
       this.getData();
     });
   }
@@ -80,7 +81,6 @@ export class TournamentsComponent implements OnInit {
           const matchingTeam = groupData.result.standings.rankedTeams.find(
             (team: any) => team.id === teamId.id
           );
-
           if (matchingTeam) {
             this.teamData.push({
               id: teamId.id,
@@ -168,7 +168,6 @@ export class TournamentsComponent implements OnInit {
   getExpectedReward(rewards: any[], div: string, pos: number) {
     // Extract the division from the team data
     const division = div.split(' ')[1]; // Extracting "C" from "Division C"
-    console.log(division);
 
     // Find the corresponding rewards for the division
     const divisionRewards = rewards.find(
@@ -178,9 +177,7 @@ export class TournamentsComponent implements OnInit {
     // If divisionRewards is found, get the reward amount for the given position
     if (divisionRewards) {
       const position = pos.toString();
-      console.log(position);
       const rewardAmount = divisionRewards.rewards[position];
-      console.log(rewardAmount);
 
       return rewardAmount !== undefined
         ? rewardAmount
