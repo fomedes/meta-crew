@@ -39,9 +39,7 @@ export class TeamComponent implements OnInit {
       if (cachedData) {
         const parsedData = JSON.parse(cachedData);
 
-        this.teamData = parsedData.find(
-          (entry: any) => entry.id === this.teamId
-        );
+        this.teamData = parsedData.find((team: any) => team.id === this.teamId);
 
         if (this.teamData) {
         } else {

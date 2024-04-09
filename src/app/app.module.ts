@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
@@ -39,7 +39,13 @@ import { TournamentsService } from './services/tournament.service';
     PlayerPoolComponent,
     AdminPanelComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [
     DatePipe,
     TournamentsService,

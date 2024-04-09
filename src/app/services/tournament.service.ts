@@ -9,7 +9,7 @@ import { timeout } from 'rxjs/operators';
 export class TournamentsService {
   constructor(private http: HttpClient) {}
 
-  getTeamIds(): Observable<any> {
+  getTeamProp(): Observable<any> {
     return this.http.get('/assets/teams/teams_id.json');
   }
 
@@ -18,6 +18,6 @@ export class TournamentsService {
     if (!teamId.groupId) {
       return of(null);
     }
-    return this.http.get(apiUrl).pipe(timeout(50000));
+    return this.http.get(apiUrl).pipe(timeout(60000));
   }
 }

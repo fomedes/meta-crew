@@ -5,6 +5,21 @@
       <img class="update-data-btn" src="assets/update-icon.svg" alt="Reload">
     </button>
   </div>
+  <form [formGroup]="tknForm" (ngSubmit)="saveWallet()">
+    <div class="form-field">
+      <input type="text" placeholder="Manager" formControlName="manager">
+    </div>
+    <div class="form-field">
+      <input type="text" placeholder="Address" formControlName="address">
+    </div>
+    <div class="form-field">
+      <input type="text" placeholder="Token" formControlName="token">
+    </div>
+    <div class="form-action">
+      <button type="submit" (click)="saveWallet()">Save</button>
+    </div>
+  </form>  
+
   <div class="title-row-center">
     <h2>Expected Rewards</h2>
     <h2>{{totalRewards}} <img width="20px" src="https://ds.devsoccer.com/ds/Coins/msu.png"></h2>
@@ -44,8 +59,9 @@
           <div><span>Win Rate</span> <p>{{ (team.won / team.played) | percent: '2.2-2' }}</p></div>
         </div>
       </div>
-      <p>Position: {{ team.position }}</p>
-      <p>Points: {{ team.points }}</p>
+      <p>Position: {{ team.position }}&nbsp;&nbsp;&nbsp;&nbsp;Points: {{ team.points }}</p>
+      <p>Injuries:</p>
+      <p>Cards:</p>
       <p style="display: flex; align-items: center; justify-content: center;">Current Rewards: {{team.expectedReward}} <img width="20px" src="https://ds.devsoccer.com/ds/Coins/msu.png"></p>
       <img *ngIf="team.manager" [src]="'assets/managers/' + team.manager + '.png'" alt="{{ team.manager }}" class="manager-image" />
     </div>

@@ -1,9 +1,17 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Observable, forkJoin, of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
+import { WalletDto } from 'src/app/models/walletProp.dto';
 import { SharedService } from 'src/app/services/shared.service';
+import { TeamService } from 'src/app/services/team.service';
 import { TournamentsService } from 'src/app/services/tournament.service';
 
 @Component({
@@ -12,14 +20,33 @@ import { TournamentsService } from 'src/app/services/tournament.service';
   styleUrls: ['./tournaments.component.scss'],
 })
 export class TournamentsComponent implements OnInit {
+  manager: FormControl;
+  address: FormControl;
+  token: FormControl;
+  tknForm: FormGroup;
+  walletProp: WalletDto;
+
   constructor(
     private http: HttpClient,
     private datePipe: DatePipe,
     private tournamentsService: TournamentsService,
-    private sharedService: SharedService
-  ) {}
+    private sharedService: SharedService,
+    private teamService: TeamService,
+    private fb: FormBuilder
+  ) {
+    this.walletProp = new WalletDto();
+    this.manager = new FormControl('', [Validators.required]);
+    this.address = new FormControl('', [Validators.required]);
+    this.token = new FormControl('', [Validators.required]);
 
-  teamIds: any;
+    this.tknForm = fb.group({
+      manager: this.manager,
+      address: this.address,
+      token: this.token,
+    });
+  }
+
+  teamProp: any;
   teamData: any[] = [];
 
   groupData: any[] | undefined = [];
@@ -34,9 +61,8 @@ export class TournamentsComponent implements OnInit {
   totalRewards!: number;
 
   ngOnInit() {
-    this.tournamentsService.getTeamIds().subscribe((data) => {
-      this.teamIds = data.filter((team: any) => team.groupId);
-      console.log(this.teamIds);
+    this.tournamentsService.getTeamProp().subscribe((data) => {
+      this.teamProp = data.filter((team: any) => team.groupId);
       this.getData();
     });
   }
@@ -51,7 +77,6 @@ export class TournamentsComponent implements OnInit {
 
         const isDataRecent = Date.now() - this.lastUpdate < 86400000;
 
-        console.log(this.lastUpdate);
         if (isDataRecent) {
           this.teamData = parsedData;
           this.loading = false;
@@ -60,55 +85,78 @@ export class TournamentsComponent implements OnInit {
           this.calculateTotalRewards();
         } else {
           console.log('Cached data is older than a day. Fetching new data.');
-          this.getRewards();
-          this.getAllGroups();
+          this.updateData;
         }
       } catch (error) {
         console.error('Error parsing cached data:', error);
         this.loading = false;
       }
     } else {
-      this.getRewards();
-      this.getAllGroups();
+      this.updateData();
     }
   }
 
   private getAllGroups() {
-    const requests: Observable<any>[] = this.teamIds.map((teamId: any) =>
-      this.tournamentsService.getGroupData(teamId).pipe(
+    const requests: Observable<any>[] = this.teamProp.map((team: any) =>
+      this.tournamentsService.getGroupData(team).pipe(
         mergeMap((groupData: any) => {
           const division = groupData.result.name;
           const matchingTeam = groupData.result.standings.rankedTeams.find(
-            (team: any) => team.id === teamId.id
+            (rankedTeam: any) => rankedTeam.id === team.id
           );
           if (matchingTeam) {
-            this.teamData.push({
-              id: teamId.id,
-              groupId: teamId.groupId,
-              manager: teamId.manager,
-              ovr: teamId.ovr,
-              division: division,
-              clubName: teamId.name,
-              position: matchingTeam.position,
-              played: matchingTeam.played,
-              won: matchingTeam.won,
-              tied: matchingTeam.tied,
-              lost: matchingTeam.lost,
-              goalsForward: matchingTeam.goalsForward,
-              goalsAgainst: matchingTeam.goalsAgainst,
-              goalsDifference: matchingTeam.goalsDifference,
-              points: matchingTeam.points,
-              lastMatches: matchingTeam.lastMatches,
-              expectedReward: this.getExpectedReward(
-                this.rewards,
-                division,
-                matchingTeam.position
-              ),
-            });
-            localStorage.setItem('teamData', JSON.stringify(this.teamData));
-            localStorage.setItem('teamDataTimestamp', Date.now().toString());
+            const storedManager = localStorage.getItem(team.manager);
+            let managerProp = [];
+            if (storedManager) {
+              managerProp = JSON.parse(storedManager);
+            }
+            this.getSquadInfo(
+              team.wallet
+                ? team.wallet
+                : '0x644FA8aa088caD5BcDf78bB0E7C1bF1cB399e475',
+              team.id,
+              managerProp.token
+            ).subscribe(
+              (ovr: number) => {
+                // Use the obtained 'ovr' value here
+                this.teamData.push({
+                  id: team.id,
+                  groupId: team.groupId,
+                  manager: team.manager,
+                  ovr: ovr,
+                  division: division,
+                  clubName: team.name,
+                  position: matchingTeam.position,
+                  played: matchingTeam.played,
+                  won: matchingTeam.won,
+                  tied: matchingTeam.tied,
+                  lost: matchingTeam.lost,
+                  goalsForward: matchingTeam.goalsForward,
+                  goalsAgainst: matchingTeam.goalsAgainst,
+                  goalsDifference: matchingTeam.goalsDifference,
+                  points: matchingTeam.points,
+                  lastMatches: matchingTeam.lastMatches,
+                  expectedReward: this.getExpectedReward(
+                    this.rewards,
+                    division,
+                    matchingTeam.position
+                  ),
+                  injuries: [],
+                  cards: [],
+                });
+                localStorage.setItem('teamData', JSON.stringify(this.teamData));
+                localStorage.setItem(
+                  'teamDataTimestamp',
+                  Date.now().toString()
+                );
+              },
+              (error) => {
+                console.error('Error fetching squad info:', error);
+                // Handle the error appropriately
+              }
+            );
           } else {
-            console.warn(`Team ID ${teamId.id} not found in API response`);
+            console.warn(`Team ID ${team.id} not found in API response`);
           }
 
           // Returning an observable to avoid blocking the next request
@@ -134,6 +182,7 @@ export class TournamentsComponent implements OnInit {
       }
     );
   }
+
   formatTimestamp(timestamp: number): string {
     return this.datePipe.transform(timestamp ?? Date.now(), 'medium') ?? 'N/A';
   }
@@ -161,20 +210,16 @@ export class TournamentsComponent implements OnInit {
   getRewards() {
     this.http.get<any[]>('assets/teams/mlsRewards.json').subscribe((data) => {
       this.rewards = data;
-      console.log(this.rewards);
     });
   }
 
   getExpectedReward(rewards: any[], div: string, pos: number) {
-    // Extract the division from the team data
-    const division = div.split(' ')[1]; // Extracting "C" from "Division C"
+    const division = div.split(' ')[1];
 
-    // Find the corresponding rewards for the division
     const divisionRewards = rewards.find(
       (reward) => reward.division === division
     );
 
-    // If divisionRewards is found, get the reward amount for the given position
     if (divisionRewards) {
       const position = pos.toString();
       const rewardAmount = divisionRewards.rewards[position];
@@ -197,9 +242,37 @@ export class TournamentsComponent implements OnInit {
   updateData(): void {
     this.teamData = [];
     this.todayResults = { won: 0, tie: 0, lost: 0 };
+
     this.getRewards();
     this.getAllGroups();
   }
 
-  getSquadInfo() {}
+  saveWallet(): void {
+    this.walletProp.address = this.address.value;
+    this.walletProp.token = this.token.value;
+    this.walletProp.manager = this.manager.value;
+
+    localStorage.setItem(
+      `${this.walletProp.manager}`,
+      JSON.stringify(this.walletProp)
+    );
+
+    this.tknForm.reset();
+  }
+
+  getSquadInfo(
+    teamWallet: string,
+    teamId: string,
+    token: string
+  ): Observable<number> {
+    return this.teamService.getSquadInfo(teamWallet, teamId, token).pipe(
+      map((data: any) => {
+        return data.result.skill.overallSkill;
+      }),
+      catchError((error: any) => {
+        console.error('Error fetching squad info:', error);
+        return of(0);
+      })
+    );
+  }
 }
