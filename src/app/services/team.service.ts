@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, timeout } from 'rxjs';
+import { Observable, forkJoin, timeout } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +14,22 @@ export class TeamService {
   }
 
   getSquadInfo(wallet: string, teamId: string, token: string): Observable<any> {
-    const apiUrl = `https://api.metasoccer.com/teams/lineup-with-skill/${wallet}/${teamId}`;
-
+    const ovrUrl = `https://api.metasoccer.com/teams/lineup-with-skill/${wallet}/${teamId}`;
+    const cardsUrl = `https://api.metasoccer.com/v2/players/team/${teamId}/cards`;
+    const injuriesUrl = `https://api.metasoccer.com/v2/players/team/${teamId}/locked`;
+    const infoUrl = `https://api.metasoccer.com/home/teamInfo/${teamId}`;
     const headers = new HttpHeaders({ Authorization: token });
-    return this.http.get(apiUrl, { headers: headers });
+
+    const ovr$ = this.http.get(ovrUrl, { headers: headers });
+    const cards$ = this.http.get(cardsUrl, { headers: headers });
+    const injuries$ = this.http.get(injuriesUrl, { headers: headers });
+    const teamInfo$ = this.http.get(infoUrl, { headers: headers });
+
+    return forkJoin({
+      ovr: ovr$,
+      cards: cards$,
+      injuries: injuries$,
+      info: teamInfo$,
+    });
   }
 }

@@ -59,6 +59,7 @@ export class TournamentsComponent implements OnInit {
     lost: 0,
   };
   totalRewards!: number;
+  managers!: any[];
 
   ngOnInit() {
     this.tournamentsService.getTeamProp().subscribe((data) => {
@@ -85,18 +86,19 @@ export class TournamentsComponent implements OnInit {
           this.calculateTotalRewards();
         } else {
           console.log('Cached data is older than a day. Fetching new data.');
-          this.updateData;
+          this.getAllGroups();
         }
       } catch (error) {
         console.error('Error parsing cached data:', error);
         this.loading = false;
       }
     } else {
-      this.updateData();
+      this.getAllGroups();
     }
   }
 
   private getAllGroups() {
+    this.getManagers();
     const requests: Observable<any>[] = this.teamProp.map((team: any) =>
       this.tournamentsService.getGroupData(team).pipe(
         mergeMap((groupData: any) => {
@@ -105,11 +107,16 @@ export class TournamentsComponent implements OnInit {
             (rankedTeam: any) => rankedTeam.id === team.id
           );
           if (matchingTeam) {
-            const storedManager = localStorage.getItem(team.manager);
-            let managerProp = [];
-            if (storedManager) {
-              managerProp = JSON.parse(storedManager);
-            }
+            const managerProp = this.managers.find(
+              (manager: any) => manager.manager === team.manager
+            );
+
+            // const storedManager = localStorage.getItem(team.manager);
+            // let managerProp = [];
+            // if (storedManager) {
+            //   managerProp = JSON.parse(storedManager);
+            // }
+
             this.getSquadInfo(
               team.wallet
                 ? team.wallet
@@ -117,13 +124,17 @@ export class TournamentsComponent implements OnInit {
               team.id,
               managerProp.token
             ).subscribe(
-              (ovr: number) => {
-                // Use the obtained 'ovr' value here
+              (squadInfo: any) => {
+                const lockedPlayers = squadInfo.injuries.result.lockedPlayers;
+                const injuriesCount = lockedPlayers.filter(
+                  (player: any) => player.reason === 'Injured'
+                ).length;
+
                 this.teamData.push({
                   id: team.id,
                   groupId: team.groupId,
                   manager: team.manager,
-                  ovr: ovr,
+                  ovr: squadInfo.ovr.result.skill.overallSkill,
                   division: division,
                   clubName: team.name,
                   position: matchingTeam.position,
@@ -141,8 +152,9 @@ export class TournamentsComponent implements OnInit {
                     division,
                     matchingTeam.position
                   ),
-                  injuries: [],
+                  injuries: injuriesCount,
                   cards: [],
+                  notices: squadInfo.info.result.nextMatch.notices[0],
                 });
                 localStorage.setItem('teamData', JSON.stringify(this.teamData));
                 localStorage.setItem(
@@ -240,9 +252,10 @@ export class TournamentsComponent implements OnInit {
   }
 
   updateData(): void {
-    this.teamData = [];
-    this.todayResults = { won: 0, tie: 0, lost: 0 };
-
+    localStorage.removeItem('teamData');
+    // // this.teamData = [];
+    // // this.todayResults = { won: 0, tie: 0, lost: 0 };
+    this.loading = true;
     this.getRewards();
     this.getAllGroups();
   }
@@ -264,15 +277,21 @@ export class TournamentsComponent implements OnInit {
     teamWallet: string,
     teamId: string,
     token: string
-  ): Observable<number> {
+  ): Observable<any> {
     return this.teamService.getSquadInfo(teamWallet, teamId, token).pipe(
       map((data: any) => {
-        return data.result.skill.overallSkill;
+        return data;
       }),
       catchError((error: any) => {
         console.error('Error fetching squad info:', error);
         return of(0);
       })
     );
+  }
+
+  getManagers(): void {
+    this.http.get<any[]>('assets/teams/managers.json').subscribe((data) => {
+      this.managers = data;
+    });
   }
 }

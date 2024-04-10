@@ -18,6 +18,6 @@ export class TournamentsService {
     if (!teamId.groupId) {
       return of(null);
     }
-    return this.http.get(apiUrl).pipe(timeout(60000));
+    return this.http.get(apiUrl).pipe(timeout(180000));
   }
 }

@@ -9,6 +9,8 @@
 .team-card-container {
   margin: 0 auto;
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .team-card {
@@ -19,6 +21,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   position: relative;
   text-align: center;
+  flex: 1;
 }
 
 .team-card h3 {
@@ -139,5 +142,12 @@ p a:visited, h3 a:visited  {
   height: 30px;
 }
 
+.squad-issue {
+  border: 2px solid red;
+  box-sizing: border-box;
+}
 
-
+.alarm-text {
+  font-weight: bold; 
+  color: red;
+}
