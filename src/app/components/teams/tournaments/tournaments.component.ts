@@ -13,6 +13,7 @@ import { WalletDto } from 'src/app/models/walletProp.dto';
 import { SharedService } from 'src/app/services/shared.service';
 import { TeamService } from 'src/app/services/team.service';
 import { TournamentsService } from 'src/app/services/tournament.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-tournaments',
@@ -253,8 +254,8 @@ export class TournamentsComponent implements OnInit {
 
   updateData(): void {
     localStorage.removeItem('teamData');
-    // // this.teamData = [];
-    // // this.todayResults = { won: 0, tie: 0, lost: 0 };
+    // this.teamData = [];
+    this.todayResults = { won: 0, tie: 0, lost: 0 };
     this.loading = true;
     this.getRewards();
     this.getAllGroups();
@@ -290,8 +291,9 @@ export class TournamentsComponent implements OnInit {
   }
 
   getManagers(): void {
-    this.http.get<any[]>('assets/teams/managers.json').subscribe((data) => {
-      this.managers = data;
-    });
+    this.managers = environment.managers;
+    // this.http.get<any[]>('assets/teams/managers.json').subscribe((data) => {
+    //   this.managers = data;
+    // });
   }
 }
