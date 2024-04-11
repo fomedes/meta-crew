@@ -183,10 +183,10 @@ export class TournamentsComponent implements OnInit {
         this.teamData.sort((a, b) => a.clubName.localeCompare(b.clubName));
         localStorage.setItem('teamData', JSON.stringify(this.teamData));
         localStorage.setItem('teamDataTimestamp', Date.now().toString());
-        this.loading = false;
         this.lastUpdate = Date.now();
         this.getTodayResults();
         this.calculateTotalRewards();
+        this.loading = false;
       },
       (error: any) => {
         console.error('Error in one or more API requests:', error);
@@ -254,7 +254,7 @@ export class TournamentsComponent implements OnInit {
 
   updateData(): void {
     localStorage.removeItem('teamData');
-    // this.teamData = [];
+    this.teamData = [];
     this.todayResults = { won: 0, tie: 0, lost: 0 };
     this.loading = true;
     this.getRewards();
