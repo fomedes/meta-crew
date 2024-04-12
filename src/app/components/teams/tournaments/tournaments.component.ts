@@ -157,6 +157,10 @@ export class TournamentsComponent implements OnInit {
                   cards: [],
                   notices: squadInfo.info.result.nextMatch.notices[0],
                 });
+
+                this.teamData.sort((a, b) =>
+                  a.clubName.localeCompare(b.clubName)
+                );
                 localStorage.setItem('teamData', JSON.stringify(this.teamData));
                 localStorage.setItem(
                   'teamDataTimestamp',
@@ -180,13 +184,11 @@ export class TournamentsComponent implements OnInit {
 
     forkJoin(requests).subscribe(
       (responses: any) => {
-        this.teamData.sort((a, b) => a.clubName.localeCompare(b.clubName));
-        localStorage.setItem('teamData', JSON.stringify(this.teamData));
-        localStorage.setItem('teamDataTimestamp', Date.now().toString());
+        // localStorage.setItem('teamData', JSON.stringify(this.teamData));
+        // localStorage.setItem('teamDataTimestamp', Date.now().toString());
         this.lastUpdate = Date.now();
         this.getTodayResults();
         this.calculateTotalRewards();
-        this.loading = false;
       },
       (error: any) => {
         console.error('Error in one or more API requests:', error);
