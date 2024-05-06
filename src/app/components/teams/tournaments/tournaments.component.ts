@@ -65,7 +65,7 @@ export class TournamentsComponent implements OnInit {
   ngOnInit() {
     this.tournamentsService.getTeamProp().subscribe((data) => {
       this.teamProp = data.filter((team: any) => team.groupId);
-      // this.getData();
+      this.getData();
     });
   }
   getData() {
@@ -79,16 +79,16 @@ export class TournamentsComponent implements OnInit {
 
         const isDataRecent = Date.now() - this.lastUpdate < 86400000;
 
-        if (isDataRecent) {
-          this.teamData = parsedData;
-          this.loading = false;
-          console.log('Using cached data.');
-          this.getTodayResults();
-          this.calculateTotalRewards();
-        } else {
-          console.log('Cached data is older than a day. Fetching new data.');
-          this.getAllGroups();
-        }
+        // if (isDataRecent) {
+        this.teamData = parsedData;
+        this.loading = false;
+        console.log('Using cached data.');
+        this.getTodayResults();
+        this.calculateTotalRewards();
+        // } else {
+        //   console.log('Cached data is older than a day. Fetching new data.');
+        //   this.getAllGroups();
+        // }
       } catch (error) {
         console.error('Error parsing cached data:', error);
         this.loading = false;
