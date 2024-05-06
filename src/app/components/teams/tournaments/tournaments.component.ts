@@ -65,7 +65,7 @@ export class TournamentsComponent implements OnInit {
   ngOnInit() {
     this.tournamentsService.getTeamProp().subscribe((data) => {
       this.teamProp = data.filter((team: any) => team.groupId);
-      this.getData();
+      // this.getData();
     });
   }
   getData() {
