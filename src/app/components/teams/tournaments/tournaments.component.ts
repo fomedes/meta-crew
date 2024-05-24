@@ -9,11 +9,11 @@ import {
 } from '@angular/forms';
 import { Observable, forkJoin, of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { WalletDto } from 'src/app/models/walletProp.dto';
+import { WalletDto } from 'src/app/models/walletProperties.dto';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { TeamService } from 'src/app/services/team.service';
 import { TournamentsService } from 'src/app/services/tournament.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-tournaments',
@@ -25,7 +25,7 @@ export class TournamentsComponent implements OnInit {
   address: FormControl;
   token: FormControl;
   tknForm: FormGroup;
-  walletProp: WalletDto;
+  walletProperties: WalletDto;
 
   constructor(
     private http: HttpClient,
@@ -33,9 +33,10 @@ export class TournamentsComponent implements OnInit {
     private tournamentsService: TournamentsService,
     private sharedService: SharedService,
     private teamService: TeamService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private localStorageService: LocalStorageService
   ) {
-    this.walletProp = new WalletDto();
+    this.walletProperties = new WalletDto();
     this.manager = new FormControl('', [Validators.required]);
     this.address = new FormControl('', [Validators.required]);
     this.token = new FormControl('', [Validators.required]);
@@ -60,7 +61,7 @@ export class TournamentsComponent implements OnInit {
     lost: 0,
   };
   totalRewards!: number;
-  managers!: any[];
+  managers!: WalletDto[];
 
   ngOnInit() {
     this.tournamentsService.getTeamProp().subscribe((data) => {
@@ -108,14 +109,18 @@ export class TournamentsComponent implements OnInit {
             (rankedTeam: any) => rankedTeam.id === team.id
           );
           if (matchingTeam) {
-            const managerProp = this.managers.find(
-              (manager: any) => manager.manager === team.manager
+            const foundManager: WalletDto | undefined = this.managers.find(
+              (manager: WalletDto) => manager.manager === team.manager
             );
 
+            const managerProperties: WalletDto = foundManager
+              ? foundManager
+              : { manager: '', address: '', token: '' };
+
             // const storedManager = localStorage.getItem(team.manager);
-            // let managerProp = [];
+            // let managerProperties = [];
             // if (storedManager) {
-            //   managerProp = JSON.parse(storedManager);
+            //   managerProperties = JSON.parse(storedManager);
             // }
 
             this.getSquadInfo(
@@ -123,7 +128,7 @@ export class TournamentsComponent implements OnInit {
                 ? team.wallet
                 : '0x644FA8aa088caD5BcDf78bB0E7C1bF1cB399e475',
               team.id,
-              managerProp.token
+              managerProperties.token
             ).subscribe(
               (squadInfo: any) => {
                 const lockedPlayers = squadInfo.injuries.result.lockedPlayers;
@@ -155,7 +160,7 @@ export class TournamentsComponent implements OnInit {
                   ),
                   injuries: injuriesCount,
                   cards: [],
-                  notices: squadInfo.info.result.nextMatch.notices[0],
+                  // notices: squadInfo.info.result.nextMatch.notices[0],
                 });
 
                 this.teamData.sort((a, b) =>
@@ -264,14 +269,23 @@ export class TournamentsComponent implements OnInit {
   }
 
   saveWallet(): void {
-    this.walletProp.address = this.address.value;
-    this.walletProp.token = this.token.value;
-    this.walletProp.manager = this.manager.value;
+    this.walletProperties.address = this.address.value;
+    this.walletProperties.token = this.token.value;
+    this.walletProperties.manager = this.manager.value;
 
-    localStorage.setItem(
-      `${this.walletProp.manager}`,
-      JSON.stringify(this.walletProp)
+    this.getManagers();
+
+    const existingManager = this.managers.find(
+      (manager: WalletDto) => manager.address === this.walletProperties.address
     );
+
+    if (existingManager) {
+      existingManager.token = this.walletProperties.token;
+    } else {
+      this.managers.push(this.walletProperties);
+    }
+
+    localStorage.setItem('managers', JSON.stringify(this.managers));
 
     this.tknForm.reset();
   }
@@ -293,9 +307,6 @@ export class TournamentsComponent implements OnInit {
   }
 
   getManagers(): void {
-    this.managers = environment.managers;
-    // this.http.get<any[]>('assets/teams/managers.json').subscribe((data) => {
-    //   this.managers = data;
-    // });
+    this.managers = this.localStorageService.getManagers();
   }
 }

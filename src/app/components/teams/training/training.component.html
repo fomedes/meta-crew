@@ -1,0 +1,38 @@
+<h1>Training Teams</h1>
+    <div *ngFor="let club of teams">
+      <h2>{{ club.clubName }}</h2>
+      <table class="teams-table">
+
+      <thead>
+        <tr>
+          <th>Name</th>
+          <!-- <th>ID</th> -->
+
+          <th>Players</th>
+          <th>Min. Condition</th>
+          <th>Avg. Condition</th>
+          <th>Max. Condition</th>
+          <th>Energy Needed</th>
+          <th>Train</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of club.managedTeams">
+          <ng-container *ngIf="team.players && team.players.length > 0">
+            <td>{{ team.name }}</td>
+            <!-- <td>{{ team.id }}</td> -->
+
+            <td>{{ team.players ? team.players.length : 0 }}</td>
+            <td [style.color]="calculateMinCondition(team) < 50 ? 'red' : calculateMinCondition(team) < 60 ? 'orange' : 'white'">
+              {{ calculateMinCondition(team) }}%
+            </td>            
+            <td>{{ calculateAvgCondition(team) }}%</td>
+            <td>{{ calculateMaxCondition(team) }}%</td>
+            <td>{{(team.drills.trainingGroups.length)*10}}%</td>
+            <td><button (click)="executeTraining(club.clubToken, team.id, team.drills)">Train</button></td>
+          </ng-container>
+        </tr>
+      </tbody>  
+    </table>
+    </div>

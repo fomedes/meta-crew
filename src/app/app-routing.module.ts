@@ -6,6 +6,7 @@ import { PlayerPoolComponent } from './components/players/player-pool/player-poo
 import { ScoutListComponent } from './components/scouts/scout-list/scout-list.component';
 import { TeamComponent } from './components/teams/team/team.component';
 import { TournamentsComponent } from './components/teams/tournaments/tournaments.component';
+import { TrainingComponent } from './components/teams/training/training.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
     path: 'team/:id',
     component: TeamComponent,
   },
+  {
+    path: 'trainings',
+    component: TrainingComponent,
+  },
+
   {
     path: 'players',
     component: PlayerListComponent,

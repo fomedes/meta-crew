@@ -1,0 +1,153 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { forkJoin, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { WalletDto } from 'src/app/models/walletProperties.dto';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { TeamService } from 'src/app/services/team.service';
+import { TrainingsService } from 'src/app/services/trainings.service';
+
+@Component({
+  selector: 'app-training',
+  templateUrl: './training.component.html',
+  styleUrls: ['./training.component.scss'],
+})
+export class TrainingComponent {
+  managers!: WalletDto[];
+  teams: {
+    clubName: string;
+    managedTeams: any[];
+    clubAddress: string;
+    clubToken: string;
+  }[] = [];
+  managedTeams!: any[];
+  validManagers!: WalletDto[];
+
+  constructor(
+    private trainingService: TrainingsService,
+    private teamService: TeamService,
+    private localStorageService: LocalStorageService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.loadTeams();
+  }
+
+  private loadTeams(): void {
+    this.managers = this.localStorageService.getManagers();
+
+    this.validManagers = this.managers.filter(
+      (manager) => manager.address != null
+    );
+
+    const observables = this.validManagers.map((manager) =>
+      this.teamService.getManagedTeams(manager.address, manager.token)
+    );
+
+    forkJoin(observables).subscribe((responses) => {
+      responses.forEach((response) => {
+        if (response.success) {
+          const clubName = response.result.managedTeams[0].clubName;
+          const clubAddress = response.result.managedTeams[0].manager;
+          const clubToken = this.getClubToken(clubAddress);
+          this.teams.push({
+            clubName: clubName,
+            managedTeams: response.result.managedTeams.map((team: any) => ({
+              ...team,
+              players: [],
+              drills: [],
+            })),
+            clubAddress: clubAddress,
+            clubToken: clubToken,
+          });
+        }
+      });
+
+      this.getPlayerCondition().subscribe(() => {
+        this.getLastDrills();
+      });
+      console.log(this.teams);
+    });
+  }
+
+  private getPlayerCondition(): Observable<any> {
+    const observables = this.teams.flatMap((club) =>
+      club.managedTeams.map((team) =>
+        this.teamService
+          .getTeamPlayers(team.id)
+          .pipe(map((response) => ({ team, players: response.result.players })))
+      )
+    );
+
+    return forkJoin(observables).pipe(
+      tap((results) => {
+        results.forEach(({ team, players }) => {
+          if (players && players.length > 0) {
+            team.players = players;
+          }
+        });
+      })
+    );
+  }
+
+  getLastDrills() {
+    this.teams.forEach((club) => {
+      club.managedTeams.forEach((team) => {
+        if (team.players && team.players.length > 0) {
+          this.trainingService
+            .getLastDrills(team.id, club.clubToken)
+            .subscribe((response) => {
+              if (response.success) {
+                team.drills = response.result.trainingsHistory[0].trainingPlan;
+              }
+            });
+        }
+      });
+    });
+  }
+
+  getClubToken(clubAddress: string): string {
+    let token = '';
+    const manager = this.validManagers.find(
+      (manager) => manager.address === clubAddress
+    );
+
+    if (manager) {
+      token = manager.token;
+    }
+
+    return token;
+  }
+
+  calculateMinCondition(team: any): number {
+    return Math.min(...team.players.map((player: any) => player.condition));
+  }
+
+  calculateMaxCondition(team: any): number {
+    return Math.max(...team.players.map((player: any) => player.condition));
+  }
+
+  calculateAvgCondition(team: any): number {
+    const sum = team.players.reduce(
+      (acc: number, player: any) => acc + player.condition,
+      0
+    );
+    return sum / team.players.length;
+  }
+
+  executeTraining(clubToken: string, teamId: string, drills: any): void {
+    this.trainingService
+      .executeTraining(teamId, clubToken, drills)
+      .subscribe((response) => {
+        if (response.success) {
+          this.getPlayerCondition().subscribe(() => {
+            this.getLastDrills();
+          });
+        } else {
+          console.log('there was some error');
+        }
+        console.log('Training executed:', response);
+      });
+  }
+}

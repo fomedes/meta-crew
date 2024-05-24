@@ -1,0 +1,580 @@
+https://api.metasoccer.com/training/T:4AWuJ7LyoweT/last
+{
+    "result": {
+        "trainingsHistory": [
+            {
+                "totalAttackProgression": 0.06,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1716359959562,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:g4rgqewxcn6f",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "totalAttackProgression": 0.09,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1713918929590,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:A0zB_MwFRNVT",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "totalAttackProgression": 0.12,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1712276341292,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:wqVWIyZD4GZ8",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "totalAttackProgression": 0.06,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1712124759309,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:42gZ3BBJQylp",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "totalAttackProgression": 0.06,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1712032368965,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:UxueSvkdFZWH",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "totalAttackProgression": 0.06,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1710898674827,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:q7Du2TPxreN8",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "totalAttackProgression": 0.08,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1710801933771,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:uZTPB6OzF94W",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "totalAttackProgression": 0.07,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1710740594167,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:9tAgS7Sl2c-A",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "totalAttackProgression": 0.08,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1710377855771,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:CYdBRTaXhZNp",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "totalAttackProgression": 0.05,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1710287083212,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:mT7No-TsYVS7",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "totalAttackProgression": 0.06,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1710209010751,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:srGF5bmrNcY1",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "totalAttackProgression": 0.08,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1709160628141,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:64r9XF80owts",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "totalAttackProgression": 0.09,
+                "totalDefenseProgression": 0,
+                "totalMentalAndPhysicalProgression": 0,
+                "aggregateConditionCost": 190,
+                "aggregateNumberOfPlayers": 19,
+                "trainingTokenCost": 0,
+                "timestamp": 1708863721291,
+                "drillHistory": [
+                    {
+                        "drillName": "1vs1 and crossing",
+                        "drillType": "ATTACK"
+                    }
+                ],
+                "trainingPlan": {
+                    "trainingGroups": [
+                        {
+                            "id": "TG:hOteNmduAUVn",
+                            "drillId": "oneVsOneCrossing",
+                            "playerIds": [
+                                87899,
+                                73892,
+                                81985,
+                                95854,
+                                95853,
+                                84711,
+                                84714,
+                                91810,
+                                84716,
+                                91819,
+                                82732,
+                                93658,
+                                77764,
+                                82735,
+                                95026,
+                                92325,
+                                95024,
+                                85585,
+                                95023
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "success": true
+}
