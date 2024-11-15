@@ -10,7 +10,7 @@ export class ScoutService {
 
   constructor(private http: HttpClient) {
     this.urlScoutApi =
-      'https://api.metasoccer.com/v2/scouts/owned/0x644FA8aa088caD5BcDf78bB0E7C1bF1cB399e475';
+      'https://manag3r.metasoccer.com/api/2024/scouts/owner/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475?includeScoutings=true';
   }
 
   getScouts(): Observable<any> {

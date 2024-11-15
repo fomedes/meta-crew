@@ -19,6 +19,7 @@ import { TournamentsComponent } from './components/teams/tournaments/tournaments
 import { TrainingComponent } from './components/teams/training/training.component';
 import { FormatStreakPipe } from './pipes/format-streak.pipe';
 import { SortByRolePipe } from './pipes/sort-by-role.pipe';
+import { SortScoutByRolePipe } from './pipes/sort-scout-by-role.pipe';
 import { SpecificRolePipe } from './pipes/specific-role.pipe';
 import { SharedService } from './services/shared.service';
 import { TournamentsService } from './services/tournament.service';
@@ -40,6 +41,7 @@ import { TournamentsService } from './services/tournament.service';
     PlayerPoolComponent,
     AdminPanelComponent,
     TrainingComponent,
+    SortScoutByRolePipe,
   ],
   imports: [
     BrowserModule,

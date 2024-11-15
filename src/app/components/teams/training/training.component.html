@@ -14,6 +14,8 @@
           <th>Max. Condition</th>
           <th>Energy Needed</th>
           <th>Train</th>
+          <th>PVE</th>
+          <th># Players</th>
 
         </tr>
       </thead>
@@ -29,8 +31,11 @@
             </td>            
             <td>{{ calculateAvgCondition(team) }}%</td>
             <td>{{ calculateMaxCondition(team) }}%</td>
-            <td>{{(team.drills.trainingGroups.length)*10}}%</td>
+            <td>{{ (team.drills?.trainingGroups?.length || 0) * 10 }}%</td>
             <td><button (click)="executeTraining(club.clubToken, team.id, team.drills)">Train</button></td>
+            <td><button (click)="playPve(club.clubToken, team.id)">Starter</button></td>
+            <td>{{ countLineupPlayers(team) }}</td>
+
           </ng-container>
         </tr>
       </tbody>  

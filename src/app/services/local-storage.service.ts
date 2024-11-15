@@ -16,4 +16,14 @@ export class LocalStorageService {
       return [];
     }
   }
+
+  getAirdropManagers(): WalletDto[] {
+    const savedManagers = localStorage.getItem('AirdropManagers');
+
+    if (savedManagers) {
+      return JSON.parse(savedManagers);
+    } else {
+      return [];
+    }
+  }
 }

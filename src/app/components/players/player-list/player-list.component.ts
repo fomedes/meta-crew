@@ -18,8 +18,9 @@ export class PlayerListComponent {
 
   private loadPlayers(): void {
     this.playerService.getPlayers().subscribe((response) => {
-      if (response.success) {
-        this.players = response.result.players;
+      if (response) {
+        this.players = response;
+        console.log('Players loaded successfully:', this.players);
       } else {
         console.error('Error loading players:', response.error);
       }

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, forkJoin, timeout } from 'rxjs';
+import { Observable, forkJoin, map, timeout } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,20 +9,20 @@ export class TeamService {
   constructor(private http: HttpClient) {}
 
   getManagedTeams(wallet: string, token: string): Observable<any> {
-    const apiUrl = `https://api.metasoccer.com/teams/managed/${wallet}`;
+    const apiUrl = `https://manag3r.metasoccer.com/api/2024/teams/manager/${wallet}`;
     const headers = new HttpHeaders({ Authorization: token });
     return this.http.get(apiUrl, { headers: headers });
   }
   getTeamPlayers(teamId: any): Observable<any> {
-    const apiUrl = `https://api.metasoccer.com/v2/players/team/${teamId}`;
+    const apiUrl = `https://manag3r.metasoccer.com/api/2024/players/team/${teamId}`;
     return this.http.get(apiUrl).pipe(timeout(15000));
   }
 
   getSquadInfo(wallet: string, teamId: string, token: string): Observable<any> {
-    const apiUrl = `https://api.metasoccer.com/teams/lineup-with-skill/${wallet}/${teamId}`;
-    const cardsUrl = `https://api.metasoccer.com/v2/players/team/${teamId}/cards`;
-    const injuriesUrl = `https://api.metasoccer.com/v2/players/team/${teamId}/locked`;
-    const infoUrl = `https://api.metasoccer.com/home/teamInfo/${teamId}`;
+    const apiUrl = `https://api.devsoccer.com/teams/lineup-with-skill/${wallet}/${teamId}`;
+    const cardsUrl = `hhttps://manag3r.metasoccer.com/api/2024/players/team/${teamId}/cards`;
+    const injuriesUrl = `https://manag3r.metasoccer.com/api/2024/players/team/${teamId}/locked`;
+    const infoUrl = `https://api.devsoccer.com/home/teamInfo/${teamId}`;
     const headers = new HttpHeaders({ Authorization: token });
 
     const ovr$ = this.http.get(apiUrl, { headers: headers });
@@ -36,5 +36,16 @@ export class TeamService {
       injuries: injuries$,
       info: teamInfo$,
     });
+  }
+
+  countLineupPlayers(team: any, token: string): Observable <any> {
+    const apiUrl = `https://manag3r.metasoccer.com/api/2024/lineups/team/${team.id}`;
+
+    const headers = new HttpHeaders({ Authorization: token });
+
+    return this.http.get<any>(apiUrl, { headers }).pipe(
+      timeout(15000),
+      map((response: any) => response.result.lineup.linedPlayers.length)
+    );
   }
 }

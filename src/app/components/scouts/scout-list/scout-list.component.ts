@@ -18,8 +18,9 @@ export class ScoutListComponent {
 
   private loadScouts(): void {
     this.scoutService.getScouts().subscribe((response) => {
-      if (response.success) {
-        this.scouts = response.result.scouts;
+      if (response) {
+        this.scouts = response;
+        console.log('Scouts loaded successfully:', this.scouts);  
       } else {
         console.error('Error loading scouts:', response.error);
       }
