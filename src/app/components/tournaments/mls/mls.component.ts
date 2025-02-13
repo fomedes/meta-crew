@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,13 +14,12 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { TeamService } from 'src/app/services/team.service';
 import { TournamentsService } from 'src/app/services/tournament.service';
-
 @Component({
-  selector: 'app-tournaments',
-  templateUrl: './tournaments.component.html',
-  styleUrls: ['./tournaments.component.scss'],
+  selector: 'app-mls',
+  templateUrl: './mls.component.html',
+  styleUrls: ['./mls.component.scss']
 })
-export class TournamentsComponent implements OnInit {
+export class MlsComponent {
   manager: FormControl;
   address: FormControl;
   token: FormControl;
@@ -64,10 +63,8 @@ export class TournamentsComponent implements OnInit {
   managers!: WalletDto[];
 
   ngOnInit() {
-    this.tournamentsService.getTeamProp().subscribe((data) => {
-      this.teamProp = data.filter((team: any) => team.groupId);
-      this.getData();
-    });
+    this.getWallets();
+    this.getData();
   }
   getData() {
     const cachedData = localStorage.getItem('teamData');
@@ -309,4 +306,5 @@ export class TournamentsComponent implements OnInit {
   getWallets(): void {
     this.managers = this.localStorageService.getWallets();
   }
+
 }

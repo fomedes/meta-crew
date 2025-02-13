@@ -1,0 +1,73 @@
+<h1>MLS Results</h1>
+<div class="title-row">
+  <div class="title-row-left">
+    <button (click)="updateData()" >
+      <img class="update-data-btn" src="assets/update-icon.svg" alt="Reload">
+    </button>
+  </div>
+  <form [formGroup]="tknForm" (ngSubmit)="saveWallet()">
+    <div class="form-field">
+      <input type="text" placeholder="Manager" formControlName="manager">
+    </div>
+    <div class="form-field">
+      <input type="text" placeholder="Address" formControlName="address">
+    </div>
+    <div class="form-field">
+      <input type="text" placeholder="Token" formControlName="token">
+    </div>
+    <div class="form-action">
+      <button type="submit" (click)="saveWallet()">Save</button>
+    </div>
+  </form>  
+
+  <div class="title-row-center">
+    <h2>Expected Rewards</h2>
+    <h2>{{totalRewards}} <img width="20px" src="https://ds.devsoccer.com/ds/Coins/msu.png"></h2>
+  </div>
+  <div class="title-row-right">
+    <h2 class="hide-on-mobile">Today's Results</h2> 
+    <h2>Wins:{{ todayResults.won }} Ties: {{ todayResults.tie }} Loses:{{ todayResults.lost }}</h2>  
+  </div>
+</div>
+<div class="team-ids-container">
+  <div *ngIf="loading">
+    <app-spinner [showSpinner]="loading"></app-spinner>
+  </div>
+  <div class="team-card-container" [ngClass]="{'squad-issue': team.notices}" *ngFor="let team of teamData">
+    <div class="team-card">
+      <h3 class="team-name clickable" (click)="navigationTo('team/' + team.id + '/')">
+        <span class="clickable">{{ team.clubName }}</span>
+      </h3>
+      <h3 class="ovr" >{{team.ovr}}</h3>
+      <p class="alarm-text">{{team.notices}}</p>
+      <p class="division"><a href="https://app.metasoccer.com/home/msl/{{ team.groupId }}">{{ team.division }}</a></p>
+      <p>
+        <span *ngFor="let match of team.lastMatches" [ngClass]="{'win': match === 'won', 'tie': match === 'tie', 'loss': match === 'lost'}">
+          {{ match | formatStreak }}
+        </span>
+      </p>
+      <div class="stats">
+        <div class="stats_top">
+          <div><span>Played</span> <p>{{ team.won + team.tied + team.lost }}</p></div>
+          <div><span>Won</span> <p>{{ team.won }}</p></div>
+          <div><span>Tied</span> <p>{{ team.tied }}</p></div>
+          <div><span>Lost</span> <p>{{ team.lost }}</p></div>
+        </div>
+        <div class="stats_bot">
+          <div><span>GF</span> <p>{{ team.goalsForward }}</p></div>
+          <div><span>GA</span> <p>{{ team.goalsAgainst }}</p></div> 
+          <div><span>GD</span> <p>{{ team.goalsDifference }}</p></div>
+          <div><span>Win Rate</span> <p>{{ (team.won / team.played) | percent: '2.2-2' }}</p></div>
+        </div>
+      </div>
+      <p>Position: {{ team.position }}&nbsp;&nbsp;&nbsp;&nbsp;Points: {{ team.points }}</p>
+      <p>Injuries: <span [ngClass]="{'alarm-text': team.injuries}">{{ team.injuries }}</span></p>
+      <p style="display: flex; align-items: center; justify-content: center;">Current Rewards: {{team.expectedReward}} <img width="20px" src="https://ds.devsoccer.com/ds/Coins/msu.png"></p>
+      <img *ngIf="team.manager" [src]="'assets/managers/' + team.manager + '.png'" alt="{{ team.manager }}" class="manager-image" />
+    </div>
+  </div>
+
+</div>
+<div>
+  <h5 *ngIf="lastUpdate">Updated on {{ formatTimestamp(lastUpdate) }}</h5>
+</div>

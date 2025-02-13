@@ -38,7 +38,7 @@ export class TeamService {
     });
   }
 
-  countLineupPlayers(team: any, token: string): Observable <any> {
+  lockedPlayers(team: any, token: string): Observable <any> {
     const apiUrl = `https://manag3r.metasoccer.com/api/2024/lineups/team/${team.id}`;
 
     const headers = new HttpHeaders({ Authorization: token });
@@ -48,4 +48,6 @@ export class TeamService {
       map((response: any) => response.result.lineup.linedPlayers.length)
     );
   }
+
+  
 }

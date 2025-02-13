@@ -7,7 +7,7 @@ import { WalletDto } from '../models/walletProperties.dto';
 export class LocalStorageService {
   constructor() {}
 
-  getManagers(): WalletDto[] {
+  getWallets(): WalletDto[] {
     const savedManagers = localStorage.getItem('managers');
 
     if (savedManagers) {

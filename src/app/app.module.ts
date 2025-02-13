@@ -17,6 +17,7 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
 import { TeamComponent } from './components/teams/team/team.component';
 import { TournamentsComponent } from './components/teams/tournaments/tournaments.component';
 import { TrainingComponent } from './components/teams/training/training.component';
+import { MlsComponent } from './components/tournaments/mls/mls.component';
 import { FormatStreakPipe } from './pipes/format-streak.pipe';
 import { SortByRolePipe } from './pipes/sort-by-role.pipe';
 import { SortScoutByRolePipe } from './pipes/sort-scout-by-role.pipe';
@@ -42,6 +43,7 @@ import { TournamentsService } from './services/tournament.service';
     AdminPanelComponent,
     TrainingComponent,
     SortScoutByRolePipe,
+    MlsComponent,
   ],
   imports: [
     BrowserModule,

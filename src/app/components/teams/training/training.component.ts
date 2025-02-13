@@ -37,7 +37,7 @@ export class TrainingComponent {
   }
 
   private loadTeams(): void {
-    this.managers = this.localStorageService.getManagers();
+    this.managers = this.localStorageService.getWallets();
     this.validManagers = this.managers.filter(
       (manager) => manager.address != null
     );
@@ -190,18 +190,17 @@ export class TrainingComponent {
       });
   }
 
-  countLineupPlayers(team: any): void {
-    console.log('Team:', team);
-    // const token = team.clubToken;
+  injuredPlayers(team: any, clubToken: any): void {
+    const token = clubToken;
   
-    // this.teamService.countLineupPlayers(team, token).subscribe(
-    //   (count: number) => {
-    //     console.log('Number of lineup players:', count);
-    //     // You can also assign the count to a property if needed
-    //   },
-    //   (error) => {
-    //     console.error('Error fetching lineup players:', error);
-    //   }
-    // );
+    this.teamService.lockedPlayers(team, token).subscribe(
+      (count: number) => {
+        console.log('Number of lineup players:', count);
+        // return count
+      },
+      (error) => {
+        console.error('Error fetching lineup players:', error);
+      }
+    );
   }
 }
