@@ -29,9 +29,9 @@
             <td [style.color]="calculateMinCondition(team) < 50 ? 'red' : calculateMinCondition(team) < 60 ? 'orange' : 'white'">
               {{ calculateMinCondition(team) }}%
             </td>            
-            <td>{{ calculateAvgCondition(team) }}%</td>
+            <!-- <td>{{ calculateAvgCondition(team) }}%</td>
             <td>{{ calculateMaxCondition(team) }}%</td>
-            <td>{{ (team.drills?.trainingGroups?.length || 0) * 10 }}%</td>
+            <td>{{ (team.drills?.trainingGroups?.length || 0) * 10 }}%</td> -->
             <td><button (click)="executeTraining(club.clubToken, team.id, team.drills)">Train</button></td>
             <td><button (click)="playPve(club.clubToken, team.id)">Starter</button></td>
             <!-- <td>{{  }}</td> -->
