@@ -1,7 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   background-color: black;
-  color: #ffffff; /* Ensure text readability on black background */
 }
 
 .clickable {
@@ -28,22 +30,39 @@ table {
   }
 }
 
-table th {
-  font-weight: bold;
-  text-align: center;
+
+table {
+  th {
+    @apply font-medium;
+  }
+
+  td, th {
+    @apply align-middle;
+  }
 }
 
-
-table th,
-table td {
-  border: 1px solid rgb(28, 28, 28);
-  padding: 1%;
-  text-align: left;
+button {
+  &:disabled {
+    @apply opacity-75 cursor-not-allowed;
+  }
 }
 
-th {
-  background-color: rgb(28, 28, 28);
-}
+// table th {
+//   font-weight: bold;
+//   text-align: center;
+// }
+
+
+// table th,
+// table td {
+//   border: 1px solid rgb(28, 28, 28);
+//   padding: 1%;
+//   text-align: left;
+// }
+
+// th {
+//   background-color: rgb(28, 28, 28);
+// }
 
 .role-label {
  color: black;

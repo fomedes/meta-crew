@@ -1,43 +1,219 @@
-<h1>Training Teams</h1>
-    <div *ngFor="let club of teams">
-      <h2>{{ club.clubName }}</h2>
-      <table class="teams-table">
+<div class="container mx-auto p-6 max-w-5xl">
+  
+  <h1 class="text-3xl font-bold text-white mb-8">Training Teams</h1>
+  
+  <div *ngFor="let club of clubs" class="mb-12">
+    <div class="rounded-lg shadow-md p-6">
+      <h2 class="text-2xl font-semibold text-white mb-4">{{ club.clubName }}</h2>
+      
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-800">
+            <tr>
+              <th class="px-6 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Name</th>
+              <th class="px-6 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Players</th>
+              <th class="px-6 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Min. Condition</th>
+              <th class="px-6 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Energy Needed</th>
+              <th class="px-6 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Injuries</th>
+              <th class="px-6 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Cards</th>
+              <th class="px-6 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Train</th>
+              <th class="px-6 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">Report</th>
+            </tr>
+          </thead>
+          
+          <tbody class="divide-y divide-gray-200">
+            <tr *ngFor="let team of club.managedTeams; trackBy: trackByTeamId"
+            class="hover:bg-gray-700 transition-colors"
+            >
+              <ng-container *ngIf="team.players && team.players.length > 0">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{{ team.name }}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-white">{{ team.players.length || 0 }}</td>
+                
+                <td 
+                  class="px-6 py-4 whitespace-nowrap text-sm font-medium"
+                  [ngClass]="{
+                    'text-red-600': calculateCondition(team, 'min') < 50,
+                    'text-orange-500': calculateCondition(team, 'min') >= 50 && calculateCondition(team, 'min') < 60,
+                    'text-green-600': calculateCondition(team, 'min') >= 60
+                  }"
+                >
+                  {{ calculateCondition(team, 'min') }}%
+                </td>
+                
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-white">
+                  {{ (team.drills.trainingGroups.length || 0) * 10 }}%
+                </td>
 
-      <thead>
-        <tr>
-          <th>Name</th>
-          <!-- <th>ID</th> -->
+                <td 
+                  class="px-6 py-4 whitespace-nowrap text-sm"
+                  [ngClass]="{
+                    'text-red-500': (team.injuredPlayers?.length ?? 0) > 0,
+                    'text-white': !team.injuredPlayers?.length
+                  }">
+                  <div class="inline-block relative group">
+                    {{ team.injuredPlayers?.length ?? 0 }}
+                    
+                    <div 
+                      *ngIf="team.injuredPlayers?.length ?? 0 > 0"
+                      class="absolute left-1/2 -translate-x-1/2 -top-2 transform 
+                             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                             transition-opacity duration-200 ease-in-out
+                             bg-gray-800 text-white text-xs rounded-lg p-3 shadow-xl z-50 
+                             min-w-[200px] text-center"
+                    >
+                      <div class="space-y-2">
+                        <div *ngFor="let player of team.injuredPlayers">
+                          <div class="flex justify-between items-center">
+                            <span class="font-mono text-emerald-300">
+                              {{ getPlayerFullName(team, player.playerId) }}
+                            </span>
+                          </div>
+                          <div class="flex justify-between items-center">
+                            <span class="text-amber-400">
+                              {{ player.expirationTimestamp | date: 'dd/MM/yy, HH:mm' }}
+                            </span>
+                          </div>
+                          <div class="border-t border-gray-700 my-2"></div>
+                        </div>
+                      </div>
+                      
+                      <div class="absolute w-3 h-3 bg-gray-800 rotate-45 -bottom-1.5 
+                                  left-1/2 -translate-x-1/2 shadow-xl"></div>
+                    </div>
+                  </div>
+                </td>
 
-          <th>Players</th>
-          <th>Min. Condition</th>
-          <!-- <th>Avg. Condition</th>
-          <th>Max. Condition</th>
-          <th>Energy Needed</th> -->
-          <th>Train</th>
-          <th>PVE</th>
-          <th>Injuries</th>
+                <td 
+                  class="px-6 py-4 whitespace-nowrap text-sm"
+                  [ngClass]="{
+                    'text-red-500': (team.sanctionedPlayers?.length ?? 0) > 0,
+                    'text-white': !team.sanctionedPlayers?.length
+                  }">
+                  <div class="inline-block relative group">
+                    {{ team.sanctionedPlayers?.length ?? 0 }}
+                    
+                    <div 
+                      *ngIf="team.sanctionedPlayers?.length ?? 0 > 0"
+                      class="absolute left-1/2 -translate-x-1/2 -top-2 transform 
+                             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                             transition-opacity duration-200 ease-in-out
+                             bg-gray-800 text-white text-xs rounded-lg p-3 shadow-xl z-50 
+                             min-w-[200px] text-center"
+                    >
+                      <div class="space-y-2">
+                        <div *ngFor="let player of team.sanctionedPlayers">
+                          <div class="flex justify-between items-center">
+                            <span class="text-gray-300 mr-4">ID:</span>
+                            <span class="font-mono text-amber-400">{{ player.playerId }}</span>
+                          </div>
+                          <div class="flex justify-between items-center">
+                            <span class="text-gray-300 mr-4">Until:</span>
+                            <span class="text-emerald-300">
+                              {{ player.expirationTimestamp | date: 'short' }}
+                            </span>
+                          </div>
+                          <div class="border-t border-gray-700 my-2"></div>
+                        </div>
+                      </div>
+                      
+                      <div class="absolute w-3 h-3 bg-gray-800 rotate-45 -bottom-1.5 
+                                  left-1/2 -translate-x-1/2 shadow-xl">
+                      </div>
+                    </div>
+                  </div>
+                </td>
 
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let team of club.managedTeams">
-          <ng-container *ngIf="team.players && team.players.length > 0">
-            <td>{{ team.name }}</td>
-            <!-- <td>{{ team.id }}</td> -->
+                <td class="px-6 py-4 whitespace-nowrap text-sm">
+                  <button 
+                  (click)="executeTraining(club.clubToken, team.id, team.drills)"
+                  [disabled]="team.isLoading || !team.drills.trainingGroups.length"
+                  class="px-3 py-1.5 text-xs rounded-md transition-colors"
+                  [class]="team.drills.trainingGroups.length && !team.isLoading 
+                    ? 'bg-green-700 hover:bg-green-600 text-gray-100' 
+                    : 'bg-gray-600 text-gray-400 cursor-not-allowed'"
+                  >
+                    <span *ngIf="!team.isLoading">
+                      {{ team.drills.trainingGroups.length ? 'Train' : 'No Drills' }}
+                    </span>
+                  
+                    <span *ngIf="team.isLoading" class="flex items-center">
+                      <svg 
+                        class="animate-spin h-4 w-4 mr-2 text-white" 
+                        viewBox="0 0 24 24"
+                      >
+                      <path
+                        fill="currentColor" 
+                        d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z"
+                      >
+                        <animateTransform
+                          attributeName="transform"
+                          type="rotate"
+                          from="0 12 12"
+                          to="360 12 12"
+                          dur="0.8s"
+                          repeatCount="indefinite"
+                        />
+                      </path>
+                      </svg>
+                      Training...
+                    </span>
+                  </button>
+                </td>
 
-            <td>{{ team.players ? team.players.length : 0 }}</td>
-            <td [style.color]="calculateMinCondition(team) < 50 ? 'red' : calculateMinCondition(team) < 60 ? 'orange' : 'white'">
-              {{ calculateMinCondition(team) }}%
-            </td>            
-            <!-- <td>{{ calculateAvgCondition(team) }}%</td>
-            <td>{{ calculateMaxCondition(team) }}%</td>
-            <td>{{ (team.drills?.trainingGroups?.length || 0) * 10 }}%</td> -->
-            <td><button (click)="executeTraining(club.clubToken, team.id, team.drills)">Train</button></td>
-            <td><button (click)="playPve(club.clubToken, team.id)">Starter</button></td>
-            <!-- <td>{{  }}</td> -->
-
-          </ng-container>
-        </tr>
-      </tbody>  
-    </table>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-center">
+                  <div class="inline-block relative group" *ngIf="team.trainingReport?.length">
+                    <img 
+                    src="/assets/icons/report_icon.svg" 
+                    alt="Training Report" 
+                    class="w-5 h-5 text-green-400 hover:text-green-300 cursor-pointer invert"
+                  />
+                
+                    <!-- Report Tooltip -->
+                    <div 
+                      class="absolute left-1/2 -translate-x-1/2 -top-2 transform 
+                             opacity-0 invisible group-hover:opacity-100 group-hover:visible 
+                             transition-opacity duration-200 ease-in-out
+                             bg-gray-800 text-white text-xs rounded-lg p-3 shadow-xl z-50 
+                             min-w-[300px] text-left"
+                    >
+                      <div class="space-y-2">
+                        <div *ngFor="let report of team.trainingReport" class="mb-3">
+                          <div class="font-medium text-green-300 mb-1">
+                            {{ report.playerFullName }}
+                          </div>
+                          
+                          <!-- OVR Improvement -->
+                          <div *ngIf="report.ovrAfter && report.ovrBefore" class="text-sm mb-1">
+                            <span class="text-gray-300">OVR</span>
+                            <span class="ml-2">
+                              {{ report.ovrBefore}}
+                              <span class="text-gray-400">→ </span> 
+                              <span class="text-green-400">{{report.ovrAfter }}</span>
+                            </span>
+                          </div>
+                
+                          <!-- Ability Improvements -->
+                          <div *ngFor="let ability of report.abilityImprovements" class="text-sm">
+                            <span class="text-gray-300">{{ ability.abilityName }}:</span>
+                            <span class="ml-2">
+                              <span class="text-green-400">{{ ability.afterSkill }}</span>
+                              <span class="text-gray-400">/</span> 
+                              <span class="text-gray-400">{{ ability.potentialSkill }}</span> 
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="absolute w-3 h-3 bg-gray-800 rotate-45 -bottom-1.5 
+                                  left-1/2 -translate-x-1/2 shadow-xl"></div>
+                    </div>
+                  </div>
+                </td>
+              </ng-container>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
+</div>
