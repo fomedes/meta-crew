@@ -1,73 +1,173 @@
-<h1>Tournament Results</h1>
-<div class="title-row">
-  <div class="title-row-left">
-    <button (click)="updateData()" >
-      <img class="update-data-btn" src="assets/update-icon.svg" alt="Reload">
-    </button>
-  </div>
-  <form [formGroup]="tknForm" (ngSubmit)="saveWallet()">
-    <div class="form-field">
-      <input type="text" placeholder="Manager" formControlName="manager">
-    </div>
-    <div class="form-field">
-      <input type="text" placeholder="Address" formControlName="address">
-    </div>
-    <div class="form-field">
-      <input type="text" placeholder="Token" formControlName="token">
-    </div>
-    <div class="form-action">
-      <button type="submit" (click)="saveWallet()">Save</button>
-    </div>
-  </form>  
+<h1 class="text-3xl font-bold text-white mb-8">Tournament Results</h1>
 
-  <div class="title-row-center">
-    <h2>Expected Rewards</h2>
-    <h2>{{totalRewards}} <img width="20px" src="https://ds.devsoccer.com/ds/Coins/msu.png"></h2>
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row gap-6 mb-8 p-4 bg-gray-800 rounded-lg justify-center items-center w-full mx-auto">
+  <!-- Left Controls -->
+  <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
+    <button (click)="updateData()" class="p-2 hover:bg-gray-700 rounded-full transition-colors">
+      <img class="w-6 h-6" src="assets/update-icon.svg" alt="Reload">
+    </button>
+    
+    <form [formGroup]="tknForm" (ngSubmit)="saveWallet()" class="flex flex-col gap-2 w-full md:w-auto">
+      <div class="flex flex-col md:flex-row gap-2 justify-center">
+        <input type="text" placeholder="Manager" formControlName="manager"
+               class="px-3 py-2 bg-gray-700 rounded text-white placeholder-gray-400 w-full md:w-32 focus:ring-2 focus:ring-blue-500">
+        <input type="text" placeholder="Address" formControlName="address"
+               class="px-3 py-2 bg-gray-700 rounded text-white placeholder-gray-400 w-full md:w-48 focus:ring-2 focus:ring-blue-500">
+        <input type="text" placeholder="Token" formControlName="token"
+               class="px-3 py-2 bg-gray-700 rounded text-white placeholder-gray-400 w-full md:w-32 focus:ring-2 focus:ring-blue-500">
+      </div>
+      <button type="submit" 
+              class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded text-white text-sm font-medium w-full md:w-auto">
+        Save Configuration
+      </button>
+    </form>
   </div>
-  <div class="title-row-right">
-    <h2 class="hide-on-mobile">Today's Results</h2> 
-    <h2>Wins:{{ todayResults.won }} Ties: {{ todayResults.tie }} Loses:{{ todayResults.lost }}</h2>  
-  </div>
-</div>
-<div class="team-ids-container">
-  <div *ngIf="loading">
-    <app-spinner [showSpinner]="loading"></app-spinner>
-  </div>
-  <div class="team-card-container" [ngClass]="{'squad-issue': team.notices}" *ngFor="let team of teamData">
-    <div class="team-card">
-      <h3 class="team-name clickable" (click)="navigationTo('team/' + team.id + '/')">
-        <span class="clickable">{{ team.clubName }}</span>
-      </h3>
-      <h3 class="ovr" >{{team.ovr}}</h3>
-      <p class="alarm-text">{{team.notices}}</p>
-      <p class="division"><a href="https://app.metasoccer.com/home/msl/{{ team.groupId }}">{{ team.division }}</a></p>
-      <p>
-        <span *ngFor="let match of team.lastMatches" [ngClass]="{'win': match === 'won', 'tie': match === 'tie', 'loss': match === 'lost'}">
-          {{ match | formatStreak }}
-        </span>
-      </p>
-      <div class="stats">
-        <div class="stats_top">
-          <div><span>Played</span> <p>{{ team.won + team.tied + team.lost }}</p></div>
-          <div><span>Won</span> <p>{{ team.won }}</p></div>
-          <div><span>Tied</span> <p>{{ team.tied }}</p></div>
-          <div><span>Lost</span> <p>{{ team.lost }}</p></div>
+
+  <!-- Stats Summary -->
+  <div class="flex flex-col md:flex-row items-center gap-4 justify-center w-full md:w-auto">
+    <div class="bg-gray-700 p-3 rounded-lg flex items-center gap-2 w-full md:w-auto">
+      <span class="text-green-400 font-semibold">Expected Rewards:</span>
+      <span class="text-white">{{totalRewards}}</span>
+      <img class="w-6 h-6" src="https://ds.devsoccer.com/ds/Coins/msu.png">
+    </div>
+
+    <div class="bg-gray-700 p-3 rounded-lg w-full md:w-auto">
+      <h3 class="text-gray-400 text-sm mb-1 text-center md:text-left">Today's Results</h3>
+      <div class="flex flex-col md:flex-row gap-3 text-white justify-center">
+        <div class="flex items-center gap-1 justify-center">
+          <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+          {{ todayResults.won }} Wins
         </div>
-        <div class="stats_bot">
-          <div><span>GF</span> <p>{{ team.goalsForward }}</p></div>
-          <div><span>GA</span> <p>{{ team.goalsAgainst }}</p></div> 
-          <div><span>GD</span> <p>{{ team.goalsDifference }}</p></div>
-          <div><span>Win Rate</span> <p>{{ (team.won / team.played) | percent: '2.2-2' }}</p></div>
+        <div class="flex items-center gap-1 justify-center">
+          <span class="w-2 h-2 bg-yellow-500 rounded-full"></span>
+          {{ todayResults.tie }} Ties
+        </div>
+        <div class="flex items-center gap-1 justify-center">
+          <span class="w-2 h-2 bg-red-500 rounded-full"></span>
+          {{ todayResults.lost }} Losses
         </div>
       </div>
-      <p>Position: {{ team.position }}&nbsp;&nbsp;&nbsp;&nbsp;Points: {{ team.points }}</p>
-      <p>Injuries: <span [ngClass]="{'alarm-text': team.injuries}">{{ team.injuries }}</span></p>
-      <p style="display: flex; align-items: center; justify-content: center;">Current Rewards: {{team.expectedReward}} <img width="20px" src="https://ds.devsoccer.com/ds/Coins/msu.png"></p>
-      <img *ngIf="team.manager" [src]="'assets/managers/' + team.manager + '.png'" alt="{{ team.manager }}" class="manager-image" />
     </div>
   </div>
-
 </div>
-<div>
-  <h5 *ngIf="lastUpdate">Updated on {{ formatTimestamp(lastUpdate) }}</h5>
+
+<!-- Team Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+  <div *ngFor="let team of teamData" 
+       class="bg-gray-800 rounded-xl p-6 shadow-xl border-2 transition-all"
+       [class.border-red-500]="team.notices"
+       [class.border-transparent]="!team.notices">
+    
+    <!-- Team Header -->
+    <div class="flex justify-between items-start mb-4">
+      <h3 class="text-xl font-semibold text-white hover:text-blue-400 transition-colors cursor-pointer"
+          (click)="navigationTo('team/' + team.id + '/')">
+        {{ team.clubName }}
+      </h3>
+      <span class="px-3 py-1 text-white text-sm font-medium">
+        <a href="https://app.metasoccer.com/home/msl/{{ team.groupId }}" 
+           class="hover:bg-white/10 px-2 py-1 rounded">
+          {{ team.division }}
+        </a>
+      </span>
+      <span class="px-3 py-1 bg-gray-700 rounded-full text-sm font-medium">
+        OVR: {{team.ovr}}
+      </span>
+    </div>
+
+    <!-- Match Streak -->
+    <div class="flex gap-1 mb-4">
+      <span *ngFor="let match of team.lastMatches" 
+            class="w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold"
+            [ngClass]="{
+              'bg-green-900/30 text-green-400': match === 'won',
+              'bg-yellow-900/30 text-yellow-400': match === 'tie',
+              'bg-red-900/30 text-red-400': match === 'lost'
+            }">
+        {{ match | formatStreak }}
+      </span>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <!-- Left Column -->
+      <div class="space-y-2">
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">Played</span>
+          <span class="font-medium">{{ team.played }}</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">Won</span>
+          <span class="text-green-400">{{ team.won }}</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">Tied</span>
+          <span class="text-yellow-400">{{ team.tied }}</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">Lost</span>
+          <span class="text-red-400">{{ team.lost }}</span>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="space-y-2">
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">GF</span>
+          <span>{{ team.goalsForward }}</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">GA</span>
+          <span>{{ team.goalsAgainst }}</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">GD</span>
+          <span [ngClass]="{
+            'text-green-400': team.goalsDifference > 0,
+            'text-red-400': team.goalsDifference < 0
+          }">{{ team.goalsDifference }}</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span class="text-gray-400">Win Rate</span>
+          <span class="font-medium">
+            {{ (team.won / team.played) | percent: '2.2-2' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="border-t border-gray-700 pt-4 space-y-2">
+      <div class="flex justify-between text-sm">
+        <span class="text-gray-400">Position</span>
+        <span class="font-medium">#{{ team.position }}</span>
+      </div>
+      <div class="flex justify-between text-sm">
+        <span class="text-gray-400">Points</span>
+        <span class="font-medium">{{ team.points }}</span>
+      </div>
+      <div class="flex justify-between text-sm">
+        <span class="text-gray-400">Injuries</span>
+        <span class="text-red-400 font-medium">{{ team.injuries || 'None' }}</span>
+      </div>
+      <div class="flex justify-between items-center text-sm">
+        <span class="text-gray-400">Current Rewards</span>
+        <div class="flex items-center gap-1">
+          <span class="font-medium">{{ team.expectedReward }}</span>
+          <img class="w-5 h-5" src="https://ds.devsoccer.com/ds/Coins/msu.png">
+        </div>
+      </div>
+    </div>
+
+    <!-- Notices Badge -->
+    <div *ngIf="team.notices" class="mt-4 p-2 bg-red-900/30 rounded text-red-400 text-sm text-center">
+      {{ team.notices }}
+    </div>
+  </div>
+</div>
+
+<!-- Last Updated -->
+<div class="mt-8 text-center text-gray-400 text-sm">
+  <h5 *ngIf="lastUpdate">Last updated: {{ formatTimestamp(lastUpdate) }}</h5>
 </div>
