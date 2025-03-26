@@ -20,7 +20,7 @@ export class TeamService {
 
   getSquadInfo(wallet: string, teamId: string, token: string): Observable<any> {
     const apiUrl = `https://play.metasoccer.com/api/2024/lineups/team/${teamId}`;
-    const cardsUrl = `hhttps://play.metasoccer.com/api/2024/tournamentCards/team/${teamId}`;
+    const cardsUrl = `https://play.metasoccer.com/api/2024/tournamentCards/team/${teamId}`;
     const injuriesUrl = `https://play.metasoccer.com/api/2024/lockedPlayers/team/${teamId}`;
     const infoUrl = `https://play.metasoccer.com/api/2024/msl?teamId=${teamId}`;
     const headers = new HttpHeaders({ Authorization: token });

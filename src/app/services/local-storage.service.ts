@@ -17,6 +17,14 @@ export class LocalStorageService {
     }
   }
 
+  saveWallets(wallets: WalletDto[]): void {
+    localStorage.setItem('managers', JSON.stringify(wallets));
+  }
+
+  clearWallets(): void {
+    localStorage.removeItem('managers');
+  }
+
   getAirdropManagers(): WalletDto[] {
     const savedManagers = localStorage.getItem('AirdropManagers');
 

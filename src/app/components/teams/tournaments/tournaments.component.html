@@ -2,10 +2,10 @@
 
 <!-- Header Section -->
 <div class="flex flex-col md:flex-row gap-6 mb-8 p-4 bg-gray-800 rounded-lg justify-center items-center w-full mx-auto">
-  <!-- Left Controls -->
+  
   <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-    <button (click)="updateData()" class="p-2 hover:bg-gray-700 rounded-full transition-colors">
-      <img class="w-6 h-6" src="assets/update-icon.svg" alt="Reload">
+    <button (click)="updateData()" class="p-2  bg-gray-700 hover:bg-gray-600 rounded-full transition-colors">
+      <img class="w-6 h-6 invert" src="assets/update-icon.svg" alt="Reload">
     </button>
     
     <form [formGroup]="tknForm" (ngSubmit)="saveWallet()" class="flex flex-col gap-2 w-full md:w-auto">
@@ -33,7 +33,7 @@
     </div>
 
     <div class="bg-gray-700 p-3 rounded-lg w-full md:w-auto">
-      <h3 class="text-gray-400 text-sm mb-1 text-center md:text-left">Today's Results</h3>
+      <h3 class="text-white text-sm mb-1 text-center md:text-left ">Today's Results</h3>
       <div class="flex flex-col md:flex-row gap-3 text-white justify-center">
         <div class="flex items-center gap-1 justify-center">
           <span class="w-2 h-2 bg-green-500 rounded-full"></span>
@@ -53,7 +53,7 @@
 </div>
 
 <!-- Team Cards Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 text-white" >
   <div *ngFor="let team of teamData" 
        class="bg-gray-800 rounded-xl p-6 shadow-xl border-2 transition-all"
        [class.border-red-500]="team.notices"
@@ -99,15 +99,15 @@
         </div>
         <div class="flex justify-between text-sm">
           <span class="text-gray-400">Won</span>
-          <span class="text-green-400">{{ team.won }}</span>
+          <span>{{ team.won }}</span>
         </div>
         <div class="flex justify-between text-sm">
           <span class="text-gray-400">Tied</span>
-          <span class="text-yellow-400">{{ team.tied }}</span>
+          <span >{{ team.tied }}</span>
         </div>
         <div class="flex justify-between text-sm">
           <span class="text-gray-400">Lost</span>
-          <span class="text-red-400">{{ team.lost }}</span>
+          <span >{{ team.lost }}</span>
         </div>
       </div>
 
@@ -123,10 +123,7 @@
         </div>
         <div class="flex justify-between text-sm">
           <span class="text-gray-400">GD</span>
-          <span [ngClass]="{
-            'text-green-400': team.goalsDifference > 0,
-            'text-red-400': team.goalsDifference < 0
-          }">{{ team.goalsDifference }}</span>
+          <span >{{ team.goalsDifference }}</span>
         </div>
         <div class="flex justify-between text-sm">
           <span class="text-gray-400">Win Rate</span>
@@ -149,12 +146,15 @@
       </div>
       <div class="flex justify-between text-sm">
         <span class="text-gray-400">Injuries</span>
-        <span class="text-red-400 font-medium">{{ team.injuries || 'None' }}</span>
+        <span [ngClass]="{
+          'text-white': team.injuries == 0,
+          'text-red-400': team.injuries > 0
+        }">{{ team.injuries }}</span>
       </div>
       <div class="flex justify-between items-center text-sm">
         <span class="text-gray-400">Current Rewards</span>
         <div class="flex items-center gap-1">
-          <span class="font-medium">{{ team.expectedReward }}</span>
+          <!-- <span class="font-medium ">{{ team.expectedReward }}</span> -->
           <img class="w-5 h-5" src="https://ds.devsoccer.com/ds/Coins/msu.png">
         </div>
       </div>

@@ -1,31 +1,78 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, forkJoin, of } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { WalletDto } from 'src/app/models/walletProperties.dto';
+import { FormatStreakPipe } from 'src/app/pipes/format-streak.pipe';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { TeamService } from 'src/app/services/team.service';
 import { TournamentsService } from 'src/app/services/tournament.service';
 
+// Interface declarations
+interface Team {
+  id: string;
+  groupId: string;
+  manager: string;
+  ovr: number;
+  division: string;
+  clubName: string;
+  position: number;
+  played: number;
+  won: number;
+  tied: number;
+  lost: number;
+  goalsForward: number;
+  goalsAgainst: number;
+  goalsDifference: number;
+  points: number;
+  lastMatches: ('won' | 'tie' | 'lost')[];
+  // expectedReward: number;
+  injuries: number;
+  cards: any[];
+  notices?: string;
+}
+
+interface SquadInfo {
+  injuries: {
+    result: {
+      lockedPlayers: any[];
+    };
+  };
+  ovr: {
+    result: {
+      skill: {
+        overallSkill: number;
+      };
+    };
+  };
+}
+
+const CACHE_EXPIRY_MS = 86400000; // 24 hours
+const DEFAULT_WALLET = '0x644FA8aa088caD5BcDf78bB0E7C1bF1cB399e475';
+
 @Component({
   selector: 'app-tournaments',
   templateUrl: './tournaments.component.html',
   styleUrls: ['./tournaments.component.scss'],
+  providers: [DatePipe, FormatStreakPipe]
 })
 export class TournamentsComponent implements OnInit {
-  manager: FormControl;
-  address: FormControl;
-  token: FormControl;
   tknForm: FormGroup;
-  walletProperties: WalletDto;
+  walletProperties: WalletDto = new WalletDto();
+  teamData: Team[] = [];
+  loading = true;
+  lastUpdate?: number;
+  todayResults = { won: 0, tie: 0, lost: 0 };
+  totalRewards = 0;
+  managers: WalletDto[] = [];
+  rewards: any[] = [];
+
+  manager = new FormControl('', [Validators.required]);
+  address = new FormControl('', [Validators.required]);
+  token = new FormControl('', [Validators.required]);
 
   constructor(
     private http: HttpClient,
@@ -36,258 +83,192 @@ export class TournamentsComponent implements OnInit {
     private fb: FormBuilder,
     private localStorageService: LocalStorageService
   ) {
-    this.walletProperties = new WalletDto();
-    this.manager = new FormControl('', [Validators.required]);
-    this.address = new FormControl('', [Validators.required]);
-    this.token = new FormControl('', [Validators.required]);
-
-    this.tknForm = fb.group({
+    this.tknForm = this.fb.group({
       manager: this.manager,
       address: this.address,
       token: this.token,
     });
   }
 
-  teamProp: any;
-  teamData: any[] = [];
-
-  groupData: any[] | undefined = [];
-  rewards!: any[];
-  loading = true;
-  lastUpdate: number | undefined;
-  todayResults: { won: number; tie: number; lost: number } = {
-    won: 0,
-    tie: 0,
-    lost: 0,
-  };
-  totalRewards!: number;
-  managers!: WalletDto[];
+  teamProp: any
 
   ngOnInit() {
-    this.tournamentsService.getTeamProp().subscribe((data) => {
-      this.teamProp = data.filter((team: any) => team.groupId);
-      this.getData();
+    this.initializeComponent();
+  }
+
+  private initializeComponent(): void {
+    this.tournamentsService.getTeamProp().subscribe({
+      next: (data) => {
+        this.teamProp = data.filter((team: any) => team.groupId);
+        this.loadInitialData();
+      },
+      error: (error) => this.handleError('Failed to load team properties', error)
     });
   }
-  getData() {
-    const cachedData = localStorage.getItem('teamData');
-    const cachedTimestamp = localStorage.getItem('teamDataTimestamp');
 
-    if (cachedData && cachedTimestamp) {
-      try {
-        const parsedData = JSON.parse(cachedData);
-        this.lastUpdate = parseInt(cachedTimestamp, 10);
-
-        const isDataRecent = Date.now() - this.lastUpdate < 86400000;
-
-        // if (isDataRecent) {
-        this.teamData = parsedData;
-        this.loading = false;
-        console.log('Using cached data.');
-        this.getTodayResults();
-        this.calculateTotalRewards();
-        // } else {
-        //   console.log('Cached data is older than a day. Fetching new data.');
-        //   this.getAllGroups();
-        // }
-      } catch (error) {
-        console.error('Error parsing cached data:', error);
-        this.loading = false;
-      }
+  private loadInitialData(): void {
+    const [cachedData, cachedTimestamp] = this.getCachedData();
+    
+    if (cachedData && this.isCacheValid(cachedTimestamp)) {
+      console.log('use cached data')
+      this.handleCachedData(cachedData, cachedTimestamp);
     } else {
-      this.getAllGroups();
+      console.log('fetch all data')
+      this.fetchAllData();
     }
   }
 
-  private getAllGroups() {
+  private getCachedData(): [any, number] {
+    try {
+      const data = localStorage.getItem('teamData');
+      const timestamp = localStorage.getItem('teamDataTimestamp');
+      return [JSON.parse(data || '[]'), parseInt(timestamp || '0', 10)];
+    } catch (error) {
+      console.error('Cache parsing error:', error);
+      return [[], 0];
+    }
+  }
+
+  private isCacheValid(timestamp: number): boolean {
+    return Date.now() - timestamp < CACHE_EXPIRY_MS;
+  }
+
+  private handleCachedData(data: any, timestamp: number): void {
+    this.teamData = data;
+    this.lastUpdate = timestamp;
+    this.updateResults();
+    this.loading = false;
+  }
+
+  private fetchAllData(): void {
     this.getWallets();
-    const requests: Observable<any>[] = this.teamProp.map((team: any) =>
+    this.fetchRewards();
+    this.processTeamData();
+  }
+
+  private processTeamData(): void {
+    const requests = this.teamProp.map((team: any) =>
       this.tournamentsService.getGroupData(team).pipe(
-        mergeMap((groupData: any) => {
-          const division = groupData.result.name;
-          const matchingTeam = groupData.result.standings.rankedTeams.find(
-            (rankedTeam: any) => rankedTeam.id === team.id
-          );
-          if (matchingTeam) {
-            const foundManager: WalletDto | undefined = this.managers.find(
-              (manager: WalletDto) => manager.manager === team.manager
-            );
-
-            const managerProperties: WalletDto = foundManager
-              ? foundManager
-              : { manager: '', address: '', token: '' };
-
-            // const storedManager = localStorage.getItem(team.manager);
-            // let managerProperties = [];
-            // if (storedManager) {
-            //   managerProperties = JSON.parse(storedManager);
-            // }
-
-            this.getSquadInfo(
-              team.wallet
-                ? team.wallet
-                : '0x644FA8aa088caD5BcDf78bB0E7C1bF1cB399e475',
-              team.id,
-              managerProperties.token
-            ).subscribe(
-              (squadInfo: any) => {
-                const lockedPlayers = squadInfo.injuries.result.lockedPlayers;
-                const injuriesCount = lockedPlayers.filter(
-                  (player: any) => player.reason === 'Injured'
-                ).length;
-
-                this.teamData.push({
-                  id: team.id,
-                  groupId: team.groupId,
-                  manager: team.manager,
-                  ovr: squadInfo.ovr.result.skill.overallSkill,
-                  division: division,
-                  clubName: team.name,
-                  position: matchingTeam.position,
-                  played: matchingTeam.played,
-                  won: matchingTeam.won,
-                  tied: matchingTeam.tied,
-                  lost: matchingTeam.lost,
-                  goalsForward: matchingTeam.goalsForward,
-                  goalsAgainst: matchingTeam.goalsAgainst,
-                  goalsDifference: matchingTeam.goalsDifference,
-                  points: matchingTeam.points,
-                  lastMatches: matchingTeam.lastMatches,
-                  expectedReward: this.getExpectedReward(
-                    this.rewards,
-                    division,
-                    matchingTeam.position
-                  ),
-                  injuries: injuriesCount,
-                  cards: [],
-                  // notices: squadInfo.info.result.nextMatch.notices[0],
-                });
-
-                this.teamData.sort((a, b) =>
-                  a.clubName.localeCompare(b.clubName)
-                );
-                localStorage.setItem('teamData', JSON.stringify(this.teamData));
-                localStorage.setItem(
-                  'teamDataTimestamp',
-                  Date.now().toString()
-                );
-              },
-              (error) => {
-                console.error('Error fetching squad info:', error);
-                // Handle the error appropriately
-              }
-            );
-          } else {
-            console.warn(`Team ID ${team.id} not found in API response`);
-          }
-
-          // Returning an observable to avoid blocking the next request
-          return of({});
-        })
+        mergeMap((groupData: any) => this.processGroupData(team, groupData)),
+        catchError(error => this.handleTeamError(team, error))
       )
     );
 
-    forkJoin(requests).subscribe(
-      (responses: any) => {
-        // localStorage.setItem('teamData', JSON.stringify(this.teamData));
-        // localStorage.setItem('teamDataTimestamp', Date.now().toString());
-        this.lastUpdate = Date.now();
-        this.getTodayResults();
-        this.calculateTotalRewards();
+    forkJoin<Array<Team | undefined>>(requests).subscribe({
+      next: (results: (Team | undefined)[]) => {
+        this.teamData = results.filter((team): team is Team => !!team);
+        this.handleDataSuccess();
       },
-      (error: any) => {
-        console.error('Error in one or more API requests:', error);
-        // Hide spinner even if there's an error
-        this.loading = false;
-      }
+      error: (error) => this.handleDataError(error)
+    });
+  }
+
+  private processGroupData(team: any, groupData: any): Observable<Team> { 
+    const matchingTeam = groupData.currentEdition.userGroup.standings.find(
+      (t: any) => t.id === team.id
     );
-  }
-
-  formatTimestamp(timestamp: number): string {
-    return this.datePipe.transform(timestamp ?? Date.now(), 'medium') ?? 'N/A';
-  }
-
-  navigationTo(route: string): void {
-    this.sharedService.navigationTo(route);
-  }
-
-  getTodayResults() {
-    const results = this.teamData.map((team: any) => {
-      // Check if 'lastMatches' is an array and not empty
-      if (Array.isArray(team.lastMatches) && team.lastMatches.length > 0) {
-        return team.lastMatches[team.lastMatches.length - 1];
-      } else {
-        return null;
-      }
-    });
-    results.forEach((result: 'won' | 'tie' | 'lost' | null) => {
-      if (result !== null) {
-        this.todayResults[result]++;
-      }
-    });
-  }
-
-  getRewards() {
-    this.http.get<any[]>('assets/teams/mlsRewards.json').subscribe((data) => {
-      this.rewards = data;
-    });
-  }
-
-  getExpectedReward(rewards: any[], div: string, pos: number) {
-    const division = div.split(' ')[1];
-
-    const divisionRewards = rewards.find(
-      (reward) => reward.division === division
-    );
-
-    if (divisionRewards) {
-      const position = pos.toString();
-      const rewardAmount = divisionRewards.rewards[position];
-
-      return rewardAmount !== undefined
-        ? rewardAmount
-        : 'Position not found in rewards';
-    } else {
-      return 'Division not found in rewards';
+    const userGroup = {
+      'groupId': groupData.currentEdition.userGroup.groupId, 
+      'groupName': groupData.currentEdition.userGroup.groupName
     }
-  }
-
-  calculateTotalRewards(): void {
-    this.totalRewards = this.teamData.reduce(
-      (sum, team) => sum + team.expectedReward,
-      0
+    const nextMatch = groupData.currentEdition.userGroup.nextMatch
+  
+    if (!matchingTeam) {
+      console.warn(`Team ID ${team.id} not found in this group`);
+      return of(); 
+    }
+  
+    return this.getSquadInfo(
+      team.wallet || DEFAULT_WALLET,
+      team.id,
+      this.getManagerToken(team.manager)
+    ).pipe(
+      map((squadInfo: SquadInfo) => this.createTeamEntry(team, groupData, matchingTeam, squadInfo))
     );
   }
 
-  updateData(): void {
-    localStorage.removeItem('teamData');
-    this.teamData = [];
-    this.todayResults = { won: 0, tie: 0, lost: 0 };
-    this.loading = true;
-    this.getRewards();
-    this.getAllGroups();
+  private getManagerToken(manager: string): string {
+    const foundManager = this.managers.find(m => m.manager === manager);
+    return foundManager?.token || '';
   }
 
-  saveWallet(): void {
-    this.walletProperties.address = this.address.value;
-    this.walletProperties.token = this.token.value;
-    this.walletProperties.manager = this.manager.value;
+  private createTeamEntry(team: any, groupData: any, matchingTeam: any, squadInfo: SquadInfo): Team {
+    const injuriesCount = squadInfo.injuries.result.lockedPlayers
+      .filter((player: any) => player.reason === 'Injured').length;
 
-    this.getWallets();
-
-    const existingManager = this.managers.find(
-      (manager: WalletDto) => manager.address === this.walletProperties.address
-    );
-
-    if (existingManager) {
-      existingManager.token = this.walletProperties.token;
-    } else {
-      this.managers.push(this.walletProperties);
+      const newTeam = {
+        id: team.id,
+        groupId: groupData.currentEdition.userGroup.groupId,
+        manager: team.manager,
+        ovr: squadInfo.ovr.result.skill.overallSkill,
+        division: groupData.currentEdition.userGroup.groupName,
+        clubName: team.name,
+        position: matchingTeam.position,
+        played: matchingTeam.played,
+        won: matchingTeam.won,
+        tied: matchingTeam.tied,
+        lost: matchingTeam.lost,
+        goalsForward: matchingTeam.goalsForward,
+        goalsAgainst: matchingTeam.goalsAgainst,
+        goalsDifference: matchingTeam.goalsDifference,
+        points: matchingTeam.points,
+        lastMatches: matchingTeam.lastMatches,
+        // expectedReward: this.calculateReward(matchingTeam.position, groupData.result.name),
+        injuries: injuriesCount,
+        cards: []
+      };
+      
+      console.log('Created team:', newTeam);
+      return newTeam;
     }
 
-    localStorage.setItem('managers', JSON.stringify(this.managers));
+  private calculateReward(position: number, division: string): number {
+    const divisionNumber = division.split(' ')[1];
+    const divisionRewards = this.rewards.find(r => r.division === divisionNumber);
+    return divisionRewards?.rewards[position.toString()] || 0;
+  }
 
-    this.tknForm.reset();
+  private handleDataSuccess(): void {
+    this.teamData.sort((a, b) => a.clubName.localeCompare(b.clubName));
+    this.updateCache();
+    this.updateResults();
+    this.loading = false;
+    console.log('All teams processed:', this.teamData);
+  }
+
+  private updateCache(): void {
+    localStorage.setItem('teamData', JSON.stringify(this.teamData));
+    localStorage.setItem('teamDataTimestamp', Date.now().toString());
+  }
+
+  private updateResults(): void {
+    this.calculateTodayResults();
+    // this.calculateTotalRewards();
+  }
+
+  private calculateTodayResults(): void {
+    this.todayResults = this.teamData.reduce((acc, team) => {
+      const lastMatch = team.lastMatches?.[team.lastMatches.length - 1];
+      if (lastMatch) acc[lastMatch]++;
+      return acc;
+    }, { won: 0, tie: 0, lost: 0 });
+  }
+
+  private handleError(context: string, error: any): void {
+    console.error(`${context}:`, error);
+    this.loading = false;
+    // Add user notification logic here
+  }
+
+  private handleTeamError(team: any, error: any): Observable<any> {
+    console.error(`Error processing team ${team.id}:`, error);
+    return of(undefined);
+  }
+
+  private handleDataError(error: any): void {
+    console.error('Data fetch error:', error);
+    this.loading = false;
+    // Add user notification logic here
   }
 
   getSquadInfo(
@@ -308,5 +289,72 @@ export class TournamentsComponent implements OnInit {
 
   getWallets(): void {
     this.managers = this.localStorageService.getWallets();
+  }
+
+  fetchRewards() {
+    this.http.get<any[]>('assets/teams/mlsRewards.json').subscribe((data) => {
+      this.rewards = data;
+    });
+  }
+
+  // calculateTotalRewards(): void {
+  //   this.totalRewards = this.teamData.reduce(
+  //     (sum, team) => sum + team.expectedReward,
+  //     0
+  //   );
+  // }
+
+  navigationTo(route: string): void {
+    this.sharedService.navigationTo(route);
+  }
+  
+  formatTimestamp(timestamp: number): string {
+    return this.datePipe.transform(timestamp || Date.now(), 'medium') || 'N/A';
+  }
+
+  saveWallet(): void {
+    if (this.tknForm.invalid) return;
+
+    const walletData: WalletDto = {
+      manager: this.manager.value ?? '',
+      address: this.address.value ?? '',
+      token: this.token.value ?? ''
+    };
+  
+    this.updateWalletStorage(walletData);
+    this.resetForm();
+  }
+
+  updateData(): void {
+    this.clearCache();
+    this.resetData();
+    this.fetchAllData();
+  }
+
+  private clearCache(): void {
+    localStorage.removeItem('teamData');
+  }
+  
+  private resetData(): void {
+    this.teamData = [];
+    this.todayResults = { won: 0, tie: 0, lost: 0 };
+    this.loading = true;
+  }
+
+  private updateWalletStorage(wallet: WalletDto): void {
+    const existingIndex = this.managers.findIndex(m => m.address === wallet.address);
+    if (existingIndex > -1) {
+      this.managers[existingIndex] = wallet;
+    } else {
+      this.managers.push(wallet);
+    }
+    this.localStorageService.saveWallets(this.managers);
+  }
+  
+  private resetForm(): void {
+    this.tknForm.reset();
+    this.manager.setErrors(null);
+    this.address.setErrors(null);
+    this.token.setErrors(null);
   }
 }

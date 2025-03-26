@@ -13,9 +13,9 @@ export class TournamentsService {
     return this.http.get('/assets/teams/teams_id.json');
   }
 
-  getGroupData(teamId: any): Observable<any> {
-    const apiUrl = `https://api.metasoccer.com/msl/group/${teamId.groupId}`;
-    if (!teamId.groupId) {
+  getGroupData(team: any): Observable<any> {
+    const apiUrl = `https://play.metasoccer.com/api/2024/msl?teamId=${team.id}`;
+    if (!team.id) {
       return of(null);
     }
     return this.http.get(apiUrl).pipe(timeout(180000));
