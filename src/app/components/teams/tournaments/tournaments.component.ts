@@ -288,7 +288,9 @@ export class TournamentsComponent implements OnInit {
   }
 
   getWallets(): void {
+    console.log('getting wallets')
     this.managers = this.localStorageService.getWallets();
+    console.log('managers:', this.managers);
   }
 
   fetchRewards() {
