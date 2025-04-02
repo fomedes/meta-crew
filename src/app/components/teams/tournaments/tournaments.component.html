@@ -56,12 +56,13 @@
 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6 text-white" >
   <div *ngFor="let team of teamData" 
        class="bg-gray-800 rounded-xl p-6 shadow-xl border-2 transition-all"
-       [class.border-red-500]="team.notices"
-       [class.border-transparent]="!team.notices">
+       [class.border-red-950]="team.injuries"
+       [class.bg-red-950]="team.injuries"
+       [class.border-transparent]="!team.injuries">
     
     <!-- Team Header -->
     <div class="flex justify-between items-start mb-4">
-      <h3 class="text-xl font-semibold text-white hover:text-blue-400 transition-colors cursor-pointer"
+      <h3 class="text-xl font-semibold text-white hover:text-blue-400 transition-colors cur sor-pointer"
           (click)="navigationTo('team/' + team.id + '/')">
         {{ team.clubName }}
       </h3>
@@ -134,8 +135,8 @@
       </div>
     </div>
 
-    <!-- Footer Section -->
-    <div class="border-t border-gray-700 pt-4 space-y-2">
+    <!-- Info Section -->
+    <div class="border-t border-gray-700 pt-4 space-y-2 mb-4">
       <div class="flex justify-between text-sm">
         <span class="text-gray-400">Position</span>
         <span [ngClass]="{
@@ -167,6 +168,54 @@
     <div *ngIf="team.notices" class="mt-4 p-2 bg-red-900/30 rounded text-red-400 text-sm text-center">
       {{ team.notices }}
     </div>
+
+    <!-- Next Match Section-->
+    <div class="border-t border-gray-700 pt-4 space-y-2 flex flex-col">
+      <span class="text-center">Next Match</span>
+      <div class="flex flex-row">
+        
+        <div class="flex flex-col flex-1">
+          <img 
+            class="w-12 h-12 mx-auto " 
+            [src]="team.nextMatch.teams.home.clubLogo?.url || getLocalClubLogo(team.nextMatch.teams.home.clubLogo.name)"
+            [style.filter]="'drop-shadow(0 0 0 ' + team.nextMatch.teams.home.clubLogo?.color + ')'"
+            alt="Home team logo"
+          >
+          <ng-container *ngIf="team.nextMatch.teams.home.teamName | titlecase as teamName">
+            <ng-container *ngIf="teamName.split(' #') as nameParts">
+              <div class="flex flex-col text-center text-xs pt-2">
+                <span>{{nameParts[0]}}</span>
+                <span *ngIf="nameParts[1]"> #{{nameParts[1]}}</span>
+                <span class="text-base">{{team.nextMatch.teams.home.overall}}</span>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <div class="flex flex-col flex-1 items-center my-auto gap-1">
+          <span class="text-center text-sm">{{team.nextMatch.match.date | date: 'dd/MM/yy'}}</span>
+          <span class="text-center text-sm">{{team.nextMatch.match.date | date: 'HH:mm'}}</span>
+        </div>
+
+          <div class="flex flex-col flex-1">
+            <img 
+              class="w-12 h-12 mx-auto" 
+              [src]="team.nextMatch.teams.away.clubLogo?.url || getLocalClubLogo(team.nextMatch.teams.away.clubLogo.name)"
+              [style.fill]="team.nextMatch.teams.away.clubLogo?.color"
+              alt="Home team logo"
+            >
+          <ng-container *ngIf="team.nextMatch.teams.away.teamName | titlecase as teamName">
+            <ng-container *ngIf="teamName.split(' #') as nameParts">
+              <div class="flex flex-col text-center text-xs pt-2">
+                <span>{{nameParts[0]}}</span>
+                <span> {{ nameParts[1] ? '#' + nameParts[1] : ' ' }}</span>
+                <span class="text-base">{{team.nextMatch.teams.away.overall}}</span>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+     </div>
   </div>
 </div>
 

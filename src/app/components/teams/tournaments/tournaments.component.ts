@@ -33,6 +33,7 @@ interface Team {
   injuries: number;
   cards: any[];
   notices?: string;
+  nextMatch: any;
 }
 
 interface SquadInfo {
@@ -164,6 +165,7 @@ export class TournamentsComponent implements OnInit {
   }
 
   private processGroupData(team: any, groupData: any): Observable<Team> { 
+    console.log('GroupData: ', groupData)
     const matchingTeam = groupData.currentEdition.userGroup.standings.find(
       (t: any) => t.id === team.id
     );
@@ -215,7 +217,8 @@ export class TournamentsComponent implements OnInit {
         lastMatches: matchingTeam.lastMatches,
         // expectedReward: this.calculateReward(matchingTeam.position, groupData.result.name),
         injuries: injuriesCount,
-        cards: []
+        cards: [],
+        nextMatch: groupData.currentEdition.userGroup.nextMatch
       };
       
       console.log('Created team:', newTeam);
@@ -288,9 +291,7 @@ export class TournamentsComponent implements OnInit {
   }
 
   getWallets(): void {
-    console.log('getting wallets')
     this.managers = this.localStorageService.getWallets();
-    console.log('managers:', this.managers);
   }
 
   fetchRewards() {
@@ -359,4 +360,11 @@ export class TournamentsComponent implements OnInit {
     this.address.setErrors(null);
     this.token.setErrors(null);
   }
+
+  getLocalClubLogo(name: string): string {
+    const clubNumber = name.replace('Club', '');
+    return `/assets/club-logos/Club${clubNumber}.svg`;
+  }
+
+  
 }
