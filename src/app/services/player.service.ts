@@ -11,7 +11,7 @@ export class PlayerService {
   private ownedPlayers: string;
 
   constructor(private http: HttpClient) {
-    this.urlPlayerApi = 'https://manag3r.metasoccer.com/api/2024/players/';
+    this.urlPlayerApi = 'https://play.metasoccer.com/api/2024/players/';
     this.ownedPlayers = 'owner/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475';
   }
 

@@ -1,37 +1,149 @@
-<h1>List of players</h1>
-<table class="players-table">
-  <thead>
-    <tr>
-      <!-- <th></th> -->
-      <th class="hide-on-mobile">Id</th>
-      <th>Name</th>
-      <th>Role</th>
-      <th>OVR</th>
-      <th>POT</th>
-      <th>Abilities</th>
-      <th class="hide-on-mobile">Foot</th>
-      <th>Condition</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let player of players | sortByRole">
-      <!-- <td  class="player-img-container"><img class="player-img" src="https://assets2.metasoccer.com/file/assets2-metasoccer/players/assetsDetail/4_0_2_2_5_5_4_1_26_11_0_1_0_0_0_2_0.png"></td> -->
-      <td class="hide-on-mobile">{{ player.id }}</td>
-      <td><a title="{{player.fullName}}" href="https://app.metasoccer.com/assets/players/{{player.id}}"> {{ player.shortName }}</a></td>
-      <td>
-        <div class="role-label" [ngClass]="{'role-gk': player.role === 'Goalkeeper', 'role-df': player.role === 'Defender','role-mid': player.role === 'Midfielder','role-fw': player.role === 'Forward',}">{{ player.specificRole | specificRole}}
-        </div>
-      </td>
-      <td>{{ player.overall }}</td>
-      <td>{{ player.potential }}</td>
-      <td>{{ player.specialAbilities.join(', ') }}</td>
-      <td class="hide-on-mobile">{{ player.preferredFootName }}</td>
-      <td>
-        <div class="progress-bar-data">{{ player.condition }}</div>
-        <div class="progress-bar-container">
-          <div class="progress-bar" [style.width.%]="player.condition"></div>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="container mx-auto p-4 md:p-6 max-w-5xl">
+  <h1 class="text-2xl md:text-3xl font-bold text-gray-100 mb-6">Players</h1>
+
+  <div class="overflow-x-auto ">
+    <!-- Add above the table -->
+<div class="bg-gray-800 rounded-lg p-4 md:p-6 mb-6 shadow-lg">
+  <h2 class="text-lg font-semibold text-gray-100 mb-4">Filter Players</h2>
+  
+  <form [formGroup]="filterForm" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <!-- Role Filter -->
+    <div class="space-y-2">
+      <label class="text-sm font-medium text-gray-300">Role</label>
+      <select formControlName="role" class="w-full bg-gray-700 text-gray-100 rounded-md p-2 text-sm border border-gray-600 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400">
+        <option [value]="null">All Roles</option>
+        <option value="Goalkeeper">Goalkeeper</option>
+        <option value="Defender">Defender</option>
+        <option value="Midfielder">Midfielder</option>
+        <option value="Forward">Forward</option>
+      </select>
+    </div>
+
+    <!-- Preferred Foot Filter -->
+    <div class="space-y-2">
+      <label class="text-sm font-medium text-gray-300">Preferred Foot</label>
+      <select formControlName="foot" class="w-full bg-gray-700 text-gray-100 rounded-md p-2 text-sm border border-gray-600 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400">
+        <option [value]="null">Any Foot</option>
+        <option value="0">Right</option>
+        <option value="1">Left</option>
+        <option value="2">Both</option>
+      </select>
+    </div>
+
+    <!-- OVR Range Filter -->
+    <div class="space-y-2">
+      <label class="text-sm font-medium text-gray-300">OVR Range</label>
+      <div class="flex items-center gap-2">
+        <input type="range" formControlName="ovrMin" min="0" max="100" 
+               class="w-full bg-gray-600 rounded-lg appearance-none cursor-pointer"
+               [title]="filterForm.value.ovrMin">
+        <span class="text-sm text-emerald-400 w-12">{{ filterForm.value.ovrMin }}</span>
+      </div>
+    </div>
+
+    <!-- Potential Range Filter -->
+    <div class="space-y-2">
+      <label class="text-sm font-medium text-gray-300">POT Range</label>
+      <div class="flex items-center gap-2">
+        <input type="range" formControlName="potMin" min="0" max="100" 
+               class="w-full bg-gray-600 rounded-lg appearance-none cursor-pointer"
+               [title]="filterForm.value.potMin">
+        <span class="text-sm text-purple-400 w-12">{{ filterForm.value.potMin }}</span>
+      </div>
+    </div>
+  </form>
+
+  <!-- Reset Button -->
+  <div class="mt-4 flex justify-end">
+    <button (click)="resetFilters()" 
+            class="px-4 py-2 text-sm font-medium text-gray-300 bg-gray-700 hover:bg-gray-600 rounded-md transition-colors">
+      Reset Filters
+    </button>
+  </div>
+</div>
+    <table class="min-w-full divide-y divide-gray-700">
+      <thead class="bg-gray-750">
+        <tr *ngFor="let player of filteredPlayers | sortByRole" class="hover:bg-gray-750 transition-colors">
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider hidden md:table-cell">ID</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Name</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Role</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">OVR</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Age</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Abilities</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider hidden md:table-cell">Foot</th>
+          <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Condition</th>
+        </tr>
+      </thead>
+
+      <tbody class="divide-y divide-gray-700">
+        <tr *ngFor="let player of players | sortByRole" class="hover:bg-gray-750 transition-colors">
+          <!-- <td class="px-4 py-4">
+            <img class="w-10 h-10 rounded-sm" src="...">
+          </td> -->
+          <td class="px-4 py-4 text-sm text-gray-300 hidden md:table-cell">{{ player.id }}</td>
+          
+          <td class="px-4 py-4 text-sm font-medium">
+            <a href="https://app.metasoccer.com/assets/players/{{player.id}}" 
+               class="text-gray-100 hover:text-emerald-400 transition-colors duration-150"
+               title="{{player.fullName}}">
+              {{ player.name }} {{ player.lastName }}
+            </a>
+          </td>
+
+          <td class="px-4 py-4 text-sm">
+            <span class="inline-block px-2 py-1 rounded-md text-xs font-medium whitespace-nowrap"
+                  [ngClass]="{
+                    'bg-yellow-800/50 text-yellow-400': player.role === 'Goalkeeper',
+                    'bg-blue-800/50 text-blue-400': player.role === 'Defender',
+                    'bg-green-800/50 text-green-400': player.role === 'Midfielder',
+                    'bg-rose-800/50 text-rose-400': player.role === 'Forward'
+                  }">
+              {{ player.specificRole | specificRole }}
+            </span>
+          </td>
+
+          <td class="px-4 py-4 text-sm">
+            <div class="flex items-baseline">
+              <span class="text-gray-100 text-base" title="Current Overall">
+                {{ player.overall }}
+              </span>
+              
+              <span class="text-gray-400 text-xs mx-0.5">/</span>
+              
+              <span class="text-gray-400 font-normal text-xs" title="Potential">
+                {{ player.potential }}
+              </span>
+            </div>
+          </td>
+
+          <td class="px-4 py-4 text-sm text-gray-300 hidden md:table-cell">{{ player.age }}</td>
+                    
+          <td class="px-4 py-4 text-sm text-gray-300">
+            <div class="flex flex-wrap gap-1.5">
+              <span *ngFor="let ability of player.specialAbilities" 
+                    class="px-2 py-0.5 bg-gray-700/50 rounded text-xs">
+                {{ ability }}
+              </span>
+            </div>
+          </td>
+
+          <td class="px-4 py-4 text-sm text-gray-300 hidden md:table-cell">
+            <span *ngIf="player.preferredFoot === 0">Right</span>
+            <span *ngIf="player.preferredFoot === 1">Left</span>
+            <span *ngIf="player.preferredFoot === 2">Both</span>
+          </td>
+
+          <td class="px-4 py-4 text-sm">
+            <div class="flex items-center gap-2">
+              <span class="hidden md:inline text-gray-400 text-xs">{{ player.condition }}%</span>
+              <div class="w-20 h-2 bg-gray-700 rounded-full overflow-hidden">
+                <div class="h-full bg-emerald-500 transition-all duration-300" 
+                     [style.width.%]="player.condition"></div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
