@@ -1,8 +1,44 @@
-<h2>Player Market</h2>
-<div>
-  <label for="playerId">Player ID:</label>
-  <input type="number" id="playerId" [(ngModel)]="playerId" />
+<div class="p-4 space-y-6">
+  <h2 class="text-2xl font-bold text-gray-100">Player Database Management</h2>
 
-  <button (click)="addPlayer()">Add Player</button>
-  <button (click)="sellPlayer()">Sell Player</button>
+  <div class="space-y-4">
+    <button 
+      (click)="updatePlayerDB()"
+      [disabled]="isLoading"
+      class="px-6 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+    >
+      <span *ngIf="!isLoading">Update Player Database</span>
+      <span *ngIf="isLoading" class="flex items-center">
+        <svg class="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z"/>
+        </svg>
+        Processing Players...
+      </span>
+    </button>
+
+    <div *ngIf="isLoading" class="pt-2 space-y-2">
+      <div class="text-sm text-gray-400">
+        Processed {{ progress }} of {{ totalPlayers }} players
+      </div>
+      <div class="w-1/2 bg-gray-200 rounded-full h-2.5">
+        <div 
+          class="bg-emerald-600 h-2.5 rounded-full" 
+          [style.width.%]="(progress / totalPlayers) * 100"
+        ></div>
+      </div>
+      <p class="text-xs text-gray-500">
+        Existing players will be skipped automatically
+      </p>
+    </div>
+
+    <div *ngIf="errorMessage" class="p-4 bg-red-50 text-red-700 rounded-lg">
+      ⚠️ Error: {{ errorMessage }}
+    </div>
+  </div>
+
+  <div *ngIf="players && !isLoading" class="space-y-4">
+    <div class="w-1/2 p-4 bg-green-50 text-green-700 rounded-lg">
+      ✅ Successfully updated {{ players.length }} of {{totalPlayers}} players
+    </div>
+  </div>
 </div>

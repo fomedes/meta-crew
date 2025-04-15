@@ -44,6 +44,7 @@ import { TournamentsService } from './services/tournament.service';
     TrainingComponent,
     SortScoutByRolePipe,
     MlsComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
