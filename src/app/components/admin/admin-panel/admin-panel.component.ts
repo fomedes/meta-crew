@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { WalletDto } from 'src/app/models/walletProperties.dto';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { PlayerService } from 'src/app/services/player.service';
 import { SupabaseService } from 'src/app/services/supabase.service';
 
@@ -8,44 +10,78 @@ import { SupabaseService } from 'src/app/services/supabase.service';
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.scss'],
 })
-export class AdminPanelComponent {
+export class AdminPanelComponent implements OnInit {
   isLoading = false;
 
-  players: any[] | null = null;
-  errorMessage: string | null = null;
-  progress = 0;
-  totalPlayers = 0;
+  wallets: WalletDto[] = [];
+  isDbUpdated = false
 
-  constructor(private playerService: PlayerService, private supabase: SupabaseService) {}
+  globalError: string | null = null;
 
-  async updatePlayerDB(){
+  constructor(
+    private playerService: PlayerService, 
+    private localStorageService: LocalStorageService, 
+    private supabase: SupabaseService) {}
+
+
+  ngOnInit(): void {
+    this.getWallets()
+  }  
+
+  private getWallets(): void {
+    const storedWallets = this.localStorageService.getWallets();
+    this.wallets = storedWallets.map(wallet => ({
+      ...wallet,
+      loading: false,
+      progress: 0,
+      totalPlayers: 0,
+      players: [],
+      error: undefined
+    }));
+  }
+
+  async updatePlayerDB() {
+    this.globalError = null;
     this.isLoading = true;
-    this.errorMessage = null;
-    this.players = null;
-    this.progress = 0;
+
+    for (const wallet of this.wallets) {
+      try {
+        await this.processWallet(wallet);
+      } catch (err) {
+        console.error(`Failed to process wallet ${wallet.address}:`, err);
+        // wallet.error = err;
+      }
+    }
+
+    this.isLoading = false;
+  }
+
+  private async processWallet(wallet: any) {
+    wallet.loading = true;
+    wallet.error = undefined;
+    wallet.players = [];
+    wallet.progress = 0;
 
     try {
-      const players$ = this.playerService.getPlayers();
-      this.players = await lastValueFrom(players$)
+      const players$ = this.playerService.getPlayers(wallet.address);
+      const players = await lastValueFrom(players$);
       
-      if (!this.players || this.players.length === 0) {
-        throw new Error('No players found in API response');
+      if (!players?.length) {
+        wallet.error = 'No players found in this wallet';
+        return;
       }
 
-      this.totalPlayers = this.players.length;
-      const insertedPlayers = [];
+      wallet.totalPlayers = players.length;
 
-      for (const player of this.players) {
+      for (const player of players) {
         try {
-          // Check if player exists
           const exists = await this.supabase.playerExists(player.id);
           if (exists) {
-            console.log(`Player ${player.id} already exists, skipping...`);
-            this.progress++;
+            console.log(`Player ${player.id} exists, skipping...`);
+            wallet.progress++;
             continue;
           }
-
-          // Insert main player data
+          console.log(player)
           const insertedPlayer = await this.supabase.insertPlayer({
             id: player.id,
             name: player.name,
@@ -61,32 +97,31 @@ export class AdminPanelComponent {
             weight: player.weight,
             market_price: 0,
             player_special_skills: player.specialAbilities?.length || 0,
-            player_skill_1:player.specialAbilities?.[0] || '',
-            player_skill_2:player.specialAbilities?.[1] || ''
+            player_skill_1: player.specialAbilities?.[0] || '',
+            player_skill_2: player.specialAbilities?.[1] || '',
+            owner: wallet.address
           });
 
-          await this.insertRelatedData(player);
-          
-          insertedPlayers.push(insertedPlayer);
-          this.progress++;
+          await this.insertAbilitiesData(player);
+          wallet.players.push(insertedPlayer);
           
         } catch (err) {
           console.error(`Error processing player ${player.id}:`, err);
+        } finally {
+          wallet.progress++;
         }
       }
 
-      console.log('Successfully inserted:', insertedPlayers);
-      this.players = insertedPlayers;
-
     } catch (err) {
-      // this.errorMessage = err;
-      console.error('Update failed:', err);
+      wallet.error = err;
+      throw err;
     } finally {
-      this.isLoading = false;
+      wallet.loading = false;
+      this.isDbUpdated = true
     }
   }
 
-  private async insertRelatedData(player: any) {
+  private async insertAbilitiesData(player: any) {
     // Condition Abilities
     await this.supabase.insertConditionAbilities({
       player_id: player.id,
@@ -140,7 +175,7 @@ export class AdminPanelComponent {
   private getPreferredFoot(footIndex: number) {
       const footOutput = ['Right', 'Left', 'Both']
 
-      if (footIndex!) {
+      if (![0, 1, 2].includes(footIndex)) {
         console.warn(`Unknown foot value: ${footIndex}`)
         return ''
       }

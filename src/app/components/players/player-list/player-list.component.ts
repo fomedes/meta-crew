@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { playerDTO } from 'src/app/models/player.dto';
+import { WalletDto } from 'src/app/models/walletProperties.dto';
 import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
@@ -14,6 +15,9 @@ export class PlayerListComponent implements OnInit {
   players!: any[];
   filterForm!: FormGroup;
   filteredPlayers: playerDTO[] = [];
+  wallets: WalletDto[] = [];
+  defaultWallet: string = '0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475';
+  
 
   constructor(private fb: FormBuilder, private playerService: PlayerService, private router: Router) {}
 
@@ -36,7 +40,7 @@ export class PlayerListComponent implements OnInit {
   }
 
   private loadPlayers(): void {
-    this.playerService.getPlayers().subscribe((response) => {
+    this.playerService.getPlayers(this.defaultWallet).subscribe((response) => {
       if (response) {
         this.players = response;
         console.log('Players loaded successfully:', this.players);

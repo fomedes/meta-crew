@@ -11,12 +11,12 @@ export class PlayerService {
   private ownedPlayers: string;
 
   constructor(private http: HttpClient) {
-    this.urlPlayerApi = 'https://play.metasoccer.com/api/2024/players/';
+    this.urlPlayerApi = 'https://play.metasoccer.com/api/2024/players/owner/';
     this.ownedPlayers = 'owner/0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475';
   }
 
-  getPlayers(): Observable<any> {
-    return this.http.get(this.urlPlayerApi + this.ownedPlayers);
+  getPlayers(address: string): Observable<any> {
+    return this.http.get(this.urlPlayerApi + address);
   }
   getAuctionPlayers(): Observable<any> {
     return this.http.get(this.jsonFilePath);
