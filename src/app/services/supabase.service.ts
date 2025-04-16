@@ -62,4 +62,46 @@ export class SupabaseService {
       .insert(data);
     if (error) throw error;
   }
+
+  
+  // Update Data Methods
+  async updateConditionAbilities(playerId: number, updateData: any) {
+    const { data, error } = await this.supabase
+      .from('condition_abilities')
+      .update(updateData)
+      .eq('player_id', playerId);
+      
+    if (error) throw error;
+    return data;
+  }
+
+  async updateTacticalAbilities(playerId: number, updateData: any) {
+    const { data, error } = await this.supabase
+      .from('tactical_abilities')
+      .update(updateData)
+      .eq('player_id', playerId);
+      
+    if (error) throw error;
+    return data;
+  }
+  
+  async updateTechnicalAbilities(playerId: number, updateData: any) {
+    const { data, error } = await this.supabase
+      .from('technical_abilities')
+      .update(updateData)
+      .eq('player_id', playerId);
+      
+    if (error) throw error;
+    return data;
+  }
+  
+  async updateGoalkeepingAbilities(playerId: number, updateData: any) {
+    const { data, error } = await this.supabase
+      .from('goalkeeping_abilities')
+      .update(updateData)
+      .eq('player_id', playerId);
+      
+    if (error) throw error;
+    return data;
+  }
 }

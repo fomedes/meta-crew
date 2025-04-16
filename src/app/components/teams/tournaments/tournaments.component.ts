@@ -165,7 +165,6 @@ export class TournamentsComponent implements OnInit {
   }
 
   private processGroupData(team: any, groupData: any): Observable<Team> { 
-    console.log('GroupData: ', groupData)
     const matchingTeam = groupData.currentEdition.userGroup.standings.find(
       (t: any) => t.id === team.id
     );

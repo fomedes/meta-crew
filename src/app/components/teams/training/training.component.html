@@ -170,12 +170,14 @@
                 
                     <!-- Report Tooltip -->
                     <div 
-                        class="absolute left-1/2 -translate-x-1/2 -top-2 transform 
+                        class="absolute left-1/2 -translate-x-1/2 translate-y-9 -top-2 transform 
                         opacity-0 invisible group-hover:opacity-100 group-hover:visible 
                         transition-opacity duration-200 ease-in-out
                         bg-gray-800 text-white text-xs rounded-lg p-3 shadow-xl z-50 
                         min-w-[300px] text-left"
                       >
+
+
                       <div class="space-y-2">
                         <div *ngFor="let report of team.trainingReport" class="mb-3">
                           
@@ -201,8 +203,8 @@
                         </div>
                       </div>
                       
-                      <div class="absolute w-3 h-3 bg-gray-800 rotate-45 -bottom-1.5 
-                      left-1/2 -translate-x-1/2 shadow-xl">
+                      <div class="absolute w-3 h-3 bg-red-800 rotate-45 top-1.5 
+                      left-1/2 -translate-x-1/2 -translate-y-3 shadow-xl">
                       </div>
                     </div>
                   </div>

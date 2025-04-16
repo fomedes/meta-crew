@@ -4,6 +4,7 @@ import { Observable, Subject, forkJoin, of } from 'rxjs';
 import { catchError, map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { WalletDto } from 'src/app/models/walletProperties.dto';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { SupabaseService } from 'src/app/services/supabase.service';
 import { TeamService } from 'src/app/services/team.service';
 import { TrainingsService } from 'src/app/services/trainings.service';
 
@@ -75,7 +76,8 @@ export class TrainingComponent implements OnDestroy {
     private teamService: TeamService,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private supabase: SupabaseService
   ) {}
 
   ngOnInit(): void {
@@ -291,6 +293,8 @@ export class TrainingComponent implements OnDestroy {
                 report.ovrAfter = improvement.after.overall
               }
 
+              const abilitiesToUpdate: any[] = [];
+
               // Check ability improvements
               improvement.before.abilities.forEach((beforeAbility: any, index: any) => {
                 const afterAbility = improvement.after.abilities[index];
@@ -302,7 +306,16 @@ export class TrainingComponent implements OnDestroy {
                     potentialSkill: afterAbility.potential
                   });
                 }
+
+                abilitiesToUpdate.push({
+                  ability: beforeAbility.ability,
+                  skill: afterAbility.skill,
+                  potential: afterAbility.potential
+                });
               });
+
+              // Update player potential in database
+              this.updatePlayerAbilities(improvement.playerId, abilitiesToUpdate);
 
               return report;
             })
@@ -367,4 +380,88 @@ export class TrainingComponent implements OnDestroy {
     const player = team.players.find(p => p['id'] === playerId);
     return player?.['name'] + ' ' + player?.['lastName'] || `Player ${playerId}`;
   }
-}
+
+  private async updatePlayerAbilities(playerId: number, abilities: any[]) {
+    try {
+      // Group abilities by their category
+      const conditionUpdates: Record<string, number> = {};
+      const tacticalUpdates: Record<string, number> = {};
+      const technicalUpdates: Record<string, number> = {};
+      const goalkeepingUpdates: Record<string, number> = {};
+  
+      abilities.forEach(ability => {
+        const baseName = ability.ability.toLowerCase().replace(' ', '_');
+        
+        // Determine which table this ability belongs to
+        switch(ability.ability) {
+          // Condition abilities
+          case 'Fitness':
+          case 'Strength':
+          case 'Speed':
+          case 'Creativity':
+          case 'Concentration':
+          case 'Aggression':
+            conditionUpdates[baseName] = ability.skill;
+            conditionUpdates[`${baseName}_potential`] = ability.potential;
+            break;
+            
+          // Tactical abilities
+          case 'Standing Tackle':
+          case 'Sliding Tackle':
+          case 'Marking':
+          case 'Positioning':
+          case 'Vision':
+          case 'Bravery':
+            tacticalUpdates[baseName] = ability.skill;
+            tacticalUpdates[`${baseName}_potential`] = ability.potential;
+            break;
+            
+          // Technical abilities
+          case 'Passing':
+          case 'Dribbling':
+          case 'Crossing':
+          case 'Shooting':
+          case 'Finishing':
+          case 'Heading':
+            technicalUpdates[baseName] = ability.skill;
+            technicalUpdates[`${baseName}_potential`] = ability.potential;
+            break;
+            
+          // Goalkeeping abilities
+          case 'Diving':
+          case 'Handling':
+          case 'Kicking':
+          case 'Punching':
+          case 'Throwing':
+          case 'Reflexes':
+            goalkeepingUpdates[baseName] = ability.skill;
+            goalkeepingUpdates[`${baseName}_potential`] = ability.potential;
+            break;
+        }
+      });
+  
+      // Execute all updates
+      const updates = [];
+      
+      if (Object.keys(conditionUpdates).length > 0) {
+        updates.push(this.supabase.updateConditionAbilities(playerId, conditionUpdates));
+      }
+      
+      if (Object.keys(tacticalUpdates).length > 0) {
+        updates.push(this.supabase.updateTacticalAbilities(playerId, tacticalUpdates));
+      }
+      
+      if (Object.keys(technicalUpdates).length > 0) {
+        updates.push(this.supabase.updateTechnicalAbilities(playerId, technicalUpdates));
+      }
+      
+      if (Object.keys(goalkeepingUpdates).length > 0) {
+        updates.push(this.supabase.updateGoalkeepingAbilities(playerId, goalkeepingUpdates));
+      }
+  
+      await Promise.all(updates);
+      
+    } catch (error) {
+      console.error(`Error updating abilities for player ${playerId}:`, error);
+    }
+  }}

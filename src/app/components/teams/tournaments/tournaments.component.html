@@ -169,8 +169,13 @@
       {{ team.notices }}
     </div>
 
+    <!-- League Ended-->
+    <div *ngIf="!team.nextMatch" class="border-t border-gray-700 pt-4 space-y-2 flex flex-col justify-center">
+      <span class="text-center text-gray-200">The league has finished</span>
+    </div>
+
     <!-- Next Match Section-->
-    <div class="border-t border-gray-700 pt-4 space-y-2 flex flex-col">
+    <div *ngIf="team.nextMatch" class="border-t border-gray-700 pt-4 space-y-2 flex flex-col">
       <span class="text-center">Next Match</span>
       <div class="flex flex-row">
         
@@ -215,7 +220,7 @@
           </ng-container>
         </div>
       </div>
-     </div>
+    </div>
   </div>
 </div>
 
