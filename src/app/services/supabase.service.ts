@@ -104,4 +104,27 @@ export class SupabaseService {
     if (error) throw error;
     return data;
   }
+
+  async getAllPlayers() {
+    const { data, error } = await this.supabase
+      .from('players')
+      .select(`
+        *,
+        condition_abilities:condition_abilities(*),
+        tactical_abilities:tactical_abilities(*),
+        technical_abilities:technical_abilities(*),
+        goalkeeping_abilities:goalkeeping_abilities(*)
+      `);
+      if (error) throw error;
+      return data;
+  }
+  
+  async getPlayersByOwner(walletAddress: string) {
+    const { data, error } = await this.supabase
+      .from('players')
+      .select('*')
+      .eq('owner', walletAddress);
+      if (error) throw error;
+      return data;
+  }
 }

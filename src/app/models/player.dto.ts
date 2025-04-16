@@ -1,90 +1,93 @@
 export interface playerDTO {
   age: number;
+  condition_abilities: ConditionAbilities;
+  goalkeeping_abilities: GoalkeepingAbilities;
   height: number;
   id: number;
-  lastName: string;
+  image_url: string;
+  last_name: string;
   condition: number;
   level: number;
+  market_price: number
   name: string;
   overall: number;
   owner: string;
+  player_skill_1: string;
+  player_skill_2: string;
+  player_special_skills: string;
   potential: number;
-  preferredFoot: number;
+  preferred_foot: string;
   role: string;
-  seeds: string[];
-  sections: Sections;
-  specialAbilities: any[];
-  specificRole: string;
+  specific_role: string;
+  tactical_abilities: TacticalAbilities;
+  technical_abilities: TechnicalAbilities;
   weight: number;
-  imageName: string;
-  fullName: string;
-  shortName: string;
-  preferredFootName: string;
-}
-
-export interface Sections {
-  technical: Technical;
-  tactical: Tactical;
-  condition: Condition;
-  goalkeeping: Goalkeeping;
-}
-
-export interface Technical {
-  name: string;
-  overall: number;
-  abilities: TechnicalAbilities;
 }
 
 export interface TechnicalAbilities {
-  Passing: number;
-  Dribbling: number;
-  Crossing: number;
-  Shooting: number;
-  Finishing: number;
-  Heading: number;
-}
-
-export interface Tactical {
-  name: string;
+  id: number;
   overall: number;
-  abilities: TacticalAbilities;
+  passing: number;
+  dribbling: number;
+  crossing: number;
+  shooting: number;
+  finishing: number;
+  heading: number;
+  passing_potential: number;
+  dribbling_potential: number;
+  crossing_potential: number;
+  shooting_potential: number;
+  finishing_potential: number;
+  heading_potential: number;
 }
 
 export interface TacticalAbilities {
-  Vision: number;
-  Bravery: number;
-  Positioning: number;
-  Marking: number;
-  'Sliding Tackle': number;
-  'Standing Tackle': number;
-}
-
-export interface Condition {
-  name: string;
+  id: number;
   overall: number;
-  abilities: ConditionAbilities;
+  vision: number;
+  bravery: number;
+  positioning: number;
+  marking: number;
+  sliding_tackle: number;
+  standing_tackle: number;
+  vision_potential: number;
+  bravery_potential: number;
+  positioning_potential: number;
+  marking_potential: number;
+  sliding_tackle_potential: number;
+  standing_tackle_potential: number;
 }
-
 export interface ConditionAbilities {
-  Fitness: number;
-  Strength: number;
-  Speed: number;
-  Concentration: number;
-  Aggression: number;
-  Creativity: number;
-}
-
-export interface Goalkeeping {
-  name: string;
+  id: number;
   overall: number;
-  abilities: GoalkeepingAbilities;
+  fitness: number;
+  strength: number;
+  speed: number;
+  concentration: number;
+  aggression: number;
+  creativity: number;
+  overall_potential: number;
+  fitness_potential: number;
+  strength_potential: number;
+  speed_potential: number;
+  concentration_potential: number;
+  aggression_potential: number;
+  creativity_potential: number;
 }
 
 export interface GoalkeepingAbilities {
-  Diving: number;
-  Handling: number;
-  Kicking: number;
-  Punching: number;
-  Throwing: number;
-  Reflexes: number;
+  id: number;
+  overall: number;
+  diving: number;
+  handling: number;
+  kicking: number;
+  punching: number;
+  throwing: number;
+  reflexes: number;
+  diving_potential: number;
+  handling_potential: number;
+  kicking_potential: number;
+  punching_potential: number;
+  throwing_potential: number;
+  reflexes_potential: number;
 }

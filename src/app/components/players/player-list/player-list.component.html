@@ -63,7 +63,7 @@
 </div>
     <table class="min-w-full divide-y divide-gray-700">
       <thead class="bg-gray-750">
-        <tr *ngFor="let player of filteredPlayers | sortByRole" class="hover:bg-gray-750 transition-colors">
+        <tr >
           <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider hidden md:table-cell">ID</th>
           <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Name</th>
           <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Role</th>
@@ -71,7 +71,7 @@
           <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Age</th>
           <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Abilities</th>
           <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider hidden md:table-cell">Foot</th>
-          <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Condition</th>
+          <!-- <th class="px-4 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Condition</th> -->
         </tr>
       </thead>
 
@@ -86,7 +86,7 @@
             <a href="https://app.metasoccer.com/assets/players/{{player.id}}" 
                class="text-gray-100 hover:text-emerald-400 transition-colors duration-150"
                title="{{player.fullName}}">
-              {{ player.name }} {{ player.lastName }}
+              {{ player.name }} {{ player.last_name }}
             </a>
           </td>
 
@@ -98,7 +98,7 @@
                     'bg-green-800/50 text-green-400': player.role === 'Midfielder',
                     'bg-rose-800/50 text-rose-400': player.role === 'Forward'
                   }">
-              {{ player.specificRole | specificRole }}
+              {{ player.specific_role | specificRole }}
             </span>
           </td>
 
@@ -120,20 +120,26 @@
                     
           <td class="px-4 py-4 text-sm text-gray-300">
             <div class="flex flex-wrap gap-1.5">
-              <span *ngFor="let ability of player.specialAbilities" 
-                    class="px-2 py-0.5 bg-gray-700/50 rounded text-xs">
-                {{ ability }}
+              <span *ngIf="!player.player_skill_1 && !player.player_skill_2" class="px-2 py-0.5 bg-gray-700/50 rounded text-xs">
+                -
+              </span>
+              <span *ngIf="player.player_skill_1 && !player.player_skill_2" class="px-2 py-0.5 bg-gray-700/50 rounded text-xs">
+                {{ player.player_skill_1 }}
+              </span>
+              <span *ngIf="player.player_skill_1 && player.player_skill_2" class="px-2 py-0.5 bg-gray-700/50 rounded text-xs">
+                {{ player.player_skill_1 }}  -  {{ player.player_skill_2 }}
               </span>
             </div>
           </td>
 
           <td class="px-4 py-4 text-sm text-gray-300 hidden md:table-cell">
-            <span *ngIf="player.preferredFoot === 0">Right</span>
+            <span>{{ player.preferred_foot }}</span>
+            <!-- <span *ngIf="player.preferredFoot === 0">Right</span>
             <span *ngIf="player.preferredFoot === 1">Left</span>
-            <span *ngIf="player.preferredFoot === 2">Both</span>
+            <span *ngIf="player.preferredFoot === 2">Both</span> -->
           </td>
 
-          <td class="px-4 py-4 text-sm">
+          <!-- <td class="px-4 py-4 text-sm">
             <div class="flex items-center gap-2">
               <span class="hidden md:inline text-gray-400 text-xs">{{ player.condition }}%</span>
               <div class="w-20 h-2 bg-gray-700 rounded-full overflow-hidden">
@@ -141,7 +147,7 @@
                      [style.width.%]="player.condition"></div>
               </div>
             </div>
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>

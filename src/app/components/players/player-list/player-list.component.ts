@@ -5,6 +5,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { playerDTO } from 'src/app/models/player.dto';
 import { WalletDto } from 'src/app/models/walletProperties.dto';
 import { PlayerService } from 'src/app/services/player.service';
+import { SupabaseService } from 'src/app/services/supabase.service';
 
 @Component({
   selector: 'app-player-list',
@@ -16,10 +17,17 @@ export class PlayerListComponent implements OnInit {
   filterForm!: FormGroup;
   filteredPlayers: playerDTO[] = [];
   wallets: WalletDto[] = [];
-  defaultWallet: string = '0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475';
+  // defaultWallet: string = '0x644fa8aa088cad5bcdf78bb0e7c1bf1cb399e475';
+  isLoading = false;
+  errorMessage: string | null = null;
   
 
-  constructor(private fb: FormBuilder, private playerService: PlayerService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder, 
+    private supabase: SupabaseService,
+    private playerService: PlayerService, 
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.filterForm = this.fb.group({
@@ -39,15 +47,37 @@ export class PlayerListComponent implements OnInit {
     this.loadPlayers();
   }
 
-  private loadPlayers(): void {
-    this.playerService.getPlayers(this.defaultWallet).subscribe((response) => {
-      if (response) {
-        this.players = response;
-        console.log('Players loaded successfully:', this.players);
-      } else {
-        console.error('Error loading players:', response.error);
-      }
-    });
+  private async loadPlayers(): Promise<void> {
+    // this.playerService.getPlayers(this.defaultWallet).subscribe((response) => {
+    //   if (response) {
+    //     this.players = response;
+    //     console.log('Players loaded successfully:', this.players);
+    //   } else {
+    //     console.error('Error loading players:', response.error);
+    //   }
+    // });
+    this.isLoading = true;
+    this.errorMessage = null;
+    
+    try {
+      this.players = await this.supabase.getAllPlayers();
+      
+      
+      // this.players = players.map(player => ({
+      //   ...player,
+      //   // // Map any necessary fields to match your playerDTO structure
+      //   // preferredFoot: this.mapFootValue(player.preferred_foot),
+      //   // // Add other mappings if needed
+      // }));
+      
+      this.filteredPlayers = this.players;
+      console.log('Players loaded successfully from Supabase:', this.filteredPlayers);
+    } catch (error) {
+      console.error('Error loading players from Supabase:', error);
+      this.errorMessage = 'Failed to load players. Please try again later.';
+    } finally {
+      this.isLoading = false;
+    }
   }
 
   filterPlayers() {

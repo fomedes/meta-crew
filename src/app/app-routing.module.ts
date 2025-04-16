@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
+import { PlayerItemComponent } from './components/players/player-item/player-item.component';
 import { PlayerListComponent } from './components/players/player-list/player-list.component';
 import { PlayerPoolComponent } from './components/players/player-pool/player-pool.component';
 import { ScoutListComponent } from './components/scouts/scout-list/scout-list.component';
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'players',
     component: PlayerListComponent,
+  },
+  {
+    path: 'player/:id',
+    component: PlayerItemComponent,
   },
   {
     path: 'scouts',

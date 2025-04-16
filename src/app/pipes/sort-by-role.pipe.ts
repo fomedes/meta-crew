@@ -10,7 +10,6 @@ export class SortByRolePipe implements PipeTransform {
     }
 
     const roleOrder = ['Goalkeeper', 'Defender', 'Midfielder', 'Forward'];
-
     data.sort((a, b) => {
       if (a.role === undefined) {
         const roleAIndex = roleOrder.indexOf(a.covering);
@@ -20,7 +19,7 @@ export class SortByRolePipe implements PipeTransform {
           return roleAIndex - roleBIndex;
         }
 
-        return a.specificRole.localeCompare(b.specificRole);
+        return a.specific_role.localeCompare(b.specific_role);
       } else {
         const roleAIndex = roleOrder.indexOf(a.role);
         const roleBIndex = roleOrder.indexOf(b.role);
@@ -29,7 +28,7 @@ export class SortByRolePipe implements PipeTransform {
           return roleAIndex - roleBIndex;
         }
 
-        return a.specificRole.localeCompare(b.specificRole);
+        return a.specific_role.localeCompare(b.specific_role);
       }
     });
 
