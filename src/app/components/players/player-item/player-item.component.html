@@ -1,1 +1,176 @@
-<p>player-item works!</p>
+<div class="player-container bg-gray-900 text-gray-100 p-6 rounded-lg shadow-xl max-w-6xl mx-auto">
+  <h1 class="text-3xl font-bold mb-2">{{ player.name }} {{ player.last_name }}</h1>
+  <!-- Player Header Section -->
+  <div class="player-header flex flex-col md:flex-row gap-6 mb-8">
+    <!-- Player Image -->
+    <div class="player-image flex-shrink-0 w-36 h-36 md:w-48 md:h-48 rounded-lg overflow-hidden">
+      <img [src]="'https://assets.metasoccer.com/players/originals/' + player.image_url"  
+          [alt]="player.name + ' ' + player.last_name" 
+          class="w-full h-[300%] object-cover object-bottom">
+    </div>
+    
+    <!-- Player Basic Info -->
+    <div class="player-info flex-grow w-full align-middle my-auto">
+      
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <span class="text-gray-400">Position:</span>
+          <span class="font-medium ml-2">{{ player.specific_role }}</span>
+        </div>
+        <div>
+          <span class="text-gray-400">Age:</span>
+          <span class="font-medium ml-2">{{ player.age }}</span>
+        </div>
+        <div>
+          <span class="text-gray-400">Height:</span>
+          <span class="font-medium ml-2">{{ player.height }} cm</span>
+        </div>
+        <div>
+          <span class="text-gray-400">Weight:</span>
+          <span class="font-medium ml-2">{{ player.weight }} kg</span>
+        </div>
+        <div>
+          <span class="text-gray-400">Preferred Foot:</span>
+          <span class="font-medium ml-2">{{ player.preferred_foot }}</span>
+        </div>
+        <div>
+          <span class="text-gray-400">Owner:</span>
+          <span class="font-medium ml-2">{{ player.owner }}</span>
+        </div>
+      </div>
+      
+      <!-- OVR and Potential -->
+      <div class="flex gap-8 items-center mt-4 border-t-2 border-gray-800">
+        <div class="text-center">
+          <span class="text-gray-400 block">Overall</span>
+          <span class="text-4xl font-bold text-emerald-400">{{ player.overall }}</span>
+        </div>
+        <div class="text-center">
+          <span class="text-gray-400 block">Potential</span>
+          <span class="text-4xl font-bold text-blue-400">{{ player.potential }}</span>
+        </div>
+        <div class="text-center">
+          <span class="text-gray-400 block">Sell Price</span>
+          <span class="text-2xl font-bold text-yellow-400">{{ player.market_price }} <span class="text-xs">MSA</span></span>
+        </div>
+        <div class="text-center">
+          <span class="text-gray-400 block">Minimum Price</span>
+          <span class="text-2xl font-bold text-yellow-400">{{ marketAnalysis.minPrice | number:'1.0-2' }}<span class="text-xs">MSA</span></span>
+        </div>        
+        <div class="text-center">
+          <span class="text-gray-400 block">Recommended</span>
+          <span class="text-2xl font-bold text-yellow-400">{{ marketAnalysis.recommendedPrice | number:'1.0-2' }}<span class="text-xs">MSA</span></span>
+        </div>
+        <div class="text-center">
+          <span class="text-gray-400 block">Market Average</span>
+          <span class="text-2xl font-bold text-yellow-400">{{ marketAnalysis.averagePrice | number:'1.0-2' }}<span class="text-xs">MSA</span></span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Special Skills -->
+  <div class="special-skills mb-8" *ngIf="player.player_special_skills > 0">
+    <h2 class="text-xl font-semibold mb-4 border-b border-gray-700 pb-2">Special Skills</h2>
+    <div class="flex flex-wrap gap-2">
+      <span class="px-3 py-1 bg-emerald-800 rounded-full text-sm" *ngIf="player.player_skill_1">
+        {{ player.player_skill_1 }}
+      </span>
+      <span class="px-3 py-1 bg-emerald-800 rounded-full text-sm" *ngIf="player.player_skill_2">
+        {{ player.player_skill_2 }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Abilities Sections -->
+  <div class="abilities-grid grid grid-cols-1 lg:grid-cols-4 gap-6">
+    <!-- Condition Abilities -->
+    <div class="ability-section bg-gray-800 p-4 rounded-lg">
+      <h3 class="text-lg font-semibold mb-3 flex justify-between items-center">
+        <span>Condition</span>
+        <span class="">{{ player.condition_abilities.overall }}</span>
+      </h3>
+      <div class="space-y-2">
+        <div *ngFor="let ability of conditionAbilities" class="ability-item">
+          <div class="flex justify-between text-sm mb-1">
+            <span>{{ ability.name }}</span>
+            <span [ngClass]="{'text-blue-400': ability.value === ability.potential}">{{ ability.value }}
+              <span class="text-gray-400" *ngIf="ability.potential > ability.value">/ </span>
+              <span class="text-blue-400" *ngIf="ability.potential > ability.value">{{ ability.potential }}</span>
+            </span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-2">
+            <div class="bg-emerald-500 h-2 rounded-full" [style.width.%]="ability.value"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Abilities -->
+    <div class="ability-section bg-gray-800 p-4 rounded-lg">
+      <h3 class="text-lg font-semibold mb-3 flex justify-between items-center">
+        <span>Technical</span>
+        <span class="">{{ player.technical_abilities.overall }}</span>
+      </h3>
+      <div class="space-y-2">
+        <div *ngFor="let ability of technicalAbilities" class="ability-item">
+          <div class="flex justify-between text-sm mb-1">
+            <span>{{ ability.name }}</span>
+            <span [ngClass]="{'text-blue-400': ability.value === ability.potential}">{{ ability.value }}
+              <span class="text-gray-400" *ngIf="ability.potential > ability.value">/ </span>
+              <span class="text-blue-400" *ngIf="ability.potential > ability.value">{{ ability.potential }}</span>
+            </span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-2">
+            <div class="bg-emerald-500 h-2 rounded-full" [style.width.%]="ability.value"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tactical Abilities -->
+    <div class="ability-section bg-gray-800 p-4 rounded-lg">
+      <h3 class="text-lg font-semibold mb-3 flex justify-between items-center">
+        <span>Tactical</span>
+        <span class="">{{ player.tactical_abilities.overall }}</span>
+      </h3>
+      <div class="space-y-2">
+        <div *ngFor="let ability of tacticalAbilities" class="ability-item">
+          <div class="flex justify-between text-sm mb-1">
+            <span>{{ ability.name }}</span>
+            <span [ngClass]="{'text-blue-400': ability.value === ability.potential}">{{ ability.value }}
+              <span class="text-gray-400" *ngIf="ability.potential > ability.value">/ </span>
+              <span class="text-blue-400" *ngIf="ability.potential > ability.value">{{ ability.potential }}</span>
+            </span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-2">
+            <div class="bg-emerald-500 h-2 rounded-full" [style.width.%]="ability.value"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Goalkeeping Abilities -->
+    <div class="ability-section bg-gray-800 p-4 rounded-lg">
+      <h3 class="text-lg font-semibold mb-3 flex justify-between items-center">
+        <span>Goalkeeping</span>
+        <span class="">{{ player.goalkeeping_abilities.overall }}</span>
+      </h3>
+      <div class="space-y-2">
+        <div *ngFor="let ability of goalkeepingAbilities" class="ability-item">
+          <div class="flex justify-between text-sm mb-1">
+            <span>{{ ability.name }}</span>
+            <span [ngClass]="{'text-blue-400': ability.value === ability.potential}">{{ ability.value }}
+              <span class="text-gray-400" *ngIf="ability.potential > ability.value">/ </span>
+              <span class="text-blue-400" *ngIf="ability.potential > ability.value">{{ ability.potential }}</span>
+            </span>
+          </div>
+          <div class="w-full bg-gray-700 rounded-full h-2">
+            <div class="bg-emerald-500 h-2 rounded-full" [style.width.%]="ability.value"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

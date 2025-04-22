@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
+import { playerDTO } from '../models/player.dto';
 @Injectable({
   providedIn: 'root'
 })
@@ -126,5 +127,26 @@ export class SupabaseService {
       .eq('owner', walletAddress);
       if (error) throw error;
       return data;
+  }
+
+  async getPlayerById (playerId: number): Promise<playerDTO | null>  {
+    const { data, error } = await this.supabase
+      .from('players')
+      .select(`
+        *,
+        condition_abilities:condition_abilities(*),
+        tactical_abilities:tactical_abilities(*),
+        technical_abilities:technical_abilities(*),
+        goalkeeping_abilities:goalkeeping_abilities(*)
+      `)
+      .eq('id',playerId)
+      .single();
+
+    if (error) {
+      console.error('Error fetching player:', error);
+      return null;
+    }
+
+    return data as playerDTO;
   }
 }

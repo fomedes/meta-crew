@@ -13,21 +13,21 @@ export interface marketPlayerDTO {
   preferredFoot: string;
   overall: number;
   potential: number;
+  nft: Nft;
   createdAt: string;
   updatedAt: string;
-  nft: Nft;
   playerSpecialSkill: PlayerSpecialSkill;
 }
 
 export interface Nft {
-  id: number;
+  // id: number;
   nftContractId: number;
   tokenId: number;
   ownerAddress: string;
   currentPrice: number;
-  currentListingBlock: string;
-  lastSalePrice: any;
-  lastListingPrice: number;
+  // currentListingBlock: string;
+  // lastSalePrice: any;
+  // lastListingPrice: number;
 }
 
 export interface PlayerSpecialSkill {

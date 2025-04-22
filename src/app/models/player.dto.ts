@@ -14,7 +14,7 @@ export interface playerDTO {
   owner: string;
   player_skill_1: string;
   player_skill_2: string;
-  player_special_skills: string;
+  player_special_skills: number;
   potential: number;
   preferred_foot: string;
   role: string;
