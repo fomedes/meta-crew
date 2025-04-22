@@ -1,7 +1,7 @@
 // supabase.service.ts
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.prod';
 import { playerDTO } from '../models/player.dto';
 @Injectable({
   providedIn: 'root'
