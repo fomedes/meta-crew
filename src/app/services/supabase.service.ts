@@ -1,7 +1,6 @@
 // supabase.service.ts
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { environment } from 'src/environments/environment';
 import { playerDTO } from '../models/player.dto';
 @Injectable({
   providedIn: 'root'
@@ -9,10 +8,10 @@ import { playerDTO } from '../models/player.dto';
 export class SupabaseService {
   private supabase: SupabaseClient;
   constructor() {
-    console.log('keys: ', environment.SUPABASE_URL, environment.SUPABASE_ANON_KEY)
+    console.log('keys: ', process.env['SUPABASE_URL'] as string, process.env['SUPABASE_ANON_KEY'] as string)
     this.supabase = createClient(
-      environment.SUPABASE_URL,
-      environment.SUPABASE_ANON_KEY
+      process.env['SUPABASE_URL'] as string,
+      process.env['SUPABASE_ANON_KEY'] as string
     );
   }
 
