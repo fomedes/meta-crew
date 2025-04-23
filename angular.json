@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@ngx-env/core:browser",
           "options": {
             "outputPath": "dist/meta-crew",
             "index": "src/index.html",
