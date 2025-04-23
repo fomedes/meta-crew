@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@ngx-env/core:browser",
+          "builder": "@ngx-env/builder:browser",
           "options": {
             "outputPath": "dist/meta-crew",
             "index": "src/index.html",
@@ -32,7 +32,10 @@
                 "glob": "**/*",
                 "input": "src",
                 "output": "/",
-                "ignore": ["**/*.ts", "**/*.scss"]
+                "ignore": [
+                  "**/*.ts",
+                  "**/*.scss"
+                ]
               }
             ],
             "styles": [
@@ -74,14 +77,13 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@ngx-env/builder:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "Meta_Crew:build:production"
             },
             "development": {
               "browserTarget": "Meta_Crew:build:development"
-              
             }
           },
           "defaultConfiguration": "development",
@@ -90,13 +92,13 @@
           }
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@ngx-env/builder:extract-i18n",
           "options": {
             "browserTarget": "Meta_Crew:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@ngx-env/builder:karma",
           "options": {
             "polyfills": [
               "zone.js",
@@ -111,7 +113,8 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "builderMode": "browser"
           }
         }
       }
