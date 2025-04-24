@@ -1,6 +1,7 @@
 // supabase.service.ts
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { environment } from 'src/environments/environment';
 import { playerDTO } from '../models/player.dto';
 @Injectable({
   providedIn: 'root'
@@ -8,16 +9,17 @@ import { playerDTO } from '../models/player.dto';
 export class SupabaseService {
   private supabase: SupabaseClient;
   constructor() {
-    console.log('keys: ', process.env['SUPABASE_URL'] as string, process.env['SUPABASE_ANON_KEY'] as string)
     this.supabase = createClient(
-      process.env['SUPABASE_URL'] as string,
-      process.env['SUPABASE_ANON_KEY'] as string
+      environment.SUPABASE_URL,
+      environment.SUPABASE_ANON_KEY,
+
     );
   }
 
   get client() {
     return this.supabase;
   }
+  
   
   async insertPlayer(player: any) {
     const { data, error } = await this.supabase
@@ -37,50 +39,6 @@ export class SupabaseService {
       .single();
   
     return !!data && !error;
-  }
-
-  async getAllPlayers() {
-    const { data, error } = await this.supabase
-      .from('players')
-      .select(`
-        *,
-        condition_abilities:condition_abilities(*),
-        tactical_abilities:tactical_abilities(*),
-        technical_abilities:technical_abilities(*),
-        goalkeeping_abilities:goalkeeping_abilities(*)
-      `);
-      if (error) throw error;
-      return data;
-  }
-  
-  async getPlayersByOwner(walletAddress: string) {
-    const { data, error } = await this.supabase
-      .from('players')
-      .select('*')
-      .eq('owner', walletAddress);
-      if (error) throw error;
-      return data;
-  }
-
-  async getPlayerById (playerId: number): Promise<playerDTO | null>  {
-    const { data, error } = await this.supabase
-      .from('players')
-      .select(`
-        *,
-        condition_abilities:condition_abilities(*),
-        tactical_abilities:tactical_abilities(*),
-        technical_abilities:technical_abilities(*),
-        goalkeeping_abilities:goalkeeping_abilities(*)
-      `)
-      .eq('id',playerId)
-      .single();
-
-    if (error) {
-      console.error('Error fetching player:', error);
-      return null;
-    }
-
-    return data as playerDTO;
   }
   
   async insertConditionAbilities(data: any) {
@@ -153,4 +111,47 @@ export class SupabaseService {
     return data;
   }
 
+  async getAllPlayers() {
+    const { data, error } = await this.supabase
+      .from('players')
+      .select(`
+        *,
+        condition_abilities:condition_abilities(*),
+        tactical_abilities:tactical_abilities(*),
+        technical_abilities:technical_abilities(*),
+        goalkeeping_abilities:goalkeeping_abilities(*)
+      `);
+      if (error) throw error;
+      return data;
+  }
+  
+  async getPlayersByOwner(walletAddress: string) {
+    const { data, error } = await this.supabase
+      .from('players')
+      .select('*')
+      .eq('owner', walletAddress);
+      if (error) throw error;
+      return data;
+  }
+
+  async getPlayerById (playerId: number): Promise<playerDTO | null>  {
+    const { data, error } = await this.supabase
+      .from('players')
+      .select(`
+        *,
+        condition_abilities:condition_abilities(*),
+        tactical_abilities:tactical_abilities(*),
+        technical_abilities:technical_abilities(*),
+        goalkeeping_abilities:goalkeeping_abilities(*)
+      `)
+      .eq('id',playerId)
+      .single();
+
+    if (error) {
+      console.error('Error fetching player:', error);
+      return null;
+    }
+
+    return data as playerDTO;
+  }
 }
