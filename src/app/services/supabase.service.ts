@@ -9,6 +9,8 @@ export class SupabaseService {
   private supabase: SupabaseClient;
   
   constructor() {
+    console.log(process.env['NG_APP_SUPABASE_URL']),
+
     this.supabase = createClient(
       process.env['NG_APP_SUPABASE_URL'],
       process.env['NG_APP_SUPABASE_ANON_KEY']
