@@ -1,22 +1,26 @@
 // supabase.service.ts
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { environment } from 'src/environments/environment.prod';
 import { playerDTO } from '../models/player.dto';
 @Injectable({
   providedIn: 'root'
 })
 export class SupabaseService {
   private supabase: SupabaseClient;
+  
   constructor() {
     this.supabase = createClient(
-      environment.SUPABASE_URL,
-      environment.SUPABASE_ANON_KEY,
+      process.env['NG_APP_SUPABASE_URL'],
+      process.env['NG_APP_SUPABASE_ANON_KEY']
+      // environment.SUPABASE_URL,
+      // environment.SUPABASE_ANON_KEY,
 
     );
+    console.log('Supabase service initialized');
   }
 
   get client() {
+    console.log('Supabase client accessed')
     return this.supabase;
   }
   
